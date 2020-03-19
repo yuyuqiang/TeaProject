@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tea-api:war">
+    <output-path>$PROJECT_DIR$/common-parent/tea-api/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>tea-api</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="edu-api.war">
+      <element id="artifact" artifact-name="tea-api:war exploded" />
+    </root>
+  </artifact>
+</component>

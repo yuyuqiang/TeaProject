@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tea-model" />
+        <module name="tea-manage" />
+        <module name="tea-dao" />
+        <module name="tea-api" />
+        <module name="tea-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-parent" target="1.5" />
+      <module name="tea-api" target="1.7" />
+      <module name="tea-dao" target="1.7" />
+      <module name="tea-manage" target="1.7" />
+      <module name="tea-model" target="1.7" />
+      <module name="tea-service" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
+  </component>
+</project>

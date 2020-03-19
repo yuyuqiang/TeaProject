@@ -9,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * 创建请求处理类
@@ -21,44 +25,34 @@ public class UserController extends BaseController<User> {
     @Autowired
     private IUserService userService;
     public  static  int id;
-
-//    @RequestMapping("login")
-//    public String login(){
-//        System.out.println(".....");
-//        return "login";
-//    }
+    public  static String uname;
+    public  static String upsd;
 
     //登录
     @RequestMapping( "login")
-    public String login(String username){
+    public String login() {
 
-        User user = userService.findByUsername(username);
-        System.out.println("pppppppppppppppppppp"+user);
-//        if (userService.get(user) != null){
-////            System.out.println(admin.getNumber());
-////            System.out.println( adminService.getAdminByNumber(admin.getNumber()));
-//
-//            User user1 = userService.findById(user.getId());
-//            id = user1.getId();
-//           // 设置属性的名称及内容
-//            session.setAttribute("id",user1.getId());
-//            session.setAttribute("password",user1.getPassword().trim());
-//            session.setAttribute("username",user1.getUsername().trim());
-//            System.out.println("1234567889");
-//            System.out.println("!!!!!!!!!!!!!!!!!!!!"+user1);
-//
-//            return "Default";
-//        }else {
-//            return "login";
-//        }
+
         return "login";
     }
 
     @RequestMapping("index")
-    public String index(){
-        System.out.println(".....");
+    public String index(HttpServletRequest request ,HttpServletResponse response)throws ServletException, IOException{
+        String uname_in=request.getParameter("username");
+        String upsd_in =request.getParameter("password");
+        System.out.println("uname:"+uname_in+"upsd:"+upsd_in);
 
-        return "Default";
+        User user = userService.findByUsername(uname_in);
+        uname = user.getUsername();
+        upsd = user.getPassword();
+        System.out.println("data："+uname+" "+upsd);
+        if(!upsd.equals(upsd_in)){
+//            response.getWriter().println("密码错误");
+            return "login";
+        }
+        else{
+            return "Default";
+        }
     }
     @RequestMapping("page404")
     public String page404(){

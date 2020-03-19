@@ -32,7 +32,7 @@
 					<a href="javascript:;">
 						<i class="iconfont icon-jiaoseguanli" ></i>
 						<span>用户信息</span>
-					z	<em class="layui-nav-more"></em>
+						<em class="layui-nav-more"></em>
 					</a>
 					<dl class="layui-nav-child">
 						<dd>

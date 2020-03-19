@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IUserService extends IBaseService<User> {
     //特有
-    public User login(String username, String password);
+    public Boolean login(String username, String password);
     List<User> getUser(int id);
     List<User> selectAllUser();
     User get(User user);

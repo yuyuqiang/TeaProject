@@ -1,3 +1,6 @@
+<%@ page import="javax.xml.crypto.dom.DOMCryptoContext" %>
+<%@ page import="me.zhangyu.model.User" %>
+<%@ page import="me.zhangyu.service.IUserService" %>
 <%@ page pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +27,10 @@
 	</h1>
   <form class="layui-form" action="<%=basePath%>/user/index.do" method="post">
 	<div class="layui-user-icon larry-login">
-		 <input type="text" placeholder="账号" class="login_txtbx"/>
+		 <input type="text" placeholder="账号" name="username" class="login_txtbx"/>
 	</div>
 	<div class="layui-pwd-icon larry-login">
-		 <input id="password" type="password" placeholder="密码" class="login_txtbx"/>
+		 <input type="password" placeholder="密码" name="password" class="login_txtbx"/>
 	</div>
 
     <div class="layui-submit larry-login">
@@ -42,39 +45,6 @@
 	</div>
   </form>
 </div>
-
-<%--    <script type="text/javascript">--%>
-<%--	      $(function(){--%>
-<%--		      $(".layui-canvs").jParticle({--%>
-<%--			     background: "#141414",--%>
-<%--			     color: "#E6E6E6"--%>
-<%--		      });--%>
-<%--		//登录链接测试，使用时可删除--%>
-<%--		      $(".submit_btn").click(function(){--%>
-<%--			     location.href="${pageContext.request.contextPath}user/index.do";--%>
-<%--		     });--%>
-<%--	      });--%>
-<%--    </script>--%>
-
-<script>
-	layui.use(['form', 'layedit', 'laydate'], function() {
-		var form = layui.form(),
-				layer = layui.layer;
-
-		//自定义验证规则
-		form.verify({
-			password: [/(.+){6,12}$/, '密码必须6到12位'],
-		});
-		//监听提交
-		form.on('submit(login)', function(data) {
-			layer.alert(JSON.stringify(data.field), {
-				number: '最终的提交信息'
-			})
-			return false;
-		});
-
-	});
-</script>
 
 </body>
 </html>

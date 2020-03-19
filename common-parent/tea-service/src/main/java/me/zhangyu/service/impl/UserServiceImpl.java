@@ -1,11 +1,14 @@
 package me.zhangyu.service.impl;
 
+import com.sun.deploy.net.HttpRequest;
+import me.zhangyu.mapper.UserMapper;
 import me.zhangyu.model.User;
 import me.zhangyu.service.IUserService;
 import me.zhangyu.service.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.applet.Applet;
 import java.util.List;
 
 @Service
@@ -14,8 +17,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
 
 
     @Override
-    public User login(String username, String password) {
-        return null;
+    public Boolean login(String username, String password) {
+
+        return true;
     }
 
     @Override

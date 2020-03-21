@@ -1,32 +1,32 @@
 package com.zhangyu.backoffice.web.controller;
 
 import com.zhangyu.backoffice.web.controller.base.BaseController;
+import me.zhangyu.model.Admin;
 import me.zhangyu.model.User;
+import me.zhangyu.service.AdminService;
 import me.zhangyu.service.IUserService;
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  * 创建请求处理类
  */
 @Controller
-@RequestMapping("user")
-public class UserController extends BaseController<User> {
+@RequestMapping("admin")
+public class AdminController extends BaseController<User> {
 
     @Autowired
-    private IUserService userService;
+    private AdminService adminService;
+
     public  static  int id;
-    public  static String uname;
-    public  static String upsd;
+    public  static String adminname;
+    public  static String adminpsd;
 
     //登录
     @RequestMapping( "login")
@@ -36,10 +36,23 @@ public class UserController extends BaseController<User> {
         return "login";
     }
 
-    @RequestMapping("index")
-    public String index(){
-        return "index";
+    @RequestMapping(DEFAULT)
+    public String index(HttpServletRequest request ,HttpServletResponse response)throws ServletException, IOException{
+        String adminname_in=request.getParameter("username");
+        String adminpsd_in =request.getParameter("password");
+        System.out.println("adminname:"+adminname_in+"adminpsd:"+adminpsd_in);
 
+        Admin admin = adminService.findByUsername(adminname_in);
+        adminname = admin.getAdminname();
+        adminpsd = admin.getPassword();
+        System.out.println("data："+adminname+" "+adminpsd);
+        if(!adminname.equals(adminname_in)){
+//            response.getWriter().println("密码错误");
+            return "login";
+        }
+        else{
+            return DEFAULT_PAGE;
+        }
     }
     @RequestMapping("page404")
     public String page404(){
@@ -52,19 +65,12 @@ public class UserController extends BaseController<User> {
         return "main";
     }
 
-    @RequestMapping("personInfo")
+    @RequestMapping(PERSONINFO)
     public String personInfo(){
         System.out.println(".....");
-        return "personInfo";
+        return PERSONINFO_PAGE;
     }
 
-    @RequestMapping("find")
-    public String find(int id){
-        System.out.println(".....");
-        User user = userService.findById(id);
-        System.out.println(user);
-        return "Default";
-    }
     @RequestMapping(MANAGE)
     public String manage(){
         return MANAGE_PAGE;

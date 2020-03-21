@@ -40,15 +40,15 @@
 				<nav>
 					<ul id="showMainNav" class="fix">
 						<li class="navContent nav_current">
-							<a href="#" class="showNav" id="user" data-name="main_iframe"
+							<a href="#" class="showNav" id="admin" data-name="main_iframe"
 							   onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/manage.do">内容管理</a>
+							   data-url="${pageContext.request.contextPath}/admin/manage.do">内容管理</a>
 						</li>
 
 						<li class="navContent">
 							<a href="#" class="showNav" id="employee" data-name="main_iframe"
 							   onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/employee/manage.do">扩展功能</a>
+							   data-url="${pageContext.request.contextPath}/admin/manage.do">扩展功能</a>
 						</li>
 
 					</ul>
@@ -60,7 +60,7 @@
 		<div id="main_iframe"
 			class="index_mainIfram_position  mainIfram_position">
 			<iframe class="main_iframe" id="home_iframe" frameborder="0"
-				border="0" src="${pageContext.request.contextPath}/user/manage.do"></iframe>
+				border="0" src="${pageContext.request.contextPath}/admin/manage.do"></iframe>
 		</div>
 
 <%--		<!--====下面是页脚====-->--%>

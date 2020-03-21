@@ -25,7 +25,7 @@
 		 <strong>教学辅助系统后台登录</strong>
 		 <em>Management System</em>
 	</h1>
-  <form class="layui-form" action="<%=basePath%>/user/index.do" method="post">
+  <form class="layui-form" action="<%=basePath%>admin/Default.do" method="post">
 	<div class="layui-user-icon larry-login">
 		 <input type="text" placeholder="账号" name="username" class="login_txtbx"/>
 	</div>
@@ -38,7 +38,7 @@
 		<button class="submit_btn "  lay-filter="login">立即登录
 			<a href="#"
 			   onclick="Common.switchNavigation(this);"
-			   data-url="${pageContext.request.contextPath}/user/index.do"></a>
+			   data-url="${pageContext.request.contextPath}/admin/index.do"></a>
 		</button>
 
 

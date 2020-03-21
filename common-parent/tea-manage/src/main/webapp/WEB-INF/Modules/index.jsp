@@ -66,7 +66,7 @@
 
 
                 <li class="layui-nav-item layui-this">
-                    <a href="javascript:;" data-url="${pageContext.request.contextPath}/user/main.do">
+                    <a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/main.do">
                         <i class="iconfont icon-home1" data-icon='icon-home1'></i>
                         <span>后台首页</span>
                     </a>
@@ -89,7 +89,7 @@
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
-                            <a href="javascript:;"data-url="${pageContext.request.contextPath}/user/personInfo.do">
+                            <a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/personInfo.do">
                                 <i class="iconfont icon-geren1" data-icon="icon-geren1"></i>
                                 <span>个人信息</span>
                             </a>

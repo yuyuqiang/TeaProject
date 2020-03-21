@@ -22,7 +22,7 @@
 				<li class="layui-nav-item layui-this">
 					<a href="#" class="subNavigation" id="A001010"
 					   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-					   data-url="${pageContext.request.contextPath}/user/personInfo.do">
+					   data-url="${pageContext.request.contextPath}/admin/personInfo.do">
 						<i class="iconfont icon-geren1" data-icon="icon-geren1"></i>
 						<span>个人信息</span>
 					</a>
@@ -38,12 +38,12 @@
 						<dd>
 							<a href="#" class="subNavigation" id="A001012"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/personInfo.do">学生信息</a>
+							   data-url="${pageContext.request.contextPath}/admin/personInfo.do">学生信息</a>
 						</dd>
 						<dd>
 							<a href="#" class="subNavigation" id="A001013"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/info.do">教师信息</a>
+							   data-url="${pageContext.request.contextPath}/admin/info.do">教师信息</a>
 						</dd>
 					</dl>
 				</li>
@@ -52,7 +52,7 @@
 				<li class="layui-nav-item layui-this">
 					<a href="#" class="subNavigation" id="A001014"
 					   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-					   data-url="${pageContext.request.contextPath}/user/personInfo.do">
+					   data-url="${pageContext.request.contextPath}/admin/personInfo.do">
 						<i class="iconfont icon-wenzhang1" ></i>
 						<span>资源管理</span>
 					</a>
@@ -68,12 +68,12 @@
 						<dd>
 							<a href="#" class="subNavigation" id="A001016"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/personInfo.do">测试题库</a>
+							   data-url="${pageContext.request.contextPath}/admin/personInfo.do">测试题库</a>
 						</dd>
 						<dd>
 							<a href="#" class="subNavigation" id="A001017"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/user/info.do">测试成绩</a>
+							   data-url="${pageContext.request.contextPath}/admin/info.do">测试成绩</a>
 						</dd>
 					</dl>
 				</li>
@@ -85,7 +85,7 @@
 	<!-- 左侧侧边导航结束 -->
         <!--====这里是弹出层的内容====-->
 		<div id="common_iframe" class="maincontent">
-			<iframe class="common_iframe" id="A001010_iframe" frameborder="0" border="0" src="${pageContext.request.contextPath}/user/personInfo.do"></iframe>
+			<iframe class="common_iframe" id="A001010_iframe" frameborder="0" border="0" src="${pageContext.request.contextPath}/admin/personInfo.do"></iframe>
 		</div>
     </div>
     </form>

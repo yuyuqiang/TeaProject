@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="me.zhangyu.mapper.UserMapper">
     <select id="findById" resultType="user" parameterType="int">
-        SELECT * FROM t_user WHERE id = #{id}
+        SELECT * FROM stu_user WHERE id = #{id}
     </select>
 
     <select id="findByUsername" resultType="user" parameterType="String">
-        SELECT * FROM t_user WHERE username = #{username}
+        SELECT * FROM stu_user WHERE username = #{username}
     </select>
 
 </mapper>

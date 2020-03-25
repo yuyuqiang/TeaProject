@@ -44,13 +44,14 @@ public class AdminController extends BaseController<User> {
         adminname = admin.getAdminname();
         adminpsd = admin.getPassword();
         System.out.println("data："+adminname+" "+adminpsd);
-        if(!adminname.equals(adminname_in)){
+        if(!adminname.equals(adminname_in) || !adminpsd.equals(adminpsd_in)){
 //            response.getWriter().println("密码错误");
             return ALOGIN_PAGE;
         }
-        else{
+        else {
             return DEFAULT_PAGE;
         }
+
     }
     @RequestMapping("page404")
     public String page404(){

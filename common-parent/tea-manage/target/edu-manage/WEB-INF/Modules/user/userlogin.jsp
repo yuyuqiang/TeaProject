@@ -33,7 +33,7 @@
                         《软件工程》教学辅助系统
                     </div>
                 </h2>
-                <form class="ui large form" method="post" action="${pageContext.request.contextPath}/user/login.do" id="fm">
+                <form class="ui large form" name="ThisForm" method="post" action="" id="fm">
                     <div class="ui stacked segment">
                         <div class="field">
                             <div class="ui left icon input">
@@ -47,8 +47,21 @@
                                 <input type="password"id="password" name="password" placeholder="密码">
                             </div>
                         </div>
+                        <div>
+                            <div class="ui fluid large teal submit button" id="btnLogin" style="width:299px!important;" onclick='check1()'>登  录</div>
+<%--                            <h5 style="font-family: 微软雅黑 ;margin-left: 193px;margin-top: -27px">类型：</h5>--%>
 
-                        <div class="ui fluid large teal submit button" id="btnLogin">登  录</div>
+<%--                               <select class="INPUT_text" name="userType" style="height:20px;width:80px;margin-left: 310px;margin-top: -33px">--%>
+<%--                                       <option value="0"selected="selected">老师</option>--%>
+<%--                                       <option value="1">学生</option>--%>
+<%--                                      </select>--%>
+                            <select class="ui dropdown"name="userType" style="width:80px!important;margin-left: 308px;margin-top: -40px">
+
+                                <option value="0">老师</option>
+                                <option value="1">学生</option>
+                            </select>
+
+                        </div>
                     </div>
 
                     <div class="ui error mini message"></div>
@@ -140,24 +153,42 @@
 <%--</script>--%>
 
 <script>
-    $('.ui.form').form({
-        fields : {
-            username : {
-                identifier: 'username',
-                rules: [{
-                    type : 'empty',
-                    prompt: '请输入用户名'
-                }]
-            },
-            password : {
-                identifier: 'password',
-                rules: [{
-                    type : 'empty',
-                    prompt: '请输入密码'
-                }]
+
+    function check1(){
+        $('.ui.form').form({
+            fields : {
+                username : {
+                    identifier: 'username',
+                    rules: [{
+                        type : 'empty',
+                        prompt: '请输入用户名'
+                    }]
+                },
+                password : {
+                    identifier: 'password',
+                    rules: [{
+                        type : 'empty',
+                        prompt: '请输入密码'
+                    }]
+                }
             }
+        });
+
+        //判断用户选择的类型
+        if(document.ThisForm.userType.value=="0"){
+
+            //向老师模块进行提交
+            document.getElementById("fm").action="${pageContext.request.contextPath}/admin/login.do";
         }
-    });
+
+        if(document.ThisForm.userType.value=="1"){
+            //向学生模块进行提交
+
+            document.getElementById("fm").action="${pageContext.request.contextPath}/user/login.do";
+
+        }
+        document.getElementById("fm").submit();
+    }
 </script>
 
 </body>

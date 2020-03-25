@@ -3,6 +3,7 @@ package com.zhangyu.backoffice.web.controller;
 import com.zhangyu.backoffice.web.controller.base.BaseController;
 import me.zhangyu.model.Vedio;
 import me.zhangyu.service.VedioService;
+import me.zhangyu.untils.DownLoadUtils;
 import me.zhangyu.untils.PageModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,10 +84,10 @@ public class VedioController extends BaseController<Vedio> {
         String realPath = request.getServletContext().getRealPath("/WEB-INF/Modules/upload/");
         //实例化一个File代表，代表待下载的视频。
         File file=new File(realPath,vedio.getVedioAttachment());
-
-     //   DownLoadUtils.setConentType(request, vedio.getVedioAttachment(), response);
         //通过response对象设置一对消息头
-        response.setHeader("Content-disposition", "attachment;filename="+vedio.getVedioAttachment());
+         DownLoadUtils.setConentType(request, vedio.getVedioAttachment(), response);
+
+        //response.setHeader("Content-disposition", "attachment;filename="+vedio.getVedioAttachment());
 
         //通过File获取输入流
         InputStream is=new FileInputStream(file);

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,17 +29,29 @@ public class UserController extends BaseController<User> {
     public  static String uname;
     public  static String upsd;
 
-    //登录
-    @RequestMapping( "login")
-    public String login() {
+    @RequestMapping("login")
+    public String userlogin(HttpServletRequest request, HttpSession session, RedirectAttributes attributes)throws ServletException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user = userService.validateUserExist(username);
+        System.out.println("pppppppp"+user);
+        if(null!=user && password.equals(user.getPassword())){
+            session.setAttribute("user",user);
+            System.out.println("1111111111");
+            return INDEX_PAGE;
+        }
+        else {
+            attributes.addFlashAttribute("message","用户名或密码错误");
+            System.out.println("mmmmmmmmmmmmmmmm");
 
+        }
+        return ULOGIN_PAGE;
 
-        return "login";
     }
 
-    @RequestMapping("index")
+    @RequestMapping(INDEX)
     public String index(){
-        return "index";
+        return INDEX_PAGE;
 
     }
     @RequestMapping("page404")
@@ -67,19 +80,15 @@ public class UserController extends BaseController<User> {
     }
     @RequestMapping(MANAGE)
     public String manage(){
-        return MANAGE_PAGE;
+        return UMANAGE_PAGE;
 
     }
 
-    @RequestMapping(INFO)
-    public String info(){
-        return INFO_PAGE;
 
-    }
 
     @RequestMapping(EDIT)
     public String edit(){
-        return EDIT_PAGE;
+        return UEDIT_PAGE;
 
     }
 

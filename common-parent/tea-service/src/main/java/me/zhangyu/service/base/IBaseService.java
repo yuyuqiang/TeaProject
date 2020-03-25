@@ -12,4 +12,6 @@ public interface IBaseService<T> {
     public void update(T t);
 
     public void insert(T t);
+
+    public T validateUserExist(String username);
 }

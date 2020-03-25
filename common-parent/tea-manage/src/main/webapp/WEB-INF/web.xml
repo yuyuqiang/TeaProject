@@ -31,5 +31,7 @@
   <servlet-mapping>
     <servlet-name>DispatcherServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
+    <url-pattern>*.mp4</url-pattern>
+    <url-pattern>*.avi</url-pattern>
   </servlet-mapping>
 </web-app>

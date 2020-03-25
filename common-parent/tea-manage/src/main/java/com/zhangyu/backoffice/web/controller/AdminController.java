@@ -31,9 +31,7 @@ public class AdminController extends BaseController<User> {
     //登录
     @RequestMapping( "login")
     public String login() {
-
-
-        return "login";
+        return ALOGIN_PAGE;
     }
 
     @RequestMapping(DEFAULT)
@@ -48,7 +46,7 @@ public class AdminController extends BaseController<User> {
         System.out.println("data："+adminname+" "+adminpsd);
         if(!adminname.equals(adminname_in)){
 //            response.getWriter().println("密码错误");
-            return "login";
+            return ALOGIN_PAGE;
         }
         else{
             return DEFAULT_PAGE;

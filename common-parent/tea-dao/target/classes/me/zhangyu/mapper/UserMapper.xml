@@ -9,4 +9,9 @@
         SELECT * FROM stu_user WHERE username = #{username}
     </select>
 
+    <select id="validateUserExist" resultType="user" parameterType="string">
+        SELECT * FROM stu_user WHERE username = #{username}
+    </select>
+
+
 </mapper>

@@ -2,6 +2,7 @@ package me.zhangyu.service.base;
 
 import me.zhangyu.mapper.AdminMapper;
 import me.zhangyu.mapper.UserMapper;
+import me.zhangyu.mapper.VedioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseServiceImpl<T> implements IBaseService<T> {
@@ -10,4 +11,8 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     protected UserMapper userMapper;
     @Autowired
     protected AdminMapper adminMapper;
+    @Autowired
+    protected VedioMapper vedioMapper;
+
+
 }

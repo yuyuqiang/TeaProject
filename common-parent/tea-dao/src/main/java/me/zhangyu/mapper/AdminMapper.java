@@ -9,10 +9,10 @@ import java.util.Map;
 
 public interface AdminMapper extends BaseMapper<Admin> {
 
-    List<Admin> getUser(@Param("param") Map map);
-
-    Admin selectUser(@Param("param") Admin admin);
-    Admin saveUser(@Param("param")Admin admin);
-
-    List<Admin> selectAllUser();
+//    List<Admin> getUser(@Param("param") Map map);
+//
+//    Admin selectUser(@Param("param") Admin admin);
+//    Admin saveUser(@Param("param")Admin admin);
+//
+//    List<Admin> selectAllUser();
 }

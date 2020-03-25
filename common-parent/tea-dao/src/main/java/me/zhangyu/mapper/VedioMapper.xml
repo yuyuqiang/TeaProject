@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.zhangyu.mapper.VedioMapper">
+
+    <select id="findPrevVedio" resultType="vedio" parameterType="List">
+        SELECT * FROM t_vedio ORDER BY uploadTime DESC LIMIT 0,5
+    </select>
+
+    <select id="findVedioWithPage" resultType="vedio" parameterType="int">
+        SELECT * FROM t_vedio LIMIT #{i},#{j}
+    </select>
+
+    <select id="findTotalRecords" resultType="int" parameterType="int">
+        SELECT COUNT(*) FROM t_vedio
+    </select>
+
+    <select id="findVedioByVid" resultType="vedio" parameterType="String">
+        SELECT * FROM t_vedio WHERE vedioId = #{vId}
+    </select>
+
+</mapper>

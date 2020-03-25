@@ -50,4 +50,9 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
     public void insert(Admin admin) {
 
     }
+
+    @Override
+    public Admin validateUserExist(String username) {
+        return null;
+    }
 }

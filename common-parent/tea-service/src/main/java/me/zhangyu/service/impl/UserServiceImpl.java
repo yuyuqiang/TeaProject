@@ -66,6 +66,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     public User findByUsername(String username) {
         return userMapper.findByUsername(username);
     }
+    @Override
+    public User validateUserExist(String username) {
+        //调用dao功能
+        return userMapper.validateUserExist(username);
+    }
 
     @Override
     public User findByUUId(String uuid) {

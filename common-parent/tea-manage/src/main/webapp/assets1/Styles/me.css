@@ -1,0 +1,17 @@
+.line{
+    width:830px !important;
+    height:1px !important;
+    margin-left: 50px !important;
+    margin-top: 10px;
+    background-color: #858585 !important;
+    overflow:hidden;
+}
+.text{
+    font-size:30px !important;
+    font-weight: normal !important;
+    margin-left: 50px !important;
+    color: rgba(18, 11, 27, 0.87);
+}
+.more {
+    text-align: right;
+}

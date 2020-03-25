@@ -16,6 +16,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<User> selectAllUser();
 
+    User validateUserExist(String username);
 
 
 

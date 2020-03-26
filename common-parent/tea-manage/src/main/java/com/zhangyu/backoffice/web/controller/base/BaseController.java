@@ -42,7 +42,13 @@ public abstract class BaseController<T> {
     public static final String PLAYVEDIO="playVedio";
     public static final String VEDIOUPDOWN="vedioUpdown";
 
+    //老师页面
+    public static  String TEAINFO_PAGE;//老师信息
+    public static  String TEAADD_PAGE;//添加老师
 
+
+    public static final String TEAINFO = "teaInfo";
+    public static final String TEAADD = "teacherAdd";
 
 
 
@@ -58,6 +64,7 @@ public abstract class BaseController<T> {
 //            String modelName = modelClass.getSimpleName().toLowerCase();
             String modelName = "admin";
             String modelName1 = "user";
+            String modelName2 = "teacher";
             EDIT_PAGE = modelName + "/" + EDIT;
             INFO_PAGE = modelName + "/"+INFO;
             MANAGE_PAGE = modelName + "/" + MANAGE;
@@ -75,6 +82,9 @@ public abstract class BaseController<T> {
             VEDIODETAIL_PAGE=modelName1+"/"+VEDIODETAIL;
             PLAYVEDIO_PAGE=modelName1+"/"+PLAYVEDIO;
             VEDIOUPDOWN_PAGE=modelName1+"/"+VEDIOUPDOWN;
+
+            TEAINFO_PAGE = modelName2+"/"+TEAINFO;
+            TEAADD_PAGE = modelName2+"/"+TEAADD;
 
 
 

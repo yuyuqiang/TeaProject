@@ -10,7 +10,6 @@ public class Teacher {
     private String loginPwd;
     private String del;
 
-    public Teacher(){}
 
     public int getTeaId() {
         return teaId;

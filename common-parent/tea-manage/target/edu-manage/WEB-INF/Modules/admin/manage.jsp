@@ -43,7 +43,7 @@
 						<dd>
 							<a href="#" class="subNavigation" id="A001013"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/admin/info.do">教师信息</a>
+							   data-url="${pageContext.request.contextPath}/teacher/teaInfo.do?num=1">教师信息</a>
 						</dd>
 					</dl>
 				</li>

@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface AdminMapper extends BaseMapper<Admin> {
+      Admin adminLogin(@Param("um")String um, @Param("up")String up);
+
+      Admin validateUserExist(@Param("username")String username);
 
 //    List<Admin> getUser(@Param("param") Map map);
 //

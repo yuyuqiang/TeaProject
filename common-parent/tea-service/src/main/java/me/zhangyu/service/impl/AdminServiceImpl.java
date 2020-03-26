@@ -8,6 +8,7 @@ import me.zhangyu.service.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -53,6 +54,13 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
 
     @Override
     public Admin validateUserExist(String username) {
-        return null;
+        return adminMapper.validateUserExist(username);
+    }
+
+    @Override
+    public Admin adminLogin(String um, String up)throws SQLException {
+        //调用DAO层功能
+        return adminMapper.adminLogin(um,up);
+
     }
 }

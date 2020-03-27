@@ -79,4 +79,25 @@ public class VedioServicelmpl extends BaseServiceImpl<Vedio> implements VedioSer
         //调用DAO层根据视频ID获取视频对象
         return vedioMapper.findVedioByVid(vId);
     }
+
+    @Override
+    public PageModel findVediosWithPageByTeacher(int currentPageNum)throws SQLException {
+        //1_创建PageModel对象，计算分页参数
+        int totalRecords=vedioMapper.findTotalRecords();//select count(*) from t_vedio
+        PageModel pm=new PageModel(currentPageNum, totalRecords, 5);
+        //2_为PageModel对象设置集合(当前页中的视频信息)
+        //select * from t_vedio limit ? , ?
+        List<Vedio> list=vedioMapper.findVediosWithPageByTeacher(pm.getStartIndex(),pm.getPageSize());
+        pm.setList(list);
+        //3_为PageModel对象设置url (PageFile.jsp页面所需)
+        pm.setUrl("vedio/findVediosWithPageByTeacher.do");
+        return pm;
+    }
+
+    @Override
+    public void deleteVedioByTeacher(String vId)throws SQLException {
+        //调用DAO层，根据视频编号删除视频功能
+        vedioMapper.deleteVedioByTeacher(vId);
+
+    }
 }

@@ -124,7 +124,7 @@
 									${tea.loginPwd}
 							</td>
 							<td width="10%" bgcolor="#FFFFFF" align="center">
-								<a href="#" onclick="delTea(${tea.teaId})" class="pn-loperator">删除</a>
+								<a href="#" onclick="delTea(${tea.teaId})" >删除</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -143,4 +143,12 @@
     </div>
 	</form>
 </body>
+<script>
+	function delTea(tid){
+		//删除前的确认提示
+		if(confirm("确认删除吗?")){
+			window.location.href="${pageContext.request.contextPath}/teacher/delTeacher.do?id="+tid;
+		}
+	}
+</script>
 </html>

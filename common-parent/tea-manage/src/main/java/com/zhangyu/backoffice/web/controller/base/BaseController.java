@@ -45,10 +45,19 @@ public abstract class BaseController<T> {
     //老师页面
     public static  String TEAINFO_PAGE;//老师信息
     public static  String TEAADD_PAGE;//添加老师
+    public static  String TEAINDEX_PAGE;//老师首页
+    public static  String TEAMANAGE_PAGE;
+    public static  String VEDIOTEAPREV_PAGE;
+    public static  String VEDIOADD_PAGE;
+
 
 
     public static final String TEAINFO = "teaInfo";
     public static final String TEAADD = "teacherAdd";
+    public static final String TEAINDEX = "teaIndex";
+    public static final String TEAMANAGE = "teaManage";
+    public static final String VEDIOTEAPREV = "vedioTeaPrev";
+    public static final String VEDIOADD = "vedioAdd";
 
 
 
@@ -62,29 +71,33 @@ public abstract class BaseController<T> {
 //        System.out.println("===="+modelClass);
 //            //3.定义页面的静态变量
 //            String modelName = modelClass.getSimpleName().toLowerCase();
-            String modelName = "admin";
-            String modelName1 = "user";
-            String modelName2 = "teacher";
-            EDIT_PAGE = modelName + "/" + EDIT;
-            INFO_PAGE = modelName + "/"+INFO;
-            MANAGE_PAGE = modelName + "/" + MANAGE;
-            PERSONINFO_PAGE=modelName+"/"+ PERSONINFO;
-            DEFAULT_PAGE = modelName+"/"+DEFAULT;
-            ALOGIN_PAGE = modelName+ "/"+ALOGIN;
+        String modelName = "admin";
+        String modelName1 = "user";
+        String modelName2 = "teacher";
+        EDIT_PAGE = modelName + "/" + EDIT;
+        INFO_PAGE = modelName + "/"+INFO;
+        MANAGE_PAGE = modelName + "/" + MANAGE;
+        PERSONINFO_PAGE=modelName+"/"+ PERSONINFO;
+        DEFAULT_PAGE = modelName+"/"+DEFAULT;
+        ALOGIN_PAGE = modelName+ "/"+ALOGIN;
 
-            INDEX_PAGE = modelName1+"/"+INDEX;
-            ULOGIN_PAGE = modelName1+"/"+LOGIN;
-            UEDIT_PAGE = modelName1 + "/" + EDIT;
-            UMANAGE_PAGE = modelName1 + "/" + MANAGE;
+        INDEX_PAGE = modelName1+"/"+INDEX;
+        ULOGIN_PAGE = modelName1+"/"+LOGIN;
+        UEDIT_PAGE = modelName1 + "/" + EDIT;
+        UMANAGE_PAGE = modelName1 + "/" + MANAGE;
 
-            VEDIO_PAGE = modelName1 + "/"+VEDIO;
-            VEDIOALL_PAGE = modelName1 + "/"+VEDIOALL;
-            VEDIODETAIL_PAGE=modelName1+"/"+VEDIODETAIL;
-            PLAYVEDIO_PAGE=modelName1+"/"+PLAYVEDIO;
-            VEDIOUPDOWN_PAGE=modelName1+"/"+VEDIOUPDOWN;
+        VEDIO_PAGE = modelName1 + "/"+VEDIO;
+        VEDIOALL_PAGE = modelName1 + "/"+VEDIOALL;
+        VEDIODETAIL_PAGE=modelName1+"/"+VEDIODETAIL;
+        PLAYVEDIO_PAGE=modelName1+"/"+PLAYVEDIO;
+        VEDIOUPDOWN_PAGE=modelName1+"/"+VEDIOUPDOWN;
 
-            TEAINFO_PAGE = modelName2+"/"+TEAINFO;
-            TEAADD_PAGE = modelName2+"/"+TEAADD;
+        TEAINFO_PAGE = modelName2+"/"+TEAINFO;
+        TEAADD_PAGE = modelName2+"/"+TEAADD;
+        TEAINDEX_PAGE = modelName2+"/"+TEAINDEX;
+        TEAMANAGE_PAGE= modelName2+"/"+TEAMANAGE;
+        VEDIOTEAPREV_PAGE= modelName2+"/"+VEDIOTEAPREV;
+        VEDIOADD_PAGE= modelName2+"/"+VEDIOADD;
 
 
 

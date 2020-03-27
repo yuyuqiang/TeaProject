@@ -67,8 +67,31 @@ public class TeacherController extends BaseController<Teacher> {
         //调用业务层添加老师功能
         teacherService.addTeacher(teacher);
         //重定向到查询老师信息功能
-        response.sendRedirect("teacher/teaInfo.do?num=1");
+
+        response.sendRedirect("teaInfo.do?num=1");
         return null;
+    }
+
+    @RequestMapping("delTeacher")
+    public String delTeacherById(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //获取待删除老师的编号
+        String id= request.getParameter("id");
+        //调用业务层删除老师功能
+        System.out.println("delid:"+id);
+        teacherService.delTeacherById(id);
+
+        //重定向到/TeacherServlet?method=findTeachersWithPage
+        response.sendRedirect("teaInfo.do?num=1");
+        return null;
+    }
+
+    @RequestMapping("teaLogin")
+    public String index(){
+        return TEAINDEX_PAGE;
+    }
+    @RequestMapping(TEAMANAGE)
+    public String teaManage(){
+        return TEAMANAGE_PAGE;
     }
 
 

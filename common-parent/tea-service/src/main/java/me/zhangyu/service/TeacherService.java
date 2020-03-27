@@ -14,7 +14,8 @@ public interface TeacherService extends IBaseService<Teacher> {
     PageModel findTeachersWithPage(int currentNum) throws SQLException;
 
     void addTeacher(Teacher teacher) throws SQLException;
-    //特有
+
+    void delTeacherById(String id) throws SQLException;
 
 
 }

@@ -6,13 +6,16 @@
         SELECT COUNT(*) FROM t_tea
     </select>
 
-    <select id="findTeachersWithPage" resultType="teacher" parameterType="int">
+    <select id="findTeachersWithPage" resultType="me.zhangyu.model.Teacher" parameterType="int">
         SELECT * FROM t_tea LIMIT #{startIndex},#{pageSize}
     </select>
 
-    <select id="addTeacher" resultType="teacher" parameterType="me.zhangyu.model.Teacher">
-        INSERT INTO t_tea (teaId,teaNum,teaRealName,teaSex,teaAge,loginName,loginPwd,del) values(#{teacher.getTeaRealName()},#{teacher.getTeaNum()},#{teacher.getTeaRealName()},#{teacher.getTeaSex()},#{teacher.getTeaAge()},#{teacher.getLoginName()},#{teacher.getLoginPwd()},null)
+    <select id="addTeacher" resultType="me.zhangyu.model.Teacher" parameterType="me.zhangyu.model.Teacher">
+        INSERT INTO t_tea (teaId,teaNum,teaRealName,teaSex,teaAge,loginName,loginPwd,del) values(null,#{teacher.teaNum},#{teacher.teaRealName},#{teacher.teaSex},#{teacher.teaAge},#{teacher.loginName},#{teacher.loginPwd},null)
+    </select>
 
+    <select id="delTeacherById" resultType="me.zhangyu.model.Teacher">
+        DELETE FROM t_tea WHERE teaId=#{id}
     </select>
 
 

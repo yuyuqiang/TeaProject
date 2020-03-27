@@ -24,9 +24,21 @@
 
     <!-- 3.视图的解析器-->
     <bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/Modules/"/>
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
 </beans>

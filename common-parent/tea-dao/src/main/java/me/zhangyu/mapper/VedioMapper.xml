@@ -18,4 +18,13 @@
         SELECT * FROM t_vedio WHERE vedioId = #{vId}
     </select>
 
+    <select id="findVediosWithPageByTeacher" resultType="me.zhangyu.model.Vedio" parameterType="int">
+        SELECT * FROM t_vedio LIMIT #{startIndex},#{pageSize}
+    </select>
+
+    <select id="deleteVedioByTeacher" resultType="me.zhangyu.model.Vedio">
+        DELETE FROM t_vedio WHERE vedioId=#{vId}
+    </select>
+
+
 </mapper>

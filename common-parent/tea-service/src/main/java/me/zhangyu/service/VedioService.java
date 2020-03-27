@@ -13,4 +13,8 @@ public interface VedioService extends IBaseService<Vedio> {
       PageModel findVedioWithPage(int num) throws SQLException;
 
       Vedio findVedioByVid(String vId) throws SQLException;
+
+      PageModel findVediosWithPageByTeacher(int currentPageNum) throws SQLException;
+
+      void deleteVedioByTeacher(String vId) throws SQLException;
 }

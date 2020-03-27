@@ -76,4 +76,10 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
         teacherMapper.addTeacher(teacher);
 
     }
+
+    @Override
+    public void delTeacherById(String id)throws SQLException {
+
+        teacherMapper.delTeacherById(id);
+    }
 }

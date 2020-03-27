@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-<%--    移动端预览设置--%>
+    <%--    移动端预览设置--%>
     <meta name="viewport" content="width=device-width,inital-scale=1.0">
     <title>登录</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
@@ -24,7 +24,7 @@
 <br>
 <br>
 
- <div class="m-container-small m-padded-tb-massive" style="max-width:60em !important;">
+<div class="m-container-small m-padded-tb-massive" style="max-width:60em !important;">
     <div class="ur container"style="padding-left: 30em !important;">
         <div class="ui middle aligned center aligned grid">
             <div class="column">
@@ -49,12 +49,12 @@
                         </div>
                         <div>
                             <div class="ui fluid large teal submit button" id="btnLogin" style="width:299px!important;" onclick='check1()'>登  录</div>
-<%--                            <h5 style="font-family: 微软雅黑 ;margin-left: 193px;margin-top: -27px">类型：</h5>--%>
+                            <%--                            <h5 style="font-family: 微软雅黑 ;margin-left: 193px;margin-top: -27px">类型：</h5>--%>
 
-<%--                               <select class="INPUT_text" name="userType" style="height:20px;width:80px;margin-left: 310px;margin-top: -33px">--%>
-<%--                                       <option value="0"selected="selected">老师</option>--%>
-<%--                                       <option value="1">学生</option>--%>
-<%--                                      </select>--%>
+                            <%--                               <select class="INPUT_text" name="userType" style="height:20px;width:80px;margin-left: 310px;margin-top: -33px">--%>
+                            <%--                                       <option value="0"selected="selected">老师</option>--%>
+                            <%--                                       <option value="1">学生</option>--%>
+                            <%--                                      </select>--%>
                             <select class="ui dropdown"name="userType" style="width:80px!important;margin-left: 308px;margin-top: -40px">
 
                                 <option value="0">老师</option>
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="ui error mini message"></div>
-<%--                    <div class="ui mini message" th:unless="${strings.isEmpty(message)}" th:text="${message}"></div>--%>
+                    <%--                    <div class="ui mini message" th:unless="${strings.isEmpty(message)}" th:text="${message}"></div>--%>
 
 
                 </form>
@@ -75,7 +75,7 @@
 
     </div>
 
- </div>
+</div>
 
 
 
@@ -178,7 +178,7 @@
         if(document.ThisForm.userType.value=="0"){
 
             //向老师模块进行提交
-            document.getElementById("fm").action="${pageContext.request.contextPath}/admin/login.do";
+            document.getElementById("fm").action="${pageContext.request.contextPath}/teacher/teaLogin.do";
         }
 
         if(document.ThisForm.userType.value=="1"){

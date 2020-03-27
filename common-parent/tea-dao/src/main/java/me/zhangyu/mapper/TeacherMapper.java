@@ -15,4 +15,6 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
     List<Teacher> findTeachersWithPage(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     void addTeacher(@Param(value = "teacher") Teacher teacher);
+
+    void delTeacherById(@Param("id") String id);
 }

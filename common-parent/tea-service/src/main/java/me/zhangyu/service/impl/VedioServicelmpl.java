@@ -100,4 +100,9 @@ public class VedioServicelmpl extends BaseServiceImpl<Vedio> implements VedioSer
         vedioMapper.deleteVedioByTeacher(vId);
 
     }
+
+    @Override
+    public void addVedio(Vedio vedio) {
+        vedioMapper.addVedio(vedio);
+    }
 }

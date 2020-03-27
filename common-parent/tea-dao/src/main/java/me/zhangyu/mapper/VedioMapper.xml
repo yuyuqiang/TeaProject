@@ -26,5 +26,4 @@
         DELETE FROM t_vedio WHERE vedioId=#{vId}
     </select>
 
-
 </mapper>

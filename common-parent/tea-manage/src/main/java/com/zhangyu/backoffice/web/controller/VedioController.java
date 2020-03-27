@@ -5,9 +5,11 @@ import me.zhangyu.model.Vedio;
 import me.zhangyu.service.VedioService;
 import me.zhangyu.untils.DownLoadUtils;
 import me.zhangyu.untils.PageModel;
+import me.zhangyu.untils.UploadUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -178,42 +182,39 @@ public class VedioController extends BaseController<Vedio> {
                 //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
                 String name=item.getFieldName();
                 String value=item.getString();
-                //System.out.println(name); //vedioName  vedioPro
-                //System.out.println(value); //1111       22222
+                System.out.println("lllllllllllll"+name); //vedioName  vedioPro
+                System.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
                 map.put(item.getFieldName(), item.getString());
             }else {
                 //如果是上传项：在服务端指定目录/upload/ 创建一个文件，将上传项中文件的二进制数据输出到创建好的文件中
                 //获取到文件名称
                 String fName=item.getName();
-                //System.out.println("文件名称"+fName); //11.mp4
+                System.out.println("文件名称"+fName); //11.mp4
                 //获取服务端upload真实路径
                 String realPath= request.getServletContext().getRealPath("/WEB-INF/Modules/upload/");
-                //D:/tomcat/tomcat/webapps/czjf_system/upload
-                //  String uuidName=UploadUtils.getUUIDName(fName);
+                String uuidName= UploadUtils.getUUIDName(fName);
                 //XXXXXX.mp4
                 //在服务端指定路径下创建文件
-                //  File f=new File(realPath,uuidName);
-//                if(!f.exists()) {
-//                    f.createNewFile();
-//                    //创建文件此时其中没有内容
-//                }
-//                item.write(f);//将上传到服务端的文件中的二进制数据输出到文件中
-//                map.put("vedioAttachment", uuidName);
-//                map.put("attachmentOldName", fName);
+                 File f=new File(realPath,uuidName);
+                if(!f.exists()) {
+                    f.createNewFile();
+                    //创建文件此时其中没有内容
+                }
+                item.write(f);//将上传到服务端的文件中的二进制数据输出到文件中
+                map.put("vedioAttachment", uuidName);
+                map.put("attachmentOldName", fName);
             }
         }
-//        //将MAP中的数据封装在Vedio对象上
-//        BeanUtils.populate(vedio, map);
-//        System.out.println(vedio);
-//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-//        vedio.setUploadTime(sdf.format(new Date()));
-//        vedio.setDel("no");
-//        //Vedio [vedioId=0, vedioName=33333333333, vedioPro=44444444444444, vedioAttachment=6437C1D60C404656A48D04B811B5B519.bmp, attachmentOldName=11.bmp, uploadTime=null, del=null]
-//        //6_将普通项的数据以及文件的位置传递到service,dao.进行数据的保存
-//        VedioService VedioService=new VedioService();
-//        VedioService.addVedio(vedio);
-//
-//
+        //将MAP中的数据封装在Vedio对象上
+        BeanUtils.populate(vedio, map);
+        System.out.println("ssssssssssssss"+vedio);
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        vedio.setUploadTime(sdf.format(new Date()));
+        vedio.setDel("no");
+        //Vedio [vedioId=0, vedioName=33333333333, vedioPro=44444444444444, vedioAttachment=6437C1D60C404656A48D04B811B5B519.bmp, attachmentOldName=11.bmp, uploadTime=null, del=null]
+        //6_将普通项的数据以及文件的位置传递到service,dao.进行数据的保存
+        vedioService.addVedio(vedio);
+
         response.sendRedirect("findVediosWithPageByTeacher.do?num=1");
         return null;
     }

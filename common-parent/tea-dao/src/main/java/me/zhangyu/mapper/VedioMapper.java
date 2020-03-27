@@ -22,4 +22,6 @@ public interface VedioMapper extends BaseMapper<Vedio> {
     List<Vedio> findVediosWithPageByTeacher(@Param("startIndex") int startIndex,@Param("pageSize") int pageSize);
 
     void deleteVedioByTeacher(@Param("vId") String vId);
+
+    void addVedio(Vedio vedio);
 }

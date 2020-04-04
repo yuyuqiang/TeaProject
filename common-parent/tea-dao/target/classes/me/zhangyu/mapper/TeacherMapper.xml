@@ -18,5 +18,9 @@
         DELETE FROM t_tea WHERE teaId=#{id}
     </select>
 
+    <select id="addHomework" resultType="me.zhangyu.model.Homework" parameterType="me.zhangyu.model.Homework">
+        INSERT INTO t_Homework (H_id,H_name,H_startTime,H_endTime,H_content) values(null,#{homework.H_name},#{homework.H_startTime},#{homework.H_endTime},#{homework.H_content})
+    </select>
+
 
 </mapper>

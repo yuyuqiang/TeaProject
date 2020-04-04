@@ -12,6 +12,18 @@
     margin-left: 50px !important;
     color: rgba(18, 11, 27, 0.87);
 }
+.zuo{width: 19%;
+    text-align: right;
+    margin-right:20px;
+    margin-top: 20px;
+    float: left;
+    line-height: 33px;
+    margin-bottom: 10px}
+.you{width: 80%;
+    float: right;
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: 10px}
 .more {
     text-align: right;
 }

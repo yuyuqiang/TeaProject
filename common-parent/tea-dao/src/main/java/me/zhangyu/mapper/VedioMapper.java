@@ -23,5 +23,5 @@ public interface VedioMapper extends BaseMapper<Vedio> {
 
     void deleteVedioByTeacher(@Param("vId") String vId);
 
-    void addVedio(Vedio vedio);
+    void addVedio(@Param("vedio") Vedio vedio);
 }

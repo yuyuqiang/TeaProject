@@ -13,5 +13,9 @@
         SELECT * FROM stu_user WHERE username = #{username}
     </select>
 
+    <select id="findPrevHomework" resultType="me.zhangyu.model.Homework" parameterType="List">
+        SELECT * FROM t_homework ORDER BY H_id DESC LIMIT 0,5
+    </select>
+
 
 </mapper>

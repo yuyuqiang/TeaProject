@@ -1,6 +1,7 @@
 package me.zhangyu.service;
 
 import me.zhangyu.model.Admin;
+import me.zhangyu.model.Homework;
 import me.zhangyu.model.Teacher;
 import me.zhangyu.service.base.IBaseService;
 import me.zhangyu.untils.PageModel;
@@ -18,4 +19,5 @@ public interface TeacherService extends IBaseService<Teacher> {
     void delTeacherById(String id) throws SQLException;
 
 
+    void addHomework(Homework homework) throws SQLException;
 }

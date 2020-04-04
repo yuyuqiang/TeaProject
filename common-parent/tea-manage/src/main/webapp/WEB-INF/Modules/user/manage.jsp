@@ -21,7 +21,7 @@
 						<li class="nav_current">
 							<a href="#" class="subNavigation" id="A001011"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/vedio/vedioPrev.do">教学文章</a>
+							   data-url="${pageContext.request.contextPath}/user/homeworkPrev.do">课堂作业</a>
 						</li>
 
                     </ul>

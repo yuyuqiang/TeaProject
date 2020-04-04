@@ -1,6 +1,7 @@
 package com.zhangyu.backoffice.web.controller;
 
 import com.zhangyu.backoffice.web.controller.base.BaseController;
+import me.zhangyu.model.Homework;
 import me.zhangyu.model.User;
 import me.zhangyu.service.IUserService;
 import org.apache.commons.logging.Log;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 创建请求处理类
@@ -46,6 +48,24 @@ public class UserController extends BaseController<User> {
 
         }
         return ULOGIN_PAGE;
+
+    }
+
+    @RequestMapping("homeworkPrev")
+    public String findPrevhomework(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //1_调用业务层功能，返回存储着Vedio对象的集合
+        List<Homework> list=userService.findPrevHomework();//查询5个最新视频,返回集合
+        System.out.println("list66"+list);
+        //2_将集合放入request域对象内
+        request.setAttribute("list", list);
+        //3_转发到vedioPrev.jsp
+        return HOMEWORKPREV_PAGE;
+    }
+
+
+    @RequestMapping("homeworkPrevUI")
+    public String homeworkprevUI(){
+        return HOMEWORKPREV_PAGE;
 
     }
 
@@ -83,7 +103,6 @@ public class UserController extends BaseController<User> {
         return UMANAGE_PAGE;
 
     }
-
 
 
     @RequestMapping(EDIT)

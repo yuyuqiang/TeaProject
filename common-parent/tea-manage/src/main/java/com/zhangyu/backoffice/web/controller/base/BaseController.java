@@ -1,6 +1,7 @@
 package com.zhangyu.backoffice.web.controller.base;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
+import sun.management.snmp.jvmmib.JvmOSMeta;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -33,6 +34,7 @@ public abstract class BaseController<T> {
     public static  String VEDIODETAIL_PAGE;
     public static  String PLAYVEDIO_PAGE;
     public static  String VEDIOUPDOWN_PAGE;
+    public static  String HOMEWORKPREV_PAGE;
 
     public static final String INDEX = "index";
     public static final String LOGIN ="userlogin";
@@ -41,6 +43,7 @@ public abstract class BaseController<T> {
     public static final String VEDIODETAIL="vedioDetail";
     public static final String PLAYVEDIO="playVedio";
     public static final String VEDIOUPDOWN="vedioUpdown";
+    public static final String HOMEWORKPREV="homeworkPrev";
 
     //老师页面
     public static  String TEAINFO_PAGE;//老师信息
@@ -49,6 +52,7 @@ public abstract class BaseController<T> {
     public static  String TEAMANAGE_PAGE;
     public static  String VEDIOTEAPREV_PAGE;
     public static  String VEDIOADD_PAGE;
+    public static  String PUBLISHHOMEWORK_PAGE;
 
 
 
@@ -58,6 +62,7 @@ public abstract class BaseController<T> {
     public static final String TEAMANAGE = "teaManage";
     public static final String VEDIOTEAPREV = "vedioTeaPrev";
     public static final String VEDIOADD = "vedioAdd";
+    public static final String PUBLISHHOMEWORK = "publishHomework";
 
 
 
@@ -91,6 +96,8 @@ public abstract class BaseController<T> {
         VEDIODETAIL_PAGE=modelName1+"/"+VEDIODETAIL;
         PLAYVEDIO_PAGE=modelName1+"/"+PLAYVEDIO;
         VEDIOUPDOWN_PAGE=modelName1+"/"+VEDIOUPDOWN;
+        HOMEWORKPREV_PAGE= modelName1+"/"+ HOMEWORKPREV;
+
 
         TEAINFO_PAGE = modelName2+"/"+TEAINFO;
         TEAADD_PAGE = modelName2+"/"+TEAADD;
@@ -98,6 +105,10 @@ public abstract class BaseController<T> {
         TEAMANAGE_PAGE= modelName2+"/"+TEAMANAGE;
         VEDIOTEAPREV_PAGE= modelName2+"/"+VEDIOTEAPREV;
         VEDIOADD_PAGE= modelName2+"/"+VEDIOADD;
+        PUBLISHHOMEWORK_PAGE= modelName2+"/"+PUBLISHHOMEWORK;
+
+
+
 
 
 

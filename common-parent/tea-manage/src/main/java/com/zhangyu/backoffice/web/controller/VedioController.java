@@ -47,7 +47,7 @@ public class VedioController extends BaseController<Vedio> {
     public String findVedioWithpage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //1_接受当前页参数
         int num=Integer.parseInt(request.getParameter("num"));
-        System.out.println("aaaaaaaaa"+num);
+
         //2_调用业务层功能，返回PageModel
         PageModel pm=vedioService.findVedioWithPage(num);
         //  为什么是PageModel?:
@@ -91,6 +91,7 @@ public class VedioController extends BaseController<Vedio> {
         Vedio vedio=vedioService.findVedioByVid(id);
         //获取到项目下upload目录的绝对路径
         String realPath = request.getServletContext().getRealPath("/WEB-INF/Modules/upload/");
+        System.out.println("llllllll"+realPath);
         //实例化一个File代表，代表待下载的视频。
         File file=new File(realPath,vedio.getVedioAttachment());
         //通过response对象设置一对消息头
@@ -139,7 +140,7 @@ public class VedioController extends BaseController<Vedio> {
 
     @RequestMapping("vedioAddUI")
     public String addVedioUI()  {
-        System.out.println("hahahahah");
+
         return VEDIOADD_PAGE;
     }
 
@@ -182,8 +183,8 @@ public class VedioController extends BaseController<Vedio> {
                 //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
                 String name=item.getFieldName();
                 String value=item.getString();
-                System.out.println("lllllllllllll"+name); //vedioName  vedioPro
-                System.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
+//                System.out.println("lllllllllllll"+name); //vedioName  vedioPro
+//                System.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
                 map.put(item.getFieldName(), item.getString());
             }else {
                 //如果是上传项：在服务端指定目录/upload/ 创建一个文件，将上传项中文件的二进制数据输出到创建好的文件中
@@ -191,11 +192,13 @@ public class VedioController extends BaseController<Vedio> {
                 String fName=item.getName();
                 System.out.println("文件名称"+fName); //11.mp4
                 //获取服务端upload真实路径
-                String realPath= request.getServletContext().getRealPath("/WEB-INF/Modules/upload/");
+                String realPath= request.getSession().getServletContext().getRealPath("/WEB-INF/Modules/upload/");
+                //String realPath = "//src/main/webapp/WEB-INF/Modules/upload//";
                 String uuidName= UploadUtils.getUUIDName(fName);
                 //XXXXXX.mp4
                 //在服务端指定路径下创建文件
                  File f=new File(realPath,uuidName);
+                System.out.println("bbbbb"+f);
                 if(!f.exists()) {
                     f.createNewFile();
                     //创建文件此时其中没有内容

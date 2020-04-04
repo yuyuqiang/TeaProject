@@ -62,11 +62,9 @@ public class VedioServicelmpl extends BaseServiceImpl<Vedio> implements VedioSer
     public PageModel findVedioWithPage(int num)throws SQLException{
         //创建PageModel对象，计算分页参数信息
         int totalRecords=vedioMapper.findTotalRecords();
-        System.out.println("nnnnnnnn"+totalRecords);
         PageModel pm = new PageModel(num,totalRecords,5);
         //为PageModel关联集合，集合中存放当前页中的信息
         //调用DAO层查询当前页中的视频信息
-        System.out.println("bbbbbbbbbbb"+num);
         List<Vedio> list = vedioMapper.findVedioWithPage((num-1)*5,5);
         pm.setList(list);
         //为pagemodel关联URL属性
@@ -102,7 +100,7 @@ public class VedioServicelmpl extends BaseServiceImpl<Vedio> implements VedioSer
     }
 
     @Override
-    public void addVedio(Vedio vedio) {
+    public void addVedio(Vedio vedio)throws SQLException {
         vedioMapper.addVedio(vedio);
     }
 }

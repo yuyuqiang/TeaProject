@@ -26,5 +26,8 @@
         DELETE FROM t_vedio WHERE vedioId=#{vId}
     </select>
 
+    <select id="addVedio" resultType="me.zhangyu.model.Vedio" parameterType="me.zhangyu.model.Vedio">
+        INSERT INTO t_vedio (vedioId,vedioName,vedioPro,vedioAttachment,attachmentOldName,uploadTime,del) values(null,#{vedio.vedioName},#{vedio.vedioPro},#{vedio.vedioAttachment},#{vedio.attachmentOldName},#{vedio.uploadTime},#{vedio.del})
+    </select>
 
 </mapper>

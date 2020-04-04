@@ -23,6 +23,11 @@
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
 							   data-url="${pageContext.request.contextPath}/vedio/vedioPrev.do">教学课件管理</a>
 						</li>
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001012"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/teacher/publishHomeworkUI.do">发布作业</a>
+						</li>
 
                     </ul>
                 </div>

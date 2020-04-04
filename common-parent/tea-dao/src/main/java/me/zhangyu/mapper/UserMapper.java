@@ -1,6 +1,7 @@
 package me.zhangyu.mapper;
 
 import me.zhangyu.mapper.base.BaseMapper;
+import me.zhangyu.model.Homework;
 import me.zhangyu.model.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +20,5 @@ public interface UserMapper extends BaseMapper<User> {
     User validateUserExist(String username);
 
 
-
+    List<Homework> findPrevHomework();
 }

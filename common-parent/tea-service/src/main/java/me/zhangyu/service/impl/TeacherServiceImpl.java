@@ -1,5 +1,6 @@
 package me.zhangyu.service.impl;
 
+import me.zhangyu.model.Homework;
 import me.zhangyu.model.Teacher;
 import me.zhangyu.model.User;
 import me.zhangyu.service.IUserService;
@@ -81,5 +82,10 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
     public void delTeacherById(String id)throws SQLException {
 
         teacherMapper.delTeacherById(id);
+    }
+
+    @Override
+    public void addHomework(Homework homework)throws SQLException {
+        teacherMapper.addHomework(homework);
     }
 }

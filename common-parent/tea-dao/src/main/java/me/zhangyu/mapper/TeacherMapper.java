@@ -2,6 +2,7 @@ package me.zhangyu.mapper;
 
 import me.zhangyu.mapper.base.BaseMapper;
 import me.zhangyu.model.Admin;
+import me.zhangyu.model.Homework;
 import me.zhangyu.model.Teacher;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,4 +18,6 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
     void addTeacher(@Param(value = "teacher") Teacher teacher);
 
     void delTeacherById(@Param("id") String id);
+
+    void addHomework(@Param(value = "homework")Homework homework);
 }

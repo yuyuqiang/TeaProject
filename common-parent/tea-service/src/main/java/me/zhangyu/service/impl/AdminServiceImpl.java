@@ -23,7 +23,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
 
     @Override
     public Admin findByUsername(String username) {
-        System.out.println("11111111111"+username);
+
         return adminMapper.findByUsername(username);
     }
 

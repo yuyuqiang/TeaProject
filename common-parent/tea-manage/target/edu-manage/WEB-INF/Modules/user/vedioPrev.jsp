@@ -32,7 +32,7 @@
                    <c:forEach items="${list}"  var="v">
                        <div class="c1-bline" style="padding:7px 0px;">
                            <div class="f-left">
-                               <img src="${pageContext.request.contextPath}/assets1/Images/head-mark4.gif"
+                               <img  src="${pageContext.request.contextPath}/assets1/Images/head-mark4.gif"
                                     align="middle"
                                     class="img-vm" border="0"/>
                                <a href="${pageContext.request.contextPath}/vedio/vedioDetail.do?id=${v.vedioId}">

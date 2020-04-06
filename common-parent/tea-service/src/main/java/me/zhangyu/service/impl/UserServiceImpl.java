@@ -3,6 +3,8 @@ package me.zhangyu.service.impl;
 import com.sun.deploy.net.HttpRequest;
 import me.zhangyu.mapper.UserMapper;
 import me.zhangyu.model.Homework;
+import me.zhangyu.model.StudentHomework;
+import me.zhangyu.model.StudentSubmitHomework;
 import me.zhangyu.model.User;
 import me.zhangyu.service.IUserService;
 import me.zhangyu.service.base.BaseServiceImpl;
@@ -62,6 +64,27 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     @Override
     public List<Homework> findPrevHomework()throws SQLException {
         return userMapper.findPrevHomework();
+    }
+
+    @Override
+    public Homework findHomeworkByid(String hId)throws SQLException {
+        return userMapper.findHomeid(hId);
+
+    }
+
+    @Override
+    public void submithomework(StudentSubmitHomework studentSubmitHomework) {
+        userMapper.submitHomework(studentSubmitHomework);
+    }
+
+    @Override
+    public List<StudentHomework> findPreStudentHomework() throws SQLException {
+        return userMapper.findpreStudentHomework();
+    }
+
+    @Override
+    public void updateStudentHomework(StudentHomework studentHomework,String h_name)throws   SQLException {
+        userMapper.updateStudentHomework(studentHomework,h_name);
     }
 
     @Override

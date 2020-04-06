@@ -1,8 +1,11 @@
 package me.zhangyu.service;
 
 import me.zhangyu.model.Homework;
+import me.zhangyu.model.StudentHomework;
+import me.zhangyu.model.StudentSubmitHomework;
 import me.zhangyu.model.User;
 import me.zhangyu.service.base.IBaseService;
+import org.apache.ibatis.annotations.Param;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,4 +24,13 @@ public interface IUserService extends IBaseService<User> {
     User searchByNumber(String number);
 
     List<Homework> findPrevHomework() throws SQLException;
+
+    Homework findHomeworkByid(String hId) throws SQLException;
+
+
+    void submithomework(StudentSubmitHomework studentSubmitHomework);
+
+    List<StudentHomework> findPreStudentHomework() throws SQLException;
+
+    void updateStudentHomework(StudentHomework studentHomework,String h_name) throws SQLException;
 }

@@ -2,6 +2,7 @@ package com.zhangyu.backoffice.web.controller;
 
 import com.zhangyu.backoffice.web.controller.base.BaseController;
 import me.zhangyu.model.Homework;
+import me.zhangyu.model.StudentHomework;
 import me.zhangyu.model.Teacher;
 import me.zhangyu.model.User;
 import me.zhangyu.service.IUserService;
@@ -36,6 +37,32 @@ public class TeacherController extends BaseController<Teacher> {
 
     @Autowired
     private TeacherService teacherService;
+    public static Homework homework;
+
+
+    @RequestMapping("teaLogin")
+    public String teacherLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        //获取账户和密码
+        String um = request.getParameter("username");
+        String up = request.getParameter("password");
+        //调用业务层登录功能,   返回teacher对象
+        Teacher teacher=teacherService.teacherLogin(um,up);
+        if(null==teacher) {
+            //如果teacher对象为空， 登录失败，向request放入提示信息 ,转发到login.jsp页面
+            request.setAttribute("msg", "账户密码不匹配");
+            return ULOGIN_PAGE;
+        }else {
+            //如果teacher对象不为空 ,登录成功，向session放入teacher对象,重定向到/atea/index.jsp
+            request.getSession().setAttribute("teacher", teacher);
+            response.sendRedirect("teaIndex.do");
+            return null;
+        }
+    }
+
+    @RequestMapping("teaIndex")
+    public String index(){
+        return TEAINDEX_PAGE;
+    }
 
 
     @RequestMapping("teaInfo")
@@ -94,11 +121,34 @@ public class TeacherController extends BaseController<Teacher> {
         return null;
     }
 
+    //updateTeacher
+    @RequestMapping("updateTeacher")
+    public String updateTeacher(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String num=request.getParameter("teaNum");
+        String name=request.getParameter("teaRealname");
+        String sex=request.getParameter("teaSex");
+        String teaAge=request.getParameter("teaAge");
+        String loginName=request.getParameter("loginName");
+        String loginPwd=request.getParameter("loginPwd");
+        String teaId=request.getParameter("teaId");
+        Teacher t=new Teacher();
+        t.setTeaId(Integer.parseInt(teaId));
+        t.setTeaNum(num);
+        t.setTeaRealName(name);
+        t.setTeaSex(sex);
+        t.setTeaAge(teaAge);
+        t.setLoginName(loginName);
+        t.setLoginPwd(loginPwd);
+
+        teacherService.updateTeacher(t);
+        return  "updateSuccess";
+    }
+
     /**
      * 老师发布作业
      * */
     @RequestMapping("publishHomework")
-    public String teacherPublishHomeworkInformation(HttpServletResponse response,HttpSession session,HttpServletRequest request) throws SQLException {
+    public String teacherPublishHomeworkInformation(HttpServletResponse response,HttpSession session,HttpServletRequest request) throws SQLException, IOException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
         Date time=null;
         Timestamp startTime=null;
@@ -118,14 +168,19 @@ public class TeacherController extends BaseController<Teacher> {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        Homework homework=new Homework();
+        homework=new Homework();
+        StudentHomework studentHomework = new StudentHomework();
         Date now = new Date();
         DateFormat dateFormat2 = new SimpleDateFormat("dd HH:mm:ss", Locale.ENGLISH);
-
         homework.setH_startTime(startTime);
         homework.setH_endTime(endTime);
         homework.setH_name(H_name);
         homework.setH_content(H_content);
+
+        studentHomework.setH_name(H_name);
+        studentHomework.setH_startTime(startTime);
+        studentHomework.setH_content(H_content);
+
         response.setHeader("content-type", "text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
         PrintWriter out=null;
@@ -136,6 +191,8 @@ public class TeacherController extends BaseController<Teacher> {
             e.printStackTrace();
         }
         teacherService.addHomework(homework);
+
+        teacherService.addStudentHomework(studentHomework);
 //        teacherCommodityHomework.setH_ID(Integer.parseInt(H_ID));
 //        if(teacherCommodityHomeworkService.addTeacherCommodityHomework(teacherCommodityHomework)>0){
 //            session.removeAttribute("userinfor");
@@ -149,8 +206,22 @@ public class TeacherController extends BaseController<Teacher> {
 //            out.flush();
 //            out.close();
 //        }
+
         return null;
     }
+
+    @RequestMapping("teaMessageManage")
+    public String teaMessageManage(){
+
+        return TEAMESSAGEMANAGE_PAGE;
+    }
+
+    @RequestMapping("myTeaInfoUI")
+    public String myTeaInfo(){
+
+        return MYTEAINFO_PAGE;
+    }
+
 
     @RequestMapping("publishHomeworkUI")
     public String teacherPublishHomework(){
@@ -158,10 +229,9 @@ public class TeacherController extends BaseController<Teacher> {
     }
 
 
-    @RequestMapping("teaLogin")
-    public String index(){
-        return TEAINDEX_PAGE;
-    }
+
+
+
     @RequestMapping(TEAMANAGE)
     public String teaManage(){
         return TEAMANAGE_PAGE;

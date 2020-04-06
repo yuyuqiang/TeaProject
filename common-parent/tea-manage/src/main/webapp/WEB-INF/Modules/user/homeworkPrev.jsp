@@ -19,27 +19,35 @@
 </head>
 <body>
 
-  <c:forEach items="${list}"  var="hw">
-   <div class="ui divided items" style="margin-top: 10px!important;">
 
+  <div class="ui divided items" style="margin-top: 10px!important;">
+    <c:forEach items="${list}"  var="hw">
      <div class="item">
         <div class="content">
-            <a class="header" href="${pageContext.request.contextPath}/user/homeworkPrev.do?id=${hw.H_id}">
-                    ${hw.H_name}
+            <a class="header" href="${pageContext.request.contextPath}/user/homeworkPrev.do?id=${hw.id}">
+                    ${hw.h_name}
             </a>
             <div class="meta">
-                <span class="cinema">${hw.H_startTime}</span>
+                <span class="cinema">开始时间：${hw.h_startTime}</span>
             </div>
+            <div class="meta" style="margin-top: -20px;margin-left: 300px">
+                <span class="cinema">提交时间：${hw.h_subTime}</span>
+            </div>
+            <h4 style="margin-top: -20px;margin-left: 650px;color: #56c756">分数: ${hw.grade}</h4>
             <div class="description">
-                <p>${hw.H_content}</p>
+                <p>作业：${hw.h_content}</p>
             </div>
-            <div class="extra">
-                <div class="ui right floated primary button">详情 <i class="right chevron icon"></i> </div>
+            <div class="extra" >
+                <a class="ui right floated primary button" href="${pageContext.request.contextPath}/user/homeworkDetail.do?h_name=${hw.h_name}">详情
+                    <i class="right chevron icon"></i>
+                </a>
+
             </div>
         </div>
     </div>
+    </c:forEach>
   </div>
-  </c:forEach>
+
 
 
 
@@ -50,4 +58,5 @@
 
 
 </body>
+
 </html>

@@ -16,6 +16,21 @@
     <select id="findPrevHomework" resultType="me.zhangyu.model.Homework" parameterType="List">
         SELECT * FROM t_homework ORDER BY H_id DESC LIMIT 0,5
     </select>
+    <select id="findHomeid" resultType="me.zhangyu.model.Homework" parameterType="String">
+        SELECT * FROM t_homework WHERE H_name = #{hId}
+    </select>
+
+    <select id="submitHomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
+        INSERT INTO t_submithw (id,stu_id,h_id,grade,homeAttachment,homeOldname,isSubmit,subData,shw_content) values(null,#{ssh.stu_id},#{ssh.h_id},null,#{ssh.homeAttachment},#{ssh.homeOldname},#{ssh.isSubmit},#{ssh.subData},#{ssh.shw_content})
+    </select>
+
+    <select id="findpreStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="List">
+        SELECT * FROM t_stu_homework ORDER BY id DESC LIMIT 0,5
+    </select>
+
+    <select id="updateStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
+        UPDATE t_stu_homework SET stu_id=#{sh.stu_id},h_subTime=#{sh.h_subTime} WHERE h_name=#{h_name}
+    </select>
 
 
 </mapper>

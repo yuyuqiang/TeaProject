@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="me.zhangyu.mapper.TeacherMapper">
 
+    <select id="teaLogin" resultType="me.zhangyu.model.Teacher" parameterType="String">
+        SELECT * FROM t_tea WHERE loginName=#{um} AND loginPwd=#{up}
+    </select>
+
     <select id="findTotalRecords" resultType="int" parameterType="int">
         SELECT COUNT(*) FROM t_tea
     </select>
@@ -20,6 +24,16 @@
 
     <select id="addHomework" resultType="me.zhangyu.model.Homework" parameterType="me.zhangyu.model.Homework">
         INSERT INTO t_Homework (H_id,H_name,H_startTime,H_endTime,H_content) values(null,#{homework.H_name},#{homework.H_startTime},#{homework.H_endTime},#{homework.H_content})
+    </select>
+
+    <select id="addStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
+        INSERT INTO t_stu_homework (id,stu_id,h_name,h_startTime,h_subTime,grade,h_content) values(null,null,#{sh.h_name},#{sh.h_startTime},'未提交',null,#{sh.h_content})
+    </select>
+
+
+
+    <select id="updateTeacher" resultType="me.zhangyu.model.Teacher" parameterType="me.zhangyu.model.Teacher">
+        UPDATE t_tea SET teaNum=#{teacher.teaNum},teaRealName=#{teacher.teaRealName},teaSex=#{teacher.teaSex},teaAge= #{teacher.teaAge}, loginName=#{teacher.loginName},loginPwd =#{teacher.loginPwd} WHERE teaId=#{teacher.teaId}
     </select>
 
 

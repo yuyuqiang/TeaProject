@@ -2,6 +2,8 @@ package me.zhangyu.mapper;
 
 import me.zhangyu.mapper.base.BaseMapper;
 import me.zhangyu.model.Homework;
+import me.zhangyu.model.StudentHomework;
+import me.zhangyu.model.StudentSubmitHomework;
 import me.zhangyu.model.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +23,12 @@ public interface UserMapper extends BaseMapper<User> {
 
 
     List<Homework> findPrevHomework();
+
+    Homework findHomeid(@Param("hId") String hId);
+
+    void submitHomework(@Param("ssh") StudentSubmitHomework studentSubmitHomework);
+
+    List<StudentHomework> findpreStudentHomework();
+
+    void updateStudentHomework(@Param("sh") StudentHomework studentHomework,@Param("h_name") String h_name);
 }

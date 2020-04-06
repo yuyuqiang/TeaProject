@@ -35,6 +35,7 @@ public abstract class BaseController<T> {
     public static  String PLAYVEDIO_PAGE;
     public static  String VEDIOUPDOWN_PAGE;
     public static  String HOMEWORKPREV_PAGE;
+    public static  String HOMEWORKDETAIL_PAGE;
 
     public static final String INDEX = "index";
     public static final String LOGIN ="userlogin";
@@ -44,6 +45,7 @@ public abstract class BaseController<T> {
     public static final String PLAYVEDIO="playVedio";
     public static final String VEDIOUPDOWN="vedioUpdown";
     public static final String HOMEWORKPREV="homeworkPrev";
+    public static final String HOMEWORKDETAIL="homeworkDetail";
 
     //老师页面
     public static  String TEAINFO_PAGE;//老师信息
@@ -53,6 +55,8 @@ public abstract class BaseController<T> {
     public static  String VEDIOTEAPREV_PAGE;
     public static  String VEDIOADD_PAGE;
     public static  String PUBLISHHOMEWORK_PAGE;
+    public static  String TEAMESSAGEMANAGE_PAGE;
+    public static  String MYTEAINFO_PAGE;
 
 
 
@@ -63,6 +67,8 @@ public abstract class BaseController<T> {
     public static final String VEDIOTEAPREV = "vedioTeaPrev";
     public static final String VEDIOADD = "vedioAdd";
     public static final String PUBLISHHOMEWORK = "publishHomework";
+    public static final String TEAMESSAGEMANAGE = "teaMessageManage";
+    public static final String MYTEAINFO = "myTeaInfo";
 
 
 
@@ -97,6 +103,7 @@ public abstract class BaseController<T> {
         PLAYVEDIO_PAGE=modelName1+"/"+PLAYVEDIO;
         VEDIOUPDOWN_PAGE=modelName1+"/"+VEDIOUPDOWN;
         HOMEWORKPREV_PAGE= modelName1+"/"+ HOMEWORKPREV;
+        HOMEWORKDETAIL_PAGE= modelName1+"/"+ HOMEWORKDETAIL;
 
 
         TEAINFO_PAGE = modelName2+"/"+TEAINFO;
@@ -106,11 +113,8 @@ public abstract class BaseController<T> {
         VEDIOTEAPREV_PAGE= modelName2+"/"+VEDIOTEAPREV;
         VEDIOADD_PAGE= modelName2+"/"+VEDIOADD;
         PUBLISHHOMEWORK_PAGE= modelName2+"/"+PUBLISHHOMEWORK;
-
-
-
-
-
+        TEAMESSAGEMANAGE_PAGE= modelName2+"/"+TEAMESSAGEMANAGE;
+        MYTEAINFO_PAGE= modelName2+"/"+MYTEAINFO;
 
     }
 }

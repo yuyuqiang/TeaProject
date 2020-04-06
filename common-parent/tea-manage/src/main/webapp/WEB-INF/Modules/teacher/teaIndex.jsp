@@ -43,7 +43,7 @@
                     <li class="navContent nav_current">
                         <a href="#" class="showNav" id="user" data-name="main_iframe"
                            onclick="Common.switchNavigation(this);"
-                           data-url="${pageContext.request.contextPath}/teacher/teaManage.do">我的信息</a>
+                           data-url="${pageContext.request.contextPath}/teacher/teaMessageManage.do">我的信息</a>
                     </li>
 
                     <li class="navContent">

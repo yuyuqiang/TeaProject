@@ -2,6 +2,7 @@ package me.zhangyu.service;
 
 import me.zhangyu.model.Admin;
 import me.zhangyu.model.Homework;
+import me.zhangyu.model.StudentHomework;
 import me.zhangyu.model.Teacher;
 import me.zhangyu.service.base.IBaseService;
 import me.zhangyu.untils.PageModel;
@@ -20,4 +21,10 @@ public interface TeacherService extends IBaseService<Teacher> {
 
 
     void addHomework(Homework homework) throws SQLException;
+
+    void addStudentHomework(StudentHomework studentHomework) throws SQLException;
+
+    Teacher teacherLogin(String um, String up);
+
+    void updateTeacher(Teacher t) throws SQLException;
 }

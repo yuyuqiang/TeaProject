@@ -107,6 +107,11 @@ public class UserController extends BaseController<User> {
         String h_name=request.getParameter("h_name");
         //调用业务层功能：根据视频ID查询对应的视频对象
         homework=userService.findHomeworkByid(h_name);
+        studentSubmitHomework = new StudentSubmitHomework();
+        int h_id = homework.getH_id();
+        studentSubmitHomework.setH_id(h_id);
+        userService.submithomework(studentSubmitHomework);
+
         //将查询到的视频对象放入request
         request.setAttribute("hw", homework);
         //转发到/site/vedio/vedioDtail.jsp
@@ -225,27 +230,26 @@ public class UserController extends BaseController<User> {
             }
 
    }
-        int stu_id=user.getId();
         int h_id = homework.getH_id();
+        int stu_id=user.getId();
         String h_name = homework.getH_name();
         String shw_content = request.getParameter("shw_content");
         studentSubmitHomework.setStu_id(stu_id);
-        studentSubmitHomework.setH_id(h_id);
         studentSubmitHomework.setIsSubmit(1);
         studentSubmitHomework.setShw_content(shw_content);
 
         //将MAP中的数据封装在Vedio对象上
         BeanUtils.populate(studentSubmitHomework, map);
-        System.out.println("ssssssssssssss"+studentSubmitHomework);
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
         studentSubmitHomework.setSubData(sdf.format(new Date()));
 
+        studentHomework.setH_id(h_id);
         studentHomework.setStu_id(stu_id);
         studentHomework.setH_subTime(sdf.format(new Date()));
 
 
         //6_将普通项的数据以及文件的位置传递到service,dao.进行数据的保存
-         userService.submithomework(studentSubmitHomework);
+         userService.updatesubmithomework(studentSubmitHomework,h_id);
          userService.updateStudentHomework(studentHomework,h_name);
          response.sendRedirect("homeworkPrev.do");
          return null;

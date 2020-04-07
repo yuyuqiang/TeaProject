@@ -1,9 +1,6 @@
 package me.zhangyu.service.impl;
 
-import me.zhangyu.model.Homework;
-import me.zhangyu.model.StudentHomework;
-import me.zhangyu.model.Teacher;
-import me.zhangyu.model.User;
+import me.zhangyu.model.*;
 import me.zhangyu.service.IUserService;
 import me.zhangyu.service.TeacherService;
 import me.zhangyu.service.base.BaseServiceImpl;
@@ -104,5 +101,15 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
     public void updateTeacher(Teacher t) throws SQLException{
         teacherMapper.updateTeacher(t);
 
+    }
+
+    @Override
+    public List<Homework> findPrevHomework(int t_id) {
+        return teacherMapper.findPrevHomework(t_id);
+    }
+
+    @Override
+    public List<StudentSubmitHomework> findSubmitHomework(String hid)throws SQLException {
+        return teacherMapper.findSubmitHomework(hid);
     }
 }

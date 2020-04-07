@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class StudentHomework {
     private int id;
     private int stu_id;
+    private int h_id;
     private String h_name;
     private Timestamp h_startTime;
     private String h_subTime;
@@ -25,6 +26,14 @@ public class StudentHomework {
 
     public void setStu_id(int stu_id) {
         this.stu_id = stu_id;
+    }
+
+    public int getH_id() {
+        return h_id;
+    }
+
+    public void setH_id(int h_id) {
+        this.h_id = h_id;
     }
 
     public String getH_name() {

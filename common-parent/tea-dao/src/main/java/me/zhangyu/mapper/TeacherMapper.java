@@ -1,10 +1,7 @@
 package me.zhangyu.mapper;
 
 import me.zhangyu.mapper.base.BaseMapper;
-import me.zhangyu.model.Admin;
-import me.zhangyu.model.Homework;
-import me.zhangyu.model.StudentHomework;
-import me.zhangyu.model.Teacher;
+import me.zhangyu.model.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -27,4 +24,8 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
     Teacher teaLogin(@Param("um") String um, @Param("up") String up);
 
     void updateTeacher(@Param("teacher") Teacher t);
+
+    List<Homework> findPrevHomework(@Param("t_id") int t_id);
+
+    List<StudentSubmitHomework> findSubmitHomework(@Param("hid") String hid);
 }

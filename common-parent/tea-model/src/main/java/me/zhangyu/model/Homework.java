@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class Homework {
     private int H_id;
+    private int T_id;
     private String H_name;
     private String H_content;
     private Timestamp H_startTime;
@@ -49,6 +50,14 @@ public class Homework {
 
     public void setH_endTime(Timestamp h_endTime) {
         H_endTime = h_endTime;
+    }
+
+    public int getT_id() {
+        return T_id;
+    }
+
+    public void setT_id(int t_id) {
+        T_id = t_id;
     }
 
     @Override

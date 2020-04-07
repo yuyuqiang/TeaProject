@@ -57,6 +57,8 @@ public abstract class BaseController<T> {
     public static  String PUBLISHHOMEWORK_PAGE;
     public static  String TEAMESSAGEMANAGE_PAGE;
     public static  String MYTEAINFO_PAGE;
+    public static  String TEAHOMEWORKPREV_PAGE;
+    public static  String CHECKHOMEWORK_PAGE;
 
 
 
@@ -69,6 +71,8 @@ public abstract class BaseController<T> {
     public static final String PUBLISHHOMEWORK = "publishHomework";
     public static final String TEAMESSAGEMANAGE = "teaMessageManage";
     public static final String MYTEAINFO = "myTeaInfo";
+    public static final String TEAHOMEWORKPREV = "teaHomeworkPrev";
+    public static final String CHECKHOMEWORK = "checkHomework";
 
 
 
@@ -115,6 +119,8 @@ public abstract class BaseController<T> {
         PUBLISHHOMEWORK_PAGE= modelName2+"/"+PUBLISHHOMEWORK;
         TEAMESSAGEMANAGE_PAGE= modelName2+"/"+TEAMESSAGEMANAGE;
         MYTEAINFO_PAGE= modelName2+"/"+MYTEAINFO;
+        TEAHOMEWORKPREV_PAGE= modelName2+"/"+TEAHOMEWORKPREV;
+        CHECKHOMEWORK_PAGE= modelName2+"/"+CHECKHOMEWORK;
 
     }
 }

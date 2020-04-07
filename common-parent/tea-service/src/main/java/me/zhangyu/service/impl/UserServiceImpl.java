@@ -88,6 +88,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     }
 
     @Override
+    public void updatesubmithomework(StudentSubmitHomework studentSubmitHomework, int h_id)throws SQLException {
+        userMapper.updatesubmithomework(studentSubmitHomework,h_id);
+    }
+
+    @Override
     public User findById(int id) {
         return userMapper.findById(id);
     }

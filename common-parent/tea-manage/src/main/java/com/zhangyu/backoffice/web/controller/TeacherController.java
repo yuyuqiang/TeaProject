@@ -1,10 +1,7 @@
 package com.zhangyu.backoffice.web.controller;
 
 import com.zhangyu.backoffice.web.controller.base.BaseController;
-import me.zhangyu.model.Homework;
-import me.zhangyu.model.StudentHomework;
-import me.zhangyu.model.Teacher;
-import me.zhangyu.model.User;
+import me.zhangyu.model.*;
 import me.zhangyu.service.IUserService;
 import me.zhangyu.service.TeacherService;
 import me.zhangyu.untils.PageModel;
@@ -26,6 +23,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -38,7 +36,8 @@ public class TeacherController extends BaseController<Teacher> {
     @Autowired
     private TeacherService teacherService;
     public static Homework homework;
-
+    public Teacher teacher;
+    public static  int t_id ;
 
     @RequestMapping("teaLogin")
     public String teacherLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -46,7 +45,7 @@ public class TeacherController extends BaseController<Teacher> {
         String um = request.getParameter("username");
         String up = request.getParameter("password");
         //调用业务层登录功能,   返回teacher对象
-        Teacher teacher=teacherService.teacherLogin(um,up);
+        teacher=teacherService.teacherLogin(um,up);
         if(null==teacher) {
             //如果teacher对象为空， 登录失败，向request放入提示信息 ,转发到login.jsp页面
             request.setAttribute("msg", "账户密码不匹配");
@@ -103,7 +102,6 @@ public class TeacherController extends BaseController<Teacher> {
         //调用业务层添加老师功能
         teacherService.addTeacher(teacher);
         //重定向到查询老师信息功能
-
         response.sendRedirect("teaInfo.do?num=1");
         return null;
     }
@@ -176,6 +174,8 @@ public class TeacherController extends BaseController<Teacher> {
         homework.setH_endTime(endTime);
         homework.setH_name(H_name);
         homework.setH_content(H_content);
+        homework.setT_id(teacher.getTeaId());
+
 
         studentHomework.setH_name(H_name);
         studentHomework.setH_startTime(startTime);
@@ -206,8 +206,28 @@ public class TeacherController extends BaseController<Teacher> {
 //            out.flush();
 //            out.close();
 //        }
-
+        response.sendRedirect("teaHomeworkPrev.do");
         return null;
+    }
+    @RequestMapping("teaHomeworkPrev")
+    public String teaHomeworkPrev(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        //1_调用业务层功能，返回存储着Vedio对象的集合
+        t_id = teacher.getTeaId();
+        List<Homework> list=teacherService.findPrevHomework(t_id);//查询5个最新视频,返回集合
+        System.out.println("list"+list);
+        //2_将集合放入request域对象内
+        request.setAttribute("list", list);
+        return TEAHOMEWORKPREV_PAGE;
+    }
+
+    @RequestMapping("checkHomework")
+    public String checkHomework(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String hid= request.getParameter("id");
+        List<StudentSubmitHomework> list=teacherService.findSubmitHomework(hid);//查询5个最新视频,返回集合
+        System.out.println("list"+list);
+        request.setAttribute("list", list);
+
+        return CHECKHOMEWORK_PAGE;
     }
 
     @RequestMapping("teaMessageManage")

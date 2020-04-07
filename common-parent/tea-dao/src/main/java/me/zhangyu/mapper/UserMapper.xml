@@ -29,7 +29,7 @@
     </select>
 
     <select id="updateStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
-        UPDATE t_stu_homework SET stu_id=#{sh.stu_id},h_subTime=#{sh.h_subTime} WHERE h_name=#{h_name}
+        UPDATE t_stu_homework SET stu_id=#{sh.stu_id},h_id=#{sh.h_id},h_subTime=#{sh.h_subTime} WHERE h_name=#{h_name}
     </select>
 
 

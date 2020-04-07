@@ -23,7 +23,7 @@
     </select>
 
     <select id="addHomework" resultType="me.zhangyu.model.Homework" parameterType="me.zhangyu.model.Homework">
-        INSERT INTO t_Homework (H_id,H_name,H_startTime,H_endTime,H_content) values(null,#{homework.H_name},#{homework.H_startTime},#{homework.H_endTime},#{homework.H_content})
+        INSERT INTO t_Homework (H_id,T_id,H_name,H_startTime,H_endTime,H_content) values(null,#{homework.T_id},#{homework.H_name},#{homework.H_startTime},#{homework.H_endTime},#{homework.H_content})
     </select>
 
     <select id="addStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
@@ -34,6 +34,14 @@
 
     <select id="updateTeacher" resultType="me.zhangyu.model.Teacher" parameterType="me.zhangyu.model.Teacher">
         UPDATE t_tea SET teaNum=#{teacher.teaNum},teaRealName=#{teacher.teaRealName},teaSex=#{teacher.teaSex},teaAge= #{teacher.teaAge}, loginName=#{teacher.loginName},loginPwd =#{teacher.loginPwd} WHERE teaId=#{teacher.teaId}
+    </select>
+
+    <select id="findPrevHomework" resultType="me.zhangyu.model.Homework" parameterType="List">
+        SELECT * FROM t_homework WHERE T_id=#{t_id} ORDER BY H_id DESC LIMIT 0,5
+    </select>
+
+    <select id="findSubmitHomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="List">
+        SELECT * FROM t_submithw WHERE h_id=#{hid}
     </select>
 
 

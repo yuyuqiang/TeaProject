@@ -66,7 +66,7 @@
     <div id="main_iframe"
          class="index_mainIfram_position  mainIfram_position">
         <iframe class="main_iframe" id="home_iframe" frameborder="0"
-                border="0" src="${pageContext.request.contextPath}/teacher/teaManage.do"></iframe>
+                border="0" src="${pageContext.request.contextPath}/teacher/teaMessageManage.do"></iframe>
     </div>
 
 </form>

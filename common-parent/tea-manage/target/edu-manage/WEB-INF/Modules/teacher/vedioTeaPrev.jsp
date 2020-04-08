@@ -41,7 +41,7 @@
             <td bgcolor="#FFFFFF" align="center">
                     ${v.vedioAttachment}
                 &nbsp;&nbsp;&nbsp;
-                <a href="#" onclick="down1('${v.vedioAttachment}','${v.attachmentOldName}')" style="font-size: 10px;color: red">down</a>
+                <a href="#" onclick="down('${v.vedioAttachment}','${v.attachmentOldName}')" style="font-size: 10px;color: red">down</a>
             </td>
             <td bgcolor="#FFFFFF" align="center">
                     <%--取消链接的默认行为 --%>

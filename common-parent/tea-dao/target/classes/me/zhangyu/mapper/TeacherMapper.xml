@@ -18,6 +18,10 @@
         INSERT INTO t_tea (teaId,teaNum,teaRealName,teaSex,teaAge,loginName,loginPwd,del) values(null,#{teacher.teaNum},#{teacher.teaRealName},#{teacher.teaSex},#{teacher.teaAge},#{teacher.loginName},#{teacher.loginPwd},null)
     </select>
 
+    <select id="updateTeacher" resultType="me.zhangyu.model.Teacher" parameterType="me.zhangyu.model.Teacher">
+        UPDATE t_tea SET teaNum=#{teacher.teaNum},teaRealName=#{teacher.teaRealName},teaSex=#{teacher.teaSex},teaAge= #{teacher.teaAge}, loginName=#{teacher.loginName},loginPwd =#{teacher.loginPwd} WHERE teaId=#{teacher.teaId}
+    </select>
+
     <select id="delTeacherById" resultType="me.zhangyu.model.Teacher">
         DELETE FROM t_tea WHERE teaId=#{id}
     </select>
@@ -30,18 +34,24 @@
         INSERT INTO t_stu_homework (id,stu_id,h_name,h_startTime,h_subTime,grade,h_content) values(null,null,#{sh.h_name},#{sh.h_startTime},'未提交',null,#{sh.h_content})
     </select>
 
-
-
-    <select id="updateTeacher" resultType="me.zhangyu.model.Teacher" parameterType="me.zhangyu.model.Teacher">
-        UPDATE t_tea SET teaNum=#{teacher.teaNum},teaRealName=#{teacher.teaRealName},teaSex=#{teacher.teaSex},teaAge= #{teacher.teaAge}, loginName=#{teacher.loginName},loginPwd =#{teacher.loginPwd} WHERE teaId=#{teacher.teaId}
-    </select>
-
     <select id="findPrevHomework" resultType="me.zhangyu.model.Homework" parameterType="List">
         SELECT * FROM t_homework WHERE T_id=#{t_id} ORDER BY H_id DESC LIMIT 0,5
     </select>
 
     <select id="findSubmitHomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="List">
         SELECT * FROM t_submithw WHERE h_id=#{hid}
+    </select>
+
+    <select id="findSubmitHomeworkByid" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="List">
+        SELECT * FROM t_submithw WHERE id=#{id}
+    </select>
+
+    <select id="updateStudentGrade" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
+        UPDATE t_submithw SET grade=#{upshg.grade} WHERE id=#{id}
+    </select>
+
+    <select id="updateStudentHomeworkGrade" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
+        UPDATE t_stu_homework SET grade=#{upsh.grade} WHERE h_id=#{hid} AND stu_id=${sid}
     </select>
 
 

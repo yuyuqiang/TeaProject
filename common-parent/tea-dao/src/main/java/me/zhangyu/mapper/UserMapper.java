@@ -26,11 +26,13 @@ public interface UserMapper extends BaseMapper<User> {
 
     Homework findHomeid(@Param("hId") String hId);
 
-    void submitHomework(@Param("ssh") StudentSubmitHomework studentSubmitHomework);
+    void submitHomework(@Param("ssh") StudentSubmitHomework studentSubmitHomework,@Param("h_id")int h_id);
 
-    List<StudentHomework> findpreStudentHomework();
+    List<StudentHomework> findpreStudentHomework(@Param("id") int id);
 
     void updateStudentHomework(@Param("sh") StudentHomework studentHomework,@Param("h_name") String h_name);
 
     void updatesubmithomework(@Param("upssh") StudentSubmitHomework studentSubmitHomework,@Param("h_id") int h_id);
+
+    StudentSubmitHomework findSubmitHomeworkByid(@Param("h_id") int h_id);
 }

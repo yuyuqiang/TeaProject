@@ -112,4 +112,26 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
     public List<StudentSubmitHomework> findSubmitHomework(String hid)throws SQLException {
         return teacherMapper.findSubmitHomework(hid);
     }
+
+    @Override
+    public StudentSubmitHomework findSubmitHomeworkByid(String id)throws SQLException {
+        return teacherMapper.findSubmitHomeworkByid(id);
+    }
+
+    @Override
+    public StudentSubmitHomework updateStudentGrade(StudentSubmitHomework studentSubmitHomework,int id)throws SQLException {
+        return teacherMapper.updateStudentGrade(studentSubmitHomework,id);
+    }
+
+    @Override
+    public void updateStudentHomeworkGrade(StudentHomework studentHomework, int hid, int sid)throws SQLException {
+        teacherMapper.updateStudentHomeworkGrade(studentHomework,hid,sid);
+    }
+
+    @Override
+    public String[] findStudentByclass()throws SQLException {
+        return teacherMapper.findStudentByclass();
+    }
+
+
 }

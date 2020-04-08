@@ -5,8 +5,13 @@ import me.zhangyu.model.*;
 import me.zhangyu.service.IUserService;
 import me.zhangyu.service.TeacherService;
 import me.zhangyu.untils.PageModel;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -15,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -176,6 +182,8 @@ public class TeacherController extends BaseController<Teacher> {
         homework.setH_content(H_content);
         homework.setT_id(teacher.getTeaId());
 
+        String[]student= teacherService.findStudentByclass();
+        System.out.println("学生"+student);
 
         studentHomework.setH_name(H_name);
         studentHomework.setH_startTime(startTime);
@@ -228,6 +236,48 @@ public class TeacherController extends BaseController<Teacher> {
         request.setAttribute("list", list);
 
         return CHECKHOMEWORK_PAGE;
+    }
+
+    @RequestMapping("studentHomeworkDown")
+    public ResponseEntity<byte[]> studentHomeworkDown(HttpServletResponse response, HttpSession session, HttpServletRequest request) throws IOException, SQLException {
+        String id = request.getParameter("id");
+        StudentSubmitHomework studentSubmitHomework = teacherService.findSubmitHomeworkByid(id);
+
+        String fileName = studentSubmitHomework.getHomeAttachment();
+        //指定要下载的文件所在路径
+        //String path = "E:/TeachingWebsite/";
+        String path = "E:/TeachingWebsite/TeaProject/common-parent/tea-manage/target/edu-manage/WEB-INF/Modules/upload/";
+        //创建该文件对象
+        File file = new File(path+File.separator+fileName);
+        //设置响应头
+        HttpHeaders headers = new HttpHeaders();
+        //通知浏览器以下载的方式打开文件
+        headers.setContentDispositionFormData("attachment", fileName);
+        //定义以流的方式下载返回文件数据
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.OK);
+
+    }
+
+    @RequestMapping("teacherSubmitGrade")
+    public String teacherSubmitGrade(HttpServletRequest request, HttpServletResponse response)throws Exception{
+         String grade = request.getParameter("grade");
+         double d_grade = Double.parseDouble(grade);
+         int hid = Integer.parseInt(request.getParameter("hid"));
+         int id = Integer.parseInt(request.getParameter("id"));
+         int sid = Integer.parseInt(request.getParameter("sid"));
+
+         StudentSubmitHomework studentSubmitHomework = new StudentSubmitHomework();
+         StudentHomework studentHomework = new StudentHomework();
+
+         studentSubmitHomework.setGrade(d_grade);
+         studentHomework.setGrade(d_grade);
+
+         teacherService.updateStudentGrade(studentSubmitHomework,id);
+         teacherService.updateStudentHomeworkGrade(studentHomework,hid,sid);
+
+         response.sendRedirect("checkHomework.do?id="+hid);
+        return null;
     }
 
     @RequestMapping("teaMessageManage")

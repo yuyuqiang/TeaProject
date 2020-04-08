@@ -28,11 +28,13 @@ public interface IUserService extends IBaseService<User> {
     Homework findHomeworkByid(String hId) throws SQLException;
 
 
-    void submithomework(StudentSubmitHomework studentSubmitHomework);
+    void submithomework(StudentSubmitHomework studentSubmitHomework,int h_id);
 
-    List<StudentHomework> findPreStudentHomework() throws SQLException;
+    List<StudentHomework> findPreStudentHomework(int id) throws SQLException;
 
     void updateStudentHomework(StudentHomework studentHomework,String h_name) throws SQLException;
 
     void updatesubmithomework(StudentSubmitHomework studentSubmitHomework, int h_id) throws SQLException;
+
+    StudentSubmitHomework findSubmitHomeworkByid(int h_id);
 }

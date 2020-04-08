@@ -27,6 +27,7 @@
              <th>作业备注</th>
              <th>附件</th>
              <th>成绩</th>
+             <th>操作</th>
          </tr></thead>
          <tbody>
           <c:forEach items="${list}"  var="hw" varStatus="status">
@@ -34,8 +35,13 @@
              <td data-label="序号" style="width: 5%">${status.index+1}</td>
              <td data-label="学号">${hw.stu_id}</td>
              <td data-label="作业">${hw.shw_content}</td>
-             <td data-label="附件">${hw.homeAttachment}</td>
-             <td data-label="成绩">0</td>
+             <td data-label="附件">
+                 <a href="${pageContext.request.contextPath}/teacher/studentHomeworkDown.do?id=${hw.id}" style="font-size: 13px;color: #3e8cff">${hw.homeOldname}</a>
+             </td>
+             <td data-label="成绩">${hw.grade}</td>
+             <td  data-label="评分" >
+                 <a href="#" name="rating" id="rating" onclick="rating(${hw.h_id},${hw.id},${hw.stu_id})" >评分</a>
+             </td>
            </tr>
           </c:forEach>
          </tbody>
@@ -49,6 +55,11 @@
     function check(){
         //向服务端发起请求
         document.getElementById("fm").submit();
+    }
+    function rating(hid,id,sid) {
+        var grade;
+        grade = window.prompt("请录入学生成绩：")
+        window.location.href="${pageContext.request.contextPath}/teacher/teacherSubmitGrade.do?grade="+grade+"&hid="+hid+"&id="+id+"&sid="+sid;
     }
 </script>
 </html>

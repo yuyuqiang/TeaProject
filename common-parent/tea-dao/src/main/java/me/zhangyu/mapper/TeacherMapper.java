@@ -28,4 +28,12 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
     List<Homework> findPrevHomework(@Param("t_id") int t_id);
 
     List<StudentSubmitHomework> findSubmitHomework(@Param("hid") String hid);
+
+    StudentSubmitHomework findSubmitHomeworkByid(@Param("id") String id);
+
+    StudentSubmitHomework updateStudentGrade(@Param("upshg") StudentSubmitHomework studentSubmitHomework,@Param("id") int id);
+
+    void updateStudentHomeworkGrade(@Param("upsh") StudentHomework studentHomework, @Param("hid") int hid, @Param("sid") int sid);
+
+    String[] findStudentByclass();
 }

@@ -29,4 +29,13 @@ public interface TeacherService extends IBaseService<Teacher> {
     List<Homework> findPrevHomework(int t_id);
 
     List<StudentSubmitHomework> findSubmitHomework(String hid) throws SQLException;
+
+    StudentSubmitHomework findSubmitHomeworkByid(String id) throws SQLException;
+
+
+    StudentSubmitHomework updateStudentGrade(StudentSubmitHomework studentSubmitHomework,int id) throws SQLException;
+
+    void updateStudentHomeworkGrade(StudentHomework studentHomework, int hid, int sid) throws SQLException;
+
+    String[] findStudentByclass() throws SQLException;
 }

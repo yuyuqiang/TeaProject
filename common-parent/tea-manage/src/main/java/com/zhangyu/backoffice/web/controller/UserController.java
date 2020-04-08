@@ -77,7 +77,9 @@ public class UserController extends BaseController<User> {
     @RequestMapping("homeworkPrev")
     public String findPrevhomework(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //1_调用业务层功能，返回存储着Vedio对象的集合
-        List<StudentHomework> list= userService.findPreStudentHomework();
+        int id = user.getId();
+        System.out.println("hhhhhhhhhh"+id);
+        List<StudentHomework> list= userService.findPreStudentHomework(id);
         System.out.println("list66"+list);
         //2_将集合放入request域对象内
         request.setAttribute("list", list);
@@ -109,9 +111,13 @@ public class UserController extends BaseController<User> {
         homework=userService.findHomeworkByid(h_name);
         studentSubmitHomework = new StudentSubmitHomework();
         int h_id = homework.getH_id();
-        studentSubmitHomework.setH_id(h_id);
-        userService.submithomework(studentSubmitHomework);
+        studentSubmitHomework=userService.findSubmitHomeworkByid(h_id);
+        System.out.println(studentSubmitHomework);
 
+        if(studentSubmitHomework==null){
+            System.out.println("ooooo"+h_id);
+            userService.submithomework(studentSubmitHomework,h_id);
+        }
         //将查询到的视频对象放入request
         request.setAttribute("hw", homework);
         //转发到/site/vedio/vedioDtail.jsp

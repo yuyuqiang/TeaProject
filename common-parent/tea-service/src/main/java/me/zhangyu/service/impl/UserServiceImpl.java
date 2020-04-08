@@ -73,13 +73,14 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     }
 
     @Override
-    public void submithomework(StudentSubmitHomework studentSubmitHomework) {
-        userMapper.submitHomework(studentSubmitHomework);
+    public void submithomework(StudentSubmitHomework studentSubmitHomework,int h_id) {
+        System.out.println("hahhahhahahahah");
+        userMapper.submitHomework(studentSubmitHomework,h_id);
     }
 
     @Override
-    public List<StudentHomework> findPreStudentHomework() throws SQLException {
-        return userMapper.findpreStudentHomework();
+    public List<StudentHomework> findPreStudentHomework(int id) throws SQLException {
+        return userMapper.findpreStudentHomework(id);
     }
 
     @Override
@@ -90,6 +91,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     @Override
     public void updatesubmithomework(StudentSubmitHomework studentSubmitHomework, int h_id)throws SQLException {
         userMapper.updatesubmithomework(studentSubmitHomework,h_id);
+    }
+
+    @Override
+    public StudentSubmitHomework findSubmitHomeworkByid(int h_id) {
+        return userMapper.findSubmitHomeworkByid(h_id);
     }
 
     @Override

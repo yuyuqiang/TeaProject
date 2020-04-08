@@ -21,15 +21,23 @@
     </select>
 
     <select id="submitHomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
-        INSERT INTO t_submithw (id,stu_id,h_id,grade,homeAttachment,homeOldname,isSubmit,subData,shw_content) values(null,#{ssh.stu_id},#{ssh.h_id},null,#{ssh.homeAttachment},#{ssh.homeOldname},#{ssh.isSubmit},#{ssh.subData},#{ssh.shw_content})
+        INSERT INTO t_submithw (id,stu_id,h_id,grade,homeAttachment,homeOldname,isSubmit,subData,shw_content) values(null,#{ssh.stu_id},#{h_id},null,#{ssh.homeAttachment},#{ssh.homeOldname},#{ssh.isSubmit},#{ssh.subData},#{ssh.shw_content})
     </select>
 
     <select id="findpreStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="List">
-        SELECT * FROM t_stu_homework ORDER BY id DESC LIMIT 0,5
+        SELECT * FROM t_stu_homework WHERE stu_id=${id} ORDER BY id DESC LIMIT 0,5
     </select>
 
     <select id="updateStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
         UPDATE t_stu_homework SET stu_id=#{sh.stu_id},h_id=#{sh.h_id},h_subTime=#{sh.h_subTime} WHERE h_name=#{h_name}
+    </select>
+
+    <select id="updatesubmithomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
+        UPDATE t_submithw SET stu_id=#{upssh.stu_id},homeAttachment=#{upssh.homeAttachment},homeOldname=#{upssh.homeOldname},isSubmit=#{upssh.isSubmit},subData=#{upssh.subData},shw_content=#{upssh.shw_content} WHERE h_id=#{h_id}
+    </select>
+
+    <select id="findSubmitHomeworkByid" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
+         SELECT * FROM t_submithw WHERE h_id = #{h_id}
     </select>
 
 

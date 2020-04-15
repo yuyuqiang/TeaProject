@@ -74,6 +74,18 @@ public abstract class BaseController<T> {
     public static final String TEAHOMEWORKPREV = "teaHomeworkPrev";
     public static final String CHECKHOMEWORK = "checkHomework";
 
+    //测试
+    public static String QUESTIONLIST_PAGE;
+
+
+    public static final String QUESTIONLIST = "questionList";
+
+
+    //论坛
+    public static String TEACOMMERNTS_PAGE;
+
+    public static final String TEACOMMENTS = "teacomments";
+
 
 
     public BaseController(){
@@ -89,6 +101,8 @@ public abstract class BaseController<T> {
         String modelName = "admin";
         String modelName1 = "user";
         String modelName2 = "teacher";
+        String modelName3 = "question";
+
         EDIT_PAGE = modelName + "/" + EDIT;
         INFO_PAGE = modelName + "/"+INFO;
         MANAGE_PAGE = modelName + "/" + MANAGE;
@@ -121,6 +135,10 @@ public abstract class BaseController<T> {
         MYTEAINFO_PAGE= modelName2+"/"+MYTEAINFO;
         TEAHOMEWORKPREV_PAGE= modelName2+"/"+TEAHOMEWORKPREV;
         CHECKHOMEWORK_PAGE= modelName2+"/"+CHECKHOMEWORK;
+
+        QUESTIONLIST_PAGE = modelName3+"/"+QUESTIONLIST;
+
+        TEACOMMERNTS_PAGE = modelName2+"/"+TEACOMMENTS;
 
     }
 }

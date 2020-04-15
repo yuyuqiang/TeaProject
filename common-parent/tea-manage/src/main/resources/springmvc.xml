@@ -29,11 +29,15 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!-- 静态资源处理 -->
+    <mvc:default-servlet-handler/>
+
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
+                        <value>text/html;charset=UTF-8</value>
                         <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>

@@ -79,8 +79,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     }
 
     @Override
-    public List<StudentHomework> findPreStudentHomework(int id) throws SQLException {
-        return userMapper.findpreStudentHomework(id);
+    public List<StudentHomework> findPreStudentHomework() throws SQLException {
+        return userMapper.findpreStudentHomework();
     }
 
     @Override

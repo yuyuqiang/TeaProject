@@ -5,9 +5,7 @@ public interface BaseMapper<T> {
 
     public T findById(int id);
     public T findByUsername(String username);
-
     public T findByUUId(String uuid);
-
 
     public void deleteById(Integer id);
     public void deleteByUUId(String uuid);

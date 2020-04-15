@@ -28,6 +28,11 @@
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
 							   data-url="${pageContext.request.contextPath}/teacher/teaHomeworkPrev.do">作业管理</a>
 						</li>
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001013"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/question/questionList.do">试题管理</a>
+						</li>
 
                     </ul>
                 </div>

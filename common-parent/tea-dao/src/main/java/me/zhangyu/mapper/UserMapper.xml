@@ -25,7 +25,7 @@
     </select>
 
     <select id="findpreStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="List">
-        SELECT * FROM t_stu_homework WHERE stu_id=${id} ORDER BY id DESC LIMIT 0,5
+        SELECT * FROM t_stu_homework ORDER BY id DESC LIMIT 0,5
     </select>
 
     <select id="updateStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">

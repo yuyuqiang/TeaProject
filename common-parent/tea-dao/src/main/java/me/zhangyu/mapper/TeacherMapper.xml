@@ -53,6 +53,4 @@
     <select id="updateStudentHomeworkGrade" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
         UPDATE t_stu_homework SET grade=#{upsh.grade} WHERE h_id=#{hid} AND stu_id=${sid}
     </select>
-
-
 </mapper>

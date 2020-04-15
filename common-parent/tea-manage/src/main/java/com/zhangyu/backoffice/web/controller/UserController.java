@@ -79,7 +79,7 @@ public class UserController extends BaseController<User> {
         //1_调用业务层功能，返回存储着Vedio对象的集合
         int id = user.getId();
         System.out.println("hhhhhhhhhh"+id);
-        List<StudentHomework> list= userService.findPreStudentHomework(id);
+        List<StudentHomework> list= userService.findPreStudentHomework();
         System.out.println("list66"+list);
         //2_将集合放入request域对象内
         request.setAttribute("list", list);

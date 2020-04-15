@@ -28,7 +28,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     void submitHomework(@Param("ssh") StudentSubmitHomework studentSubmitHomework,@Param("h_id")int h_id);
 
-    List<StudentHomework> findpreStudentHomework(@Param("id") int id);
+    List<StudentHomework> findpreStudentHomework();
 
     void updateStudentHomework(@Param("sh") StudentHomework studentHomework,@Param("h_name") String h_name);
 

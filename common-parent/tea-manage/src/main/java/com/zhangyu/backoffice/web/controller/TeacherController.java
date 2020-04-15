@@ -182,8 +182,8 @@ public class TeacherController extends BaseController<Teacher> {
         homework.setH_content(H_content);
         homework.setT_id(teacher.getTeaId());
 
-        String[]student= teacherService.findStudentByclass();
-        System.out.println("学生"+student);
+//        String[]student= teacherService.findStudentByclass();
+//        System.out.println("学生"+student);
 
         studentHomework.setH_name(H_name);
         studentHomework.setH_startTime(startTime);
@@ -292,20 +292,28 @@ public class TeacherController extends BaseController<Teacher> {
         return MYTEAINFO_PAGE;
     }
 
-
     @RequestMapping("publishHomeworkUI")
     public String teacherPublishHomework(){
         return PUBLISHHOMEWORK_PAGE;
     }
 
-
-
-
-
     @RequestMapping(TEAMANAGE)
     public String teaManage(){
         return TEAMANAGE_PAGE;
     }
+
+    @RequestMapping("teacomments")
+    public String teacomments(){
+        return TEACOMMERNTS_PAGE;
+    }
+
+    @RequestMapping("comments")
+    public String comments(){
+        return "comments";
+    }
+
+
+
 
 
 }

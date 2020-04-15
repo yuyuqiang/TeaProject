@@ -30,7 +30,7 @@ public interface IUserService extends IBaseService<User> {
 
     void submithomework(StudentSubmitHomework studentSubmitHomework,int h_id);
 
-    List<StudentHomework> findPreStudentHomework(int id) throws SQLException;
+    List<StudentHomework> findPreStudentHomework() throws SQLException;
 
     void updateStudentHomework(StudentHomework studentHomework,String h_name) throws SQLException;
 

@@ -28,21 +28,43 @@
  <div class="easyui-layout" data-options="fit:true">
     <!-- Begin of toolbar -->
      <div id="wu-toolbar">
-        <div class="wu-toolbar-button">
-            <input type="button" value="添加" onclick="openAdd();">
+        <div>
+
+<%--            <a href="#"  onclick="openAdd();"--%>
+<%--               >添加--%>
+<%--                <i data-icon="icon-add"></i>--%>
+<%--            </a>--%>
+
+          <input type="button" value="添加" onclick="openAdd();"iconCls="icon-search" style="margin-left: 20px">
         </div>
+         <div class="wu-toolbar-button">
+             <input type="button" value="编辑" onclick="openEdit();" iconCls="icon-search" style="margin-top: -22px!important;margin-left: 80px">
+         </div>
+         <div class="wu-toolbar-button">
+             <input type="button" value="删除" onclick="remove();"iconCls="icon-search" style="margin-top: -27px!important;margin-left: 150px">
+         </div>
         <div class="wu-toolbar-search">
             <label>试题题目:</label><input id="search-title" class="wu-text"
-                                       style="width: 100px"> <label>试题类型:</label> <select
+                                       style="width: 100px">
+            <label>试题类型:</label>
+             <select
                 id="search-question-type" class="easyui-combobox" panelHeight="auto"
                 style="width: 120px">
-            <option value="-1">全部</option>
-            <option value="0">单选</option>
-            <option value="1">多选</option>
-            <option value="2">判断</option>
-        </select>
+              <option value="-1">全部</option>
+              <option value="0">单选</option>
+              <option value="1">多选</option>
+              <option value="2">判断</option>
+             </select>
+            <label>试题科目:</label>
+             <select id="search-subject" class="easyui-combobox" panelHeight="auto" style="width: 120px">
+              <option value="-1">全部</option>
+              <c:forEach items="${subjectList}" var="subject">
+                <option value="${subject.id}">${subject.name}</option>
+              </c:forEach>
+             </select>
             <a href="#" id="search-btn" class="easyui-linkbutton"
-                     iconCls="icon-search">搜索</a>
+                  iconCls="icon-search">搜索
+            </a>
         </div>
     </div>
     <!-- End of toolbar -->
@@ -55,6 +77,16 @@
             <tr>
                 <td align="right">试题题目:</td>
                 <td><input type="text" id="add-title" name="title" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写试题题目'" ></td>
+            </tr>
+            <tr>
+                <td align="right">所属科目:</td>
+                <td>
+                    <select name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试科目'">
+                        <c:forEach items="${subjectList}" var="subject">
+                            <option value="${subject.id}">${subject.name}</option>
+                        </c:forEach>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td align="right">所属类型:</td>
@@ -108,6 +140,7 @@
                     </select>
                 </td>
             </tr>
+
             <tr>
                 <td align="right">所属类型:</td>
                 <td>
@@ -193,7 +226,18 @@
             title : '试题题目',
             width : 300,
             sortable : true
-        },  {
+        }, { field:'subjectId',title:'所属学科',width:100,formatter:function(value,index,row){
+                var subjectList = $("#search-subject").combobox("getData");
+                for(var i=0;i<subjectList.length;i++){
+                    if(subjectList[i].value == value)return subjectList[i].text;
+                }
+                return value;
+            }},
+            { field:'score',
+            title:'分值',
+            width:50,
+            sortable:true
+        }, {
             field : 'questionType',
             title : '试题类型',
             width : 100,
@@ -228,7 +272,7 @@
         }, {
             field : 'answer',
             title : '正确答案',
-            width : 80
+            width : 100
         }, {
             field : 'createTime',
             title : '添加时间',
@@ -238,6 +282,24 @@
             }
         }, ] ]
     });
+
+    //搜索按钮监听
+    $("#search-btn").click(function() {
+        var option = {
+            title : $("#search-title").val()
+        };
+        var questionType = $("#search-question-type").combobox('getValue');
+        var subjectId = $("#search-subject").combobox('getValue');
+        if (questionType != -1) {
+            option.questionType = questionType;
+        }
+        if(subjectId != -1){
+            option.subjectId = subjectId;
+        }
+
+    $('#data-datagrid').datagrid('reload', option);
+    });
+
     //上传图片
     function start() {
         var value = $('#p').progressbar('getValue');
@@ -330,7 +392,7 @@
         }
         var data = $("#edit-form").serialize();
         $.ajax({
-            url : 'edit',
+            url : 'edit.do',
             dataType : 'json',
             type : 'post',
             data : data,
@@ -360,7 +422,7 @@
                     return;
                 }
                 $.ajax({
-                    url : 'delete',
+                    url : 'delete.do',
                     dataType : 'json',
                     type : 'post',
                     data : {
@@ -414,10 +476,8 @@
                     $("#edit-attrC").val(item.attrC);
                     $("#edit-attrD").val(item.attrD);
                     $("#edit-answer").val(item.answer);
-                    $("#edit-questionType").combobox('setValue',
-                        item.questionType);
-                    $("#edit-subjectId").combobox('setValue',
-                        item.subjectId);
+                    $("#edit-questionType").combobox('setValue', item.questionType);
+                    $("#edit-subjectId").combobox('setValue',item.subjectId);
                 }
             });
     }
@@ -471,21 +531,7 @@
         });
     }
 
-    //搜索按钮监听
-    $("#search-btn").click(function() {
-        var option = {
-            title : $("#search-title").val()
-        };
-        var questionType = $("#search-question-type").combobox('getValue');
-        var subjectId = $("#search-subject").combobox('getValue');
-        if (questionType != -1) {
-            option.questionType = questionType;
-        }
-        if (subjectId != -1) {
-            option.subjectId = subjectId;
-        }
-        $('#data-datagrid').datagrid('reload', option);
-    });
+
 
     function add0(m) {
         return m < 10 ? '0' + m : m

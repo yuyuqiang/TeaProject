@@ -4,11 +4,11 @@
 
     <!-- 试题插入操作 -->
     <insert id="add" parameterType="me.zhangyu.model.Question">
-		insert into question(id,questionType,title,attrA,attrB,attrC,attrD,answer,createTime) values(null,#{qu.questionType},#{qu.title},#{qu.attrA},#{qu.attrB},#{qu.attrC},#{qu.attrD},#{qu.answer},#{qu.createTime})
+		insert into question(id,subjectId,questionType,title,score,attrA,attrB,attrC,attrD,answer,createTime) values(null,#{qu.subjectId},#{qu.questionType},#{qu.title},#{qu.score},#{qu.attrA},#{qu.attrB},#{qu.attrC},#{qu.attrD},#{qu.answer},#{qu.createTime})
 	</insert>
     <!-- 试题更新操作 -->
     <update id="edit" parameterType="me.zhangyu.model.Question">
-		update question set title = #{title},questionType = #{questionType},attrA = #{attrA},attrB = #{attrB},attrC = #{attrC},attrD = #{attrD},answer = #{answer} where id = #{id}
+		update question set subjectId = #{subjectId}, title = #{title},score=#{score},questionType = #{questionType},attrA = #{attrA},attrB = #{attrB},attrC = #{attrC},attrD = #{attrD},answer = #{answer} where id = #{id}
 	</update>
     <!-- 试题信息按题目查询 -->
     <select id="findByTitle" parameterType="String" resultType="me.zhangyu.model.Question">

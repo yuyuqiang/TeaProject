@@ -165,6 +165,15 @@ public class Question {
         this.createTime = createTime;
     }
 
+    /**
+     * 根据试题类型设置分值
+     */
+    public void setScoreByType(){
+        if(questionType == QUESTION_TYPE_SINGLE)score = QUESTION_TYPE_SINGLE_SCORE;
+        if(questionType == QUESTION_TYPE_MUILT)score = QUESTION_TYPE_MUILT_SCORE;
+        if(questionType == QUESTION_TYPE_CHARGE)score = QUESTION_TYPE_CHARGE_SCORE;
+    }
+
     @Override
     public String toString() {
         return "Question{" +

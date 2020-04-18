@@ -33,6 +33,16 @@
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
 							   data-url="${pageContext.request.contextPath}/question/questionList.do">试题管理</a>
 						</li>
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001014"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/subject/list.do">章节管理</a>
+						</li>
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001015"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/exam/list.do">考试列表</a>
+						</li>
 
                     </ul>
                 </div>

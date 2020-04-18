@@ -4,6 +4,7 @@ import com.zhangyu.backoffice.web.controller.base.BaseController;
 import me.zhangyu.model.Question;
 import me.zhangyu.service.AdminService;
 import me.zhangyu.service.QuestionService;
+import me.zhangyu.service.SubjectService;
 import me.zhangyu.untils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,11 @@ public class QuestionController extends BaseController<Question> {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private SubjectService subjectService;
+
+
+
 
     /**
      * 试题列表页面
@@ -40,6 +46,10 @@ public class QuestionController extends BaseController<Question> {
      */
     @RequestMapping(value="questionList",method= RequestMethod.GET)
     public ModelAndView list(ModelAndView model){
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("offset", 0);
+        queryMap.put("pageSize", 99999);
+         model.addObject("subjectList", subjectService.findList(queryMap));
          model.setViewName("question/questionList");
          return model;
     }
@@ -55,6 +65,7 @@ public class QuestionController extends BaseController<Question> {
     public Map<String, Object> list(
             @RequestParam(name="title",defaultValue="") String title,
             @RequestParam(name="questionType",required=false) Integer questionType,
+            @RequestParam(name="subjectId",required=false) Long subjectId,
             Page page
     ){
         Map<String, Object> ret = new HashMap<String, Object>();
@@ -63,6 +74,10 @@ public class QuestionController extends BaseController<Question> {
         if(questionType != null){
             queryMap.put("questionType", questionType);
         }
+        if(subjectId != null){
+            queryMap.put("subjectId", subjectId);
+        }
+        System.out.println("nnnnnnnnn"+questionType+title);
         queryMap.put("offset", page.getOffset());
         queryMap.put("pageSize", page.getRows());
         ret.put("rows", questionService.findList(queryMap));
@@ -105,6 +120,7 @@ public class QuestionController extends BaseController<Question> {
             ret.put("msg", "请填写试题选项B!");
             return ret;
         }
+        question.setScoreByType();
         question.setCreateTime(new Date());
         System.out.println("kkkkkkkkkllllllll");
         if(questionService.add(question) <= 0){
@@ -152,6 +168,7 @@ public class QuestionController extends BaseController<Question> {
             ret.put("msg", "请填写试题选项B!");
             return ret;
         }
+        question.setScoreByType();
         if(questionService.edit(question) <= 0){
             ret.put("type", "error");
             ret.put("msg", "编辑失败，请联系管理员!");

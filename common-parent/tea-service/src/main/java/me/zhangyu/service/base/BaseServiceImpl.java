@@ -16,5 +16,13 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     @Autowired
     protected QuestionMapper questionMapper;
 
+    @Autowired
+    protected ExamMapper examMapper;
+
+    @Autowired
+    protected SubjectMapper subjectMapper;
+
+
+
 
 }

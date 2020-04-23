@@ -41,7 +41,7 @@ public class ExamServiceImpl extends BaseServiceImpl<Exam> implements ExamServic
 
     @Override
     public List<Exam> findListByUser(Map<String, Object> queryMap) {
-        return null;
+        return examMapper.findListByUser(queryMap);
     }
 
     @Override

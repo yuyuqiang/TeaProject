@@ -44,6 +44,24 @@
 							   data-url="${pageContext.request.contextPath}/exam/list.do">考试列表</a>
 						</li>
 
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001016"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/exampaper/list.do">试卷管理</a>
+						</li>
+
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001017"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/exampaperanswer/list.do">答题列表</a>
+						</li>
+
+						<li class="nav_current">
+							<a href="#" class="subNavigation" id="A001018"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/statis/exam_stats.do">图标统计</a>
+						</li>
+
                     </ul>
                 </div>
             </div>

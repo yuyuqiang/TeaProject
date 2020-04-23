@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 /*
 业务层接口
  */
@@ -37,4 +38,6 @@ public interface IUserService extends IBaseService<User> {
     void updatesubmithomework(StudentSubmitHomework studentSubmitHomework, int h_id) throws SQLException;
 
     StudentSubmitHomework findSubmitHomeworkByid(int h_id);
+
+    public List<User> findList(Map<String, Object> queryMap);
 }

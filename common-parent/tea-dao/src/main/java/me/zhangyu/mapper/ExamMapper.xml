@@ -3,11 +3,11 @@
 <mapper namespace="me.zhangyu.mapper.ExamMapper">
     <!-- 考试插入操作 -->
     <insert id="add" parameterType="me.zhangyu.model.Exam">
-		insert into exam(id,subjectId,name,startTime,endTime,questionNum,totalScore,passScore,singleQuestionNum,muiltQuestionNum,chargeQuestionNum,paperNum,examedNum,passNum,createTime) values(null,#{subjectId},#{name},#{startTime},#{endTime},#{questionNum},#{totalScore},#{passScore},#{singleQuestionNum},#{muiltQuestionNum},#{chargeQuestionNum},#{paperNum},#{examedNum},#{passNum},#{createTime})
+		insert into exam(id,subjectId,name,startTime,endTime,avaliableTime,questionNum,totalScore,passScore,singleQuestionNum,muiltQuestionNum,chargeQuestionNum,paperNum,examedNum,passNum,createTime) values(null,#{subjectId},#{name},#{startTime},#{endTime},#{avaliableTime},#{questionNum},#{totalScore},#{passScore},#{singleQuestionNum},#{muiltQuestionNum},#{chargeQuestionNum},#{paperNum},#{examedNum},#{passNum},#{createTime})
 	</insert>
     <!-- 考试更新操作 -->
     <update id="edit" parameterType="me.zhangyu.model.Exam">
-		update exam set name = #{name},subjectId = #{subjectId},startTime = #{startTime},endTime = #{endTime},questionNum = #{questionNum},totalScore = #{totalScore},passScore = #{passScore},singleQuestionNum = #{singleQuestionNum},muiltQuestionNum = #{muiltQuestionNum},chargeQuestionNum = #{chargeQuestionNum} where id = #{id}
+		update exam set name = #{name},subjectId = #{subjectId},startTime = #{startTime},endTime = #{endTime},avaliableTime = #{avaliableTime},questionNum = #{questionNum},totalScore = #{totalScore},passScore = #{passScore},singleQuestionNum = #{singleQuestionNum},muiltQuestionNum = #{muiltQuestionNum},chargeQuestionNum = #{chargeQuestionNum} where id = #{id}
 	</update>
     <!-- 考试统计数据更新操作 -->
     <update id="updateExam" parameterType="me.zhangyu.model.Exam">
@@ -40,6 +40,24 @@
             limit #{offset},#{pageSize}
         </if>
     </select>
+
+    <!-- 用户模糊搜索总条数 -->
+    <select id="getTotalByUser" parameterType="Map" resultType="Integer">
+        select count(*) from exam where 1 = 1
+        <if test="name != null">
+            and name like '%${name}%'
+        </if>
+        <if test="subjectId != null">
+            and subjectId = #{subjectId}
+        </if>
+        <if test="startTime != null">
+            and startTime = #{startTime}
+        </if>
+        <if test="endTime != null">
+            and endTime = #{endTime}
+        </if>
+</select>
+
     <!-- 考试信息搜索查询 -->
     <select id="findListByUser" parameterType="Map" resultType="me.zhangyu.model.Exam">
         select * from exam where 1 = 1
@@ -58,22 +76,6 @@
         order by createTime desc
         <if test="offset != null and pageSize != null">
             limit #{offset},#{pageSize}
-        </if>
-    </select>
-    <!-- 用户模糊搜索总条数 -->
-    <select id="getTotalByUser" parameterType="Map" resultType="Integer">
-        select count(*) from exam where 1 = 1
-        <if test="name != null">
-            and name like '%${name}%'
-        </if>
-        <if test="subjectId != null">
-            and subjectId = #{subjectId}
-        </if>
-        <if test="startTime != null">
-            and startTime &lt;= #{startTime}
-        </if>
-        <if test="endTime != null">
-            and endTime &gt;= #{endTime}
         </if>
     </select>
     <!-- 模糊搜索总条数 -->

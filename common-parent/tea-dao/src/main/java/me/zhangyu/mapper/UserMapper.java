@@ -35,4 +35,6 @@ public interface UserMapper extends BaseMapper<User> {
     void updatesubmithomework(@Param("upssh") StudentSubmitHomework studentSubmitHomework,@Param("h_id") int h_id);
 
     StudentSubmitHomework findSubmitHomeworkByid(@Param("h_id") int h_id);
+
+    List<User> findList(Map<String, Object> queryMap);
 }

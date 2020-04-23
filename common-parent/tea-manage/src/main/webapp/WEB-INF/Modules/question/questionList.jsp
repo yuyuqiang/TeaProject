@@ -43,6 +43,10 @@
          <div class="wu-toolbar-button">
              <input type="button" value="删除" onclick="remove();"iconCls="icon-search" style="margin-top: -27px!important;margin-left: 150px">
          </div>
+         <div class="wu-toolbar-button">
+             <input type="button" value="导入试题" onclick="openImport();"iconCls="icon-search" style="margin-top: -27px!important;margin-left: 220px">
+         </div>
+
         <div class="wu-toolbar-search">
             <label>试题题目:</label><input id="search-title" class="wu-text"
                                        style="width: 100px">
@@ -313,6 +317,34 @@
     function selected() {
         $("#import-filename").val($("#excel-file").val());
     }
+
+
+    /*
+   * 导入试题
+   */
+
+    function openImport() {
+        //$('#add-form').form('clear');
+        $('#import-dialog').dialog({
+            closed : false,
+            modal : true,
+            title : "导入考试信息",
+            buttons : [ {
+                text : '确定',
+                iconCls : 'icon-ok',
+                handler : upload
+            }, {
+                text : '取消',
+                iconCls : 'icon-cancel',
+                handler : function() {
+                    $('#import-dialog').dialog('close');
+                }
+            } ],
+            onBeforeOpen : function() {
+                //$("#add-form input").val('');
+            }
+        });
+    }
     function upload() {
         if ($("#excel-file").val() == '')
             return;
@@ -324,7 +356,7 @@
         $("#process-dialog").dialog('open');
         var interval = setInterval(start, 200);
         $.ajax({
-            url : 'upload_file',
+            url : 'upload_file.do',
             type : 'post',
             data : formData,
             contentType : false,
@@ -482,28 +514,7 @@
             });
     }
 
-    function openImport() {
-        //$('#add-form').form('clear');
-        $('#import-dialog').dialog({
-            closed : false,
-            modal : true,
-            title : "导入考试信息",
-            buttons : [ {
-                text : '确定',
-                iconCls : 'icon-ok',
-                handler : upload
-            }, {
-                text : '取消',
-                iconCls : 'icon-cancel',
-                handler : function() {
-                    $('#import-dialog').dialog('close');
-                }
-            } ],
-            onBeforeOpen : function() {
-                //$("#add-form input").val('');
-            }
-        });
-    }
+
 
     /**
      * Name 打开添加窗口

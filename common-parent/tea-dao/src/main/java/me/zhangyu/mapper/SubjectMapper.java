@@ -14,7 +14,7 @@ public interface SubjectMapper extends BaseMapper<Subject> {
         List<Subject> findList(Map<String, Object> queryMap);
         int delete(Long id);
         Integer getTotal(Map<String, Object> queryMap);
-         Subject findById(Long id);
+        Subject findById(Long id);
 
 
 }

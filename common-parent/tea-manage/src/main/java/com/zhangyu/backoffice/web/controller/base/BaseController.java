@@ -13,6 +13,8 @@ public abstract class BaseController<T> {
     public static  String PERSONINFO_PAGE;//个人信息
     public static  String DEFAULT_PAGE;//后台首页
     public static  String ALOGIN_PAGE;//后台登录
+    public static  String WELCOMEEXAM_PAGE;//测试首页
+    public static  String EXAMMANAGE_PAGE;//测试首页
 
     public static final String MANAGE = "manage";
     public static final String INFO = "info";
@@ -20,6 +22,9 @@ public abstract class BaseController<T> {
     public static final String PERSONINFO ="personInfo";
     public static final String DEFAULT = "Default";
     public static final String ALOGIN = "adminlogin";
+    public static final String WELCOMEEXAM = "welcomeExam";
+    public static final String EXAMMANAGE = "examManage";
+
 
     public static  String INDEX_PAGE;//首页
     public static  String ULOGIN_PAGE;//登录
@@ -114,6 +119,8 @@ public abstract class BaseController<T> {
         ULOGIN_PAGE = modelName1+"/"+LOGIN;
         UEDIT_PAGE = modelName1 + "/" + EDIT;
         UMANAGE_PAGE = modelName1 + "/" + MANAGE;
+        WELCOMEEXAM_PAGE = modelName1 + "/" +WELCOMEEXAM;
+        EXAMMANAGE_PAGE = modelName1 + "/" +EXAMMANAGE;
 
         VEDIO_PAGE = modelName1 + "/"+VEDIO;
         VEDIOALL_PAGE = modelName1 + "/"+VEDIOALL;

@@ -47,6 +47,12 @@
                     </li>
 
                     <li class="navContent">
+                        <a href="#" class="showNav" id="exam" data-name="main_iframe"
+                           onclick="Common.switchNavigation(this);"
+                           data-url="${pageContext.request.contextPath}/user/examManage.do">在线测试</a>
+                    </li>
+
+                    <li class="navContent">
                         <a href="#" class="showNav" id="salary" data-name="main_iframe"
                            onclick="Common.switchNavigation(this);"
                            data-url="${pageContext.request.contextPath}/salary/manage.do">社区</a>

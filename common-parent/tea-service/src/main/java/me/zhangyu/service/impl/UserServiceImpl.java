@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.applet.Applet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -96,6 +97,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     @Override
     public StudentSubmitHomework findSubmitHomeworkByid(int h_id) {
         return userMapper.findSubmitHomeworkByid(h_id);
+    }
+
+    @Override
+    public List<User> findList(Map<String, Object> queryMap) {
+        return userMapper.findList(queryMap);
     }
 
     @Override

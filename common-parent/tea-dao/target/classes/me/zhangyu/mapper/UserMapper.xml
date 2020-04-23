@@ -5,11 +5,11 @@
         SELECT * FROM stu_user WHERE id = #{id}
     </select>
 
-    <select id="findByUsername" resultType="user" parameterType="String">
+    <select id="findByUsername" resultType="user" parameterType="me.zhangyu.model.User">
         SELECT * FROM stu_user WHERE username = #{username}
     </select>
 
-    <select id="validateUserExist" resultType="user" parameterType="string">
+    <select id="validateUserExist" resultType="user" parameterType="me.zhangyu.model.User">
         SELECT * FROM stu_user WHERE username = #{username}
     </select>
 
@@ -40,5 +40,15 @@
          SELECT * FROM t_submithw WHERE h_id = #{h_id}
     </select>
 
+    <!-- 考生信息搜索查询 -->
+    <select id="findList" parameterType="Map" resultType="me.zhangyu.model.User">
+        select * from stu_user where 1 = 1
+        <if test="username != null">
+            and username like '%${username}%'
+        </if>
 
+        <if test="offset != null and pageSize != null">
+            limit #{offset},#{pageSize}
+        </if>
+    </select>
 </mapper>

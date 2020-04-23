@@ -6,6 +6,9 @@ import me.zhangyu.service.AdminService;
 import me.zhangyu.service.QuestionService;
 import me.zhangyu.service.SubjectService;
 import me.zhangyu.untils.Page;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -13,14 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+
+
 
 /**
  * 创建请求处理类
@@ -209,6 +218,115 @@ public class QuestionController extends BaseController<Question> {
         ret.put("type", "success");
         ret.put("msg", "删除成功!");
         return ret;
+    }
+
+    /**
+     * 上传文件批量导入试题
+     * @param excelFile
+     * @return
+     */
+    @RequestMapping(value="upload_file",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> uploadFile(MultipartFile excelFile, Long subjectId){
+        System.out.println("8888888"+excelFile);
+        Map<String, String> ret = new HashMap<String, String>();
+        System.out.println("8888888"+excelFile);
+        if(excelFile == null){
+            System.out.println("66666666666666");
+            ret.put("type", "error");
+            ret.put("msg", "请选择文件!");
+            return ret;
+        }
+        if(subjectId == null){
+            ret.put("type", "error");
+            ret.put("msg", "请选择所属科目!");
+            return ret;
+        }
+        if(excelFile.getSize() > 5000000){
+            ret.put("type", "error");
+            ret.put("msg", "文件大小不要超过5M!");
+            return ret;
+        }
+        String suffix = excelFile.getOriginalFilename().substring(excelFile.getOriginalFilename().lastIndexOf(".")+1, excelFile.getOriginalFilename().length());
+        if(!"xls,xlsx".contains(suffix)){
+            ret.put("type", "error");
+            ret.put("msg", "请上传最新xls,xlsx格式的文件!");
+            return ret;
+        }
+        String msg = "导入成功";
+        try {
+            msg = readExcel(excelFile.getInputStream(),subjectId);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if("".equals(msg))msg = "全部导入成功";
+        ret.put("type", "success");
+        ret.put("msg", msg);
+        return ret;
+    }
+
+    /**
+     * 读取excel文件，并插入到数据库
+     * @param fileInputStream
+     * @return
+     */
+    private String readExcel(InputStream fileInputStream, Long subjectId){
+        String msg = "";
+        try {
+            HSSFWorkbook hssfWorkbook = new HSSFWorkbook(fileInputStream);
+            HSSFSheet sheetAt = hssfWorkbook.getSheetAt(0);
+            if(sheetAt.getLastRowNum() <= 0){
+                msg = "该文件为空";
+            }
+            for(int rowIndex = 1;rowIndex <= sheetAt.getLastRowNum(); rowIndex++){
+                Question question = new Question();
+                HSSFRow row = sheetAt.getRow(rowIndex);
+                if(row.getCell(0) == null){
+                    msg += "第" + rowIndex + "行，试题类型为空，跳过<br/>";
+                    continue;
+                }
+                Double numericCellValue = row.getCell(0).getNumericCellValue();
+                question.setQuestionType(numericCellValue.intValue());
+                if(row.getCell(1) == null){
+                    msg += "第" + rowIndex + "行，题目为空，跳过<br/>";
+                    continue;
+                }
+                question.setTitle(row.getCell(1).getStringCellValue());
+                if(row.getCell(2) == null){
+                    msg += "第" + rowIndex + "行，分值为空，跳过<br/>";
+                    continue;
+                }
+                numericCellValue = row.getCell(2).getNumericCellValue();
+                question.setScore(numericCellValue.intValue());
+                if(row.getCell(3) == null){
+                    msg += "第" + rowIndex + "行，选项A为空，跳过<br/>";
+                    continue;
+                }
+                question.setAttrA(row.getCell(3).getStringCellValue());
+                if(row.getCell(4) == null){
+                    msg += "第" + rowIndex + "行，选项B为空，跳过<br/>";
+                    continue;
+                }
+                question.setAttrB(row.getCell(4).getStringCellValue());
+                question.setAttrC(row.getCell(5) == null ? "" : row.getCell(5).getStringCellValue());
+                question.setAttrD(row.getCell(6) == null ? "" : row.getCell(6).getStringCellValue());
+                if(row.getCell(7) == null){
+                    msg += "第" + rowIndex + "行，正确答案为空，跳过\n";
+                    continue;
+                }
+                question.setAnswer(row.getCell(7).getStringCellValue());
+                question.setCreateTime(new Date());
+                question.setSubjectId(subjectId);
+                if(questionService.add(question) <= 0){
+                    msg += "第" + rowIndex + "行，插入数据库失败\n";
+                }
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return msg;
     }
 
 }

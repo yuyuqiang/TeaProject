@@ -25,7 +25,7 @@
 
 </head>
 <body>
-<div class="easyui-layout" data-options="fit:true">
+<div class="easyui-layout"  data-options="fit:true">
     <!-- Begin of toolbar -->
     <div id="wu-toolbar">
         <div>
@@ -86,10 +86,10 @@
                 <td align="right">考试结束时间:</td>
                 <td><input type="text" id="add-endTime" name="endTime" class="wu-text easyui-datetimebox easyui-validatebox" editable="false"></td>
             </tr>
-<%--            <tr>--%>
-<%--                <td align="right">考试限制时间:</td>--%>
-<%--                <td><input type="text" id="add-avaliableTime" name="avaliableTime" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试限制时间'" ></td>--%>
-<%--            </tr>--%>
+            <tr>
+                <td align="right">考试限制时间:</td>
+                <td><input type="text" id="add-avaliableTime" name="avaliableTime" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试限制时间'" ></td>
+            </tr>
             <tr>
                 <td align="right">及格分数线:</td>
                 <td><input type="text" id="add-passScore" name="passScore" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试及格分数线'" ></td>
@@ -136,10 +136,10 @@
                 <td align="right">考试结束时间:</td>
                 <td><input type="text" id="edit-endTime" name="endTime" class="wu-text easyui-datetimebox easyui-validatebox" editable="false"></td>
             </tr>
-<%--            <tr>--%>
-<%--                <td align="right">考试限制时间:</td>--%>
-<%--                <td><input type="text" id="edit-avaliableTime" name="avaliableTime" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试限制时间'" ></td>--%>
-<%--            </tr>--%>
+            <tr>
+                <td align="right">考试限制时间:</td>
+                <td><input type="text" id="edit-avaliableTime" name="avaliableTime" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试限制时间'" ></td>
+            </tr>
             <tr>
                 <td align="right">及格分数线:</td>
                 <td><input type="text" id="edit-passScore" name="passScore" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试及格分数线'" ></td>
@@ -372,24 +372,24 @@
                     }
                     return value;
                 }},
-            { field:'startTime',title:'考试开始日期',width:200,formatter:function(value,index,row){
+            { field:'startTime',title:'开始日期',width:210,formatter:function(value,index,row){
                     return format(value);
                 }},
-            { field:'endTime',title:'考试结束日期',width:200,formatter:function(value,index,row){
+            { field:'endTime',title:'结束日期',width:210,formatter:function(value,index,row){
                     return format(value);
                 }},
-            // { field:'avaliableTime',title:'限制时间',width:110,formatter:function(value,index,row){
-            //         return value + '分钟';
-            //     }},
-            { field:'questionNum',title:'试题总数',width:130},
-            { field:'totalScore',title:'总分',width:70},
-            { field:'passScore',title:'及格线',width:100},
-            { field:'singleQuestionNum',title:'单选题数量',width:160},
-            { field:'muiltQuestionNum',title:'多选题数量',width:160},
-            { field:'chargeQuestionNum',title:'判断题数量',width:160},
-            { field:'paperNum',title:'生成试卷数量',width:190},
-            { field:'examedNum',title:'已考人数',width:140},
-            { field:'passNum',title:'及格人数',width:140},
+            { field:'avaliableTime',title:'限制时间',width:160,formatter:function(value,index,row){
+                    return value + '分钟';
+                }},
+            { field:'questionNum',title:'试题总数',width:160},
+            { field:'totalScore',title:'总分',width:90},
+            { field:'passScore',title:'及格线',width:130},
+            { field:'singleQuestionNum',title:'单选题数量',width:200},
+            { field:'muiltQuestionNum',title:'多选题数量',width:200},
+            { field:'chargeQuestionNum',title:'判断题数量',width:200},
+            { field:'paperNum',title:'生成试卷数量',width:230},
+            { field:'examedNum',title:'已考人数',width:160},
+            { field:'passNum',title:'及格人数',width:160},
             { field:'createTime',title:'添加时间',width:200,formatter:function(value,index,row){
                     return format(value);
                 }},

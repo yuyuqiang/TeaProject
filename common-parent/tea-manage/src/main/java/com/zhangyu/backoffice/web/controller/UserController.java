@@ -2,7 +2,8 @@ package com.zhangyu.backoffice.web.controller;
 
 import com.zhangyu.backoffice.web.controller.base.BaseController;
 import me.zhangyu.model.*;
-import me.zhangyu.service.IUserService;
+import me.zhangyu.service.*;
+import me.zhangyu.untils.DateFormatUtil;
 import me.zhangyu.untils.UploadUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
@@ -37,6 +39,18 @@ public class UserController extends BaseController<User> {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private ExamService examService;
+
+    @Autowired
+    private SubjectService subjectService;
+
+    @Autowired
+    private ExamPaperService examPaperService;
+
+    @Autowired
+    private ExamPaperAnswerService examPaperAnswerService;
     public  static  int id;
     public  static String uname;
     public  static String upsd;
@@ -44,6 +58,7 @@ public class UserController extends BaseController<User> {
     public static Homework homework;
     public static StudentSubmitHomework studentSubmitHomework;
     private String dirPath = "E:\\TeachingWebsite";
+    private int pageSize = 10;
 
     @RequestMapping("login")
     public String userlogin(HttpServletRequest request, HttpSession session, RedirectAttributes attributes)throws ServletException {
@@ -300,7 +315,166 @@ public class UserController extends BaseController<User> {
     @RequestMapping(MANAGE)
     public String manage(){
         return UMANAGE_PAGE;
+    }
 
+//    @RequestMapping("welcomeExam")
+//    public String welcomeExam(){
+//        return WELCOMEEXAM_PAGE;
+//    }
+
+    /**
+     * 考生中心欢迎页面
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "welcomeExam",method = RequestMethod.GET)
+    public ModelAndView welcome(ModelAndView model, HttpServletRequest request){
+        model.addObject("title", "考生中心");
+        System.out.println("user:lll"+user+user.getSubjectId());
+        //user = (User) request.getSession().getAttribute("student");
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("subjectId", user.getSubjectId());
+        queryMap.put("startTime", DateFormatUtil.getDate("yyyy-MM-dd hh:mm:ss", new Date()));
+        queryMap.put("endTime", DateFormatUtil.getDate("yyyy-MM-dd hh:mm:ss", new Date()));
+        queryMap.put("offset", 0);
+        queryMap.put("pageSize", 10);
+        model.addObject("examList", examService.findListByUser(queryMap));
+        System.out.println("88888"+queryMap+examService.findListByUser(queryMap));
+        queryMap.remove("subjectId");
+        queryMap.put("studentId", user.getId());
+        System.out.println("history:"+queryMap);
+        model.addObject("historyList", examPaperService.findHistory(queryMap));
+        System.out.println("history:"+queryMap+examPaperService.findHistory(queryMap));
+        model.addObject("subject", subjectService.findById((long) user.getSubjectId()));
+        model.setViewName("user/welcomeExam");
+        return model;
+    }
+
+    /**
+     * 获取当前学生正在进行的考试信息
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "exam_list",method = RequestMethod.GET)
+    public ModelAndView exameList(ModelAndView model,
+                                  @RequestParam(name="name",defaultValue="") String name,
+                                  @RequestParam(name="page",defaultValue="1") Integer page,
+                                  HttpServletRequest request){
+      //  Student student = (Student)request.getSession().getAttribute("student");
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("subjectId", user.getSubjectId());
+        queryMap.put("name", name);
+        queryMap.put("offset", getOffset(page, pageSize));
+        queryMap.put("pageSize", pageSize);
+        model.addObject("examList", examService.findListByUser(queryMap));
+        model.addObject("name", name);
+        model.addObject("subject", subjectService.findById((long) user.getSubjectId()));
+        model.setViewName("user/exam_list");
+        if(page < 1)page = 1;
+        model.addObject("page", page);
+        model.addObject("nowTime", System.currentTimeMillis());
+        return model;
+    }
+
+    /**
+     * 获取当前学生考过的考试信息
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "history_list",method = RequestMethod.GET)
+    public ModelAndView historyList(ModelAndView model,
+                                    @RequestParam(name="name",defaultValue="") String name,
+                                    @RequestParam(name="page",defaultValue="1") Integer page,
+                                    HttpServletRequest request){
+       // Student student = (Student)request.getSession().getAttribute("student");
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("name", name);
+        queryMap.put("studentId", user.getId());
+        queryMap.put("offset", getOffset(page, pageSize));
+        queryMap.put("pageSize", pageSize);
+        model.addObject("historyList", examPaperService.findHistory(queryMap));
+        model.addObject("name", name);
+        model.addObject("subject", subjectService.findById((long) user.getSubjectId()));
+        model.setViewName("user/history_list");
+        if(page < 1)page = 1;
+        model.addObject("page", page);
+        return model;
+    }
+
+    /**
+     *
+     * @param model
+     * @param examPaperId
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/review_exam",method = RequestMethod.GET)
+    public ModelAndView index(ModelAndView model,Long examId,Long examPaperId,HttpServletRequest request){
+       // Student student = (Student)request.getSession().getAttribute("student");
+        Exam exam = examService.findById(examId);
+        if(exam == null){
+            model.setViewName("/exam/error");
+            model.addObject("msg", "当前考试不存在!");
+            return model;
+        }
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("examId", examId);
+        queryMap.put("studentId", user.getId());
+        //根据考试信息和学生信息获取试卷
+        ExamPaper examPaper = examPaperService.find(queryMap);
+        if(examPaper == null){
+            model.setViewName("exam/error");
+            model.addObject("msg", "当前考试不存在试卷");
+            return model;
+        }
+        if(examPaper.getStatus() == 0){
+            model.setViewName("exam/error");
+            model.addObject("msg", "您还没有考过这门考试！");
+            return model;
+        }
+        queryMap.put("examPaperId", examPaper.getId());
+        List<ExamPaperAnswer> findListByUser = examPaperAnswerService.findListByUser(queryMap);
+        model.addObject("title", exam.getName()+"-回顾试卷");
+        model.addObject("singleQuestionList", getExamPaperAnswerList(findListByUser, Question.QUESTION_TYPE_SINGLE));
+        model.addObject("muiltQuestionList", getExamPaperAnswerList(findListByUser, Question.QUESTION_TYPE_MUILT));
+        model.addObject("chargeQuestionList", getExamPaperAnswerList(findListByUser, Question.QUESTION_TYPE_CHARGE));
+        model.addObject("exam", exam);
+        model.addObject("examPaper", examPaper);
+        model.addObject("singleScore", Question.QUESTION_TYPE_SINGLE_SCORE);
+        model.addObject("muiltScore", Question.QUESTION_TYPE_MUILT_SCORE);
+        model.addObject("chargeScore", Question.QUESTION_TYPE_CHARGE_SCORE);
+        model.addObject("singleQuestion", Question.QUESTION_TYPE_SINGLE);
+        model.addObject("muiltQuestion", Question.QUESTION_TYPE_MUILT);
+        model.addObject("chargeQuestion", Question.QUESTION_TYPE_CHARGE);
+        model.setViewName("user/review_exam");
+        return model;
+    }
+
+    /**
+     * 返回指定类型的试题
+     * @param examPaperAnswers
+     * @param questionType
+     * @return
+     */
+    private List<ExamPaperAnswer> getExamPaperAnswerList(List<ExamPaperAnswer> examPaperAnswers,int questionType){
+        List<ExamPaperAnswer> newExamPaperAnswers = new ArrayList<ExamPaperAnswer>();
+        for(ExamPaperAnswer examPaperAnswer:examPaperAnswers){
+            if(examPaperAnswer.getQuestion().getQuestionType() == questionType){
+                newExamPaperAnswers.add(examPaperAnswer);
+            }
+        }
+        return newExamPaperAnswers;
+    }
+
+
+
+
+    @RequestMapping("examManage")
+    public String examManage(){
+        return EXAMMANAGE_PAGE;
     }
 
 
@@ -308,6 +482,17 @@ public class UserController extends BaseController<User> {
     public String edit(){
         return UEDIT_PAGE;
 
+    }
+
+    /**
+     * 计算数据库查询游标位置
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    private int getOffset(int page,int pageSize){
+        if(page < 1)page = 1;
+        return (page - 1) * pageSize;
     }
 
 

@@ -2,6 +2,7 @@ package me.zhangyu.model;
 
 public class User {
     int id;
+    private int subjectId;//所属学科专业ID
     private String username;
     private String password;
 
@@ -28,6 +29,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password.trim();
+    }
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 
     @Override

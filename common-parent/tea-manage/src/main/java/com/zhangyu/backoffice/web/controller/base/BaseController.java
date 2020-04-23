@@ -88,8 +88,10 @@ public abstract class BaseController<T> {
 
     //论坛
     public static String TEACOMMERNTS_PAGE;
+    public static String CHAT_INDEX_PAGE;
 
     public static final String TEACOMMENTS = "teacomments";
+    public static final String CHAT_INDEX = "index";
 
 
 
@@ -107,6 +109,7 @@ public abstract class BaseController<T> {
         String modelName1 = "user";
         String modelName2 = "teacher";
         String modelName3 = "question";
+        String modelName4 = "chat";
 
         EDIT_PAGE = modelName + "/" + EDIT;
         INFO_PAGE = modelName + "/"+INFO;
@@ -146,6 +149,8 @@ public abstract class BaseController<T> {
         QUESTIONLIST_PAGE = modelName3+"/"+QUESTIONLIST;
 
         TEACOMMERNTS_PAGE = modelName2+"/"+TEACOMMENTS;
+
+        CHAT_INDEX_PAGE = modelName4+"/"+CHAT_INDEX;
 
     }
 }

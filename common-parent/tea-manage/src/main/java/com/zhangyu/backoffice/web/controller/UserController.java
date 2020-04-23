@@ -496,4 +496,20 @@ public class UserController extends BaseController<User> {
     }
 
 
+    @RequestMapping("chat_index")
+    public String chat_index(){
+        return CHAT_INDEX_PAGE;
+    }
+
+    /**
+     * 聊天主页
+     */
+    @RequestMapping(value = "chat")
+    public ModelAndView getIndex(ModelAndView model){
+        model.addObject("userid",user.getId());
+        ModelAndView view = new ModelAndView("chat/index");
+        return view;
+    }
+
+
 }

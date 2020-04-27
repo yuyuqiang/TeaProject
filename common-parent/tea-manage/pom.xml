@@ -246,11 +246,11 @@
     </dependency>
     <!-- WebSocket配置结束-->
 
-<!--    <dependency>-->
-<!--      <groupId>com.alibaba</groupId>-->
-<!--      <artifactId>fastjson</artifactId>-->
-<!--      <version>1.2.41</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.41</version>
+    </dependency>
 
   </dependencies>
 

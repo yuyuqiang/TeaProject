@@ -11,6 +11,15 @@ public class StudentHomework {
     private String h_subTime;
     private double grade;
     private String h_content;
+    private Timestamp h_endTime;
+
+    public Timestamp getH_endTime() {
+        return h_endTime;
+    }
+
+    public void setH_endTime(Timestamp h_endTime) {
+        this.h_endTime = h_endTime;
+    }
 
     public int getId() {
         return id;

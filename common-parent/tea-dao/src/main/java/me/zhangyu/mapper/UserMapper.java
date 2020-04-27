@@ -37,4 +37,6 @@ public interface UserMapper extends BaseMapper<User> {
     StudentSubmitHomework findSubmitHomeworkByid(@Param("h_id") int h_id);
 
     List<User> findList(Map<String, Object> queryMap);
+
+    StudentSubmitHomework findSubmitHomeworkBySIdAndHId(@Param("sid") int stu_id, @Param("hid") int h_id);
 }

@@ -182,12 +182,12 @@ public class TeacherController extends BaseController<Teacher> {
         homework.setH_content(H_content);
         homework.setT_id(teacher.getTeaId());
 
-//        String[]student= teacherService.findStudentByclass();
-//        System.out.println("学生"+student);
+
 
         studentHomework.setH_name(H_name);
         studentHomework.setH_startTime(startTime);
         studentHomework.setH_content(H_content);
+        studentHomework.setH_endTime(endTime);
 
         response.setHeader("content-type", "text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
@@ -201,19 +201,6 @@ public class TeacherController extends BaseController<Teacher> {
         teacherService.addHomework(homework);
 
         teacherService.addStudentHomework(studentHomework);
-//        teacherCommodityHomework.setH_ID(Integer.parseInt(H_ID));
-//        if(teacherCommodityHomeworkService.addTeacherCommodityHomework(teacherCommodityHomework)>0){
-//            session.removeAttribute("userinfor");
-//            Teacher teacher = teacherService.queryTeacherById(teacher_id);
-//            session.setAttribute("userinfor", teacher);
-//            out.print("<script>alert('发布成功');window.location='/test5/teacherIndex.action'</script>");
-//            out.flush();
-//            out.close();
-//        }else{
-//            out.print("<script>alert('发布出现问题，发布失败');window.location='/test5/teacherIndex.action'</script>");
-//            out.flush();
-//            out.close();
-//        }
         response.sendRedirect("teaHomeworkPrev.do");
         return null;
     }

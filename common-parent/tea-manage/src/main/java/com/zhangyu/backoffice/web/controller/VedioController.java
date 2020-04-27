@@ -169,6 +169,7 @@ public class VedioController extends BaseController<Vedio> {
         fac.setSizeThreshold(1024*1024*200); //允许上传文件的最大为200MB
 //        //2_创建ServletFileUpload upload
         ServletFileUpload upload=new ServletFileUpload(fac);
+        upload.setHeaderEncoding("UTF-8");
 //        //3_通过upload解析request,得到集合<FileItem>
 //        // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
         List<FileItem> list=upload.parseRequest(request);

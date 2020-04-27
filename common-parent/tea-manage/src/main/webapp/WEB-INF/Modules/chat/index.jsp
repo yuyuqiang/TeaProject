@@ -114,7 +114,7 @@
     });
     var wsServer = null;
     var ws = null;
-    wsServer = "ws://" + location.host+"${pageContext.request.contextPath}" + "/chatServer.do";
+    wsServer = "ws://" + location.host+"${pageContext.request.contextPath}" + "/chatServer";
     ws = new WebSocket(wsServer); //创建WebSocket对象
     ws.onopen = function (evt) {
         layer.msg("已经建立连接", { offset: 0});

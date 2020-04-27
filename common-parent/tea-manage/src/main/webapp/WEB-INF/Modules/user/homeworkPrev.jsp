@@ -31,18 +31,27 @@
                 <span class="cinema">开始时间：${hw.h_startTime}</span>
             </div>
             <div class="meta" style="margin-top: -20px;margin-left: 300px">
-                <span class="cinema">提交时间：${hw.h_subTime}</span>
+                <span class="cinema" style="color: #0e93d7">最后提交时间：${hw.h_subTime}</span>
             </div>
             <h4 style="margin-top: -20px;margin-left: 650px;color: #56c756">分数: ${hw.grade}</h4>
             <div class="description">
-                <p>作业：${hw.h_content}</p>
+                <p>作业内容：${hw.h_content}</p>
             </div>
-            <div class="extra" >
-                <a class="ui right floated primary button" href="${pageContext.request.contextPath}/user/homeworkDetail.do?h_name=${hw.h_name}">详情
-                    <i class="right chevron icon"></i>
-                </a>
+            <c:if test="${nowTime < hw.h_endTime.time}">
+                <div class="extra" >
+                    <a class="ui right floated primary button" href="${pageContext.request.contextPath}/user/homeworkDetail.do?h_name=${hw.h_name}">详情
+                        <i class="right chevron icon"></i>
+                    </a>
+                </div>
+            </c:if>
+            <c:if test="${nowTime > hw.h_endTime.time}">
+                <div class="extra" >
+                    <a class="ui right floated primary button" href="${pageContext.request.contextPath}/user/homeworkDetail.do?h_name=${hw.h_name}">已结束
+                        <i class="right chevron icon"></i>
+                    </a>
+                </div>
+            </c:if>
 
-            </div>
         </div>
     </div>
     </c:forEach>

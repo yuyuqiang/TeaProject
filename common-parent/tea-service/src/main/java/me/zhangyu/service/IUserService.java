@@ -40,4 +40,6 @@ public interface IUserService extends IBaseService<User> {
     StudentSubmitHomework findSubmitHomeworkByid(int h_id);
 
     public List<User> findList(Map<String, Object> queryMap);
+
+    StudentSubmitHomework findSubmitHomeworkBySIdAndHId(int stu_id, int h_id);
 }

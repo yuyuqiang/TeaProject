@@ -40,6 +40,10 @@
          SELECT * FROM t_submithw WHERE h_id = #{h_id}
     </select>
 
+    <select id="findSubmitHomeworkBySIdAndHId" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
+         SELECT * FROM t_submithw WHERE h_id = #{hid} AND stu_id =#{sid}
+    </select>
+
     <!-- 考生信息搜索查询 -->
     <select id="findList" parameterType="Map" resultType="me.zhangyu.model.User">
         select * from stu_user where 1 = 1

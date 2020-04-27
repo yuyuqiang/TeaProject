@@ -105,6 +105,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     }
 
     @Override
+    public StudentSubmitHomework findSubmitHomeworkBySIdAndHId(int stu_id, int h_id) {
+        return userMapper.findSubmitHomeworkBySIdAndHId(stu_id,h_id);
+    }
+
+    @Override
     public User findById(int id) {
         return userMapper.findById(id);
     }

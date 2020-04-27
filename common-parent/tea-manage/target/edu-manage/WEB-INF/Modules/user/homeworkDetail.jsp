@@ -46,9 +46,18 @@
       <div  style="height: 45px; margin-left: 230px;margin-top: -23px">
           <input type="file" name="homeOldname" id="homeOldname"/>
       </div>
-      <div style="margin-top: -5px;margin-left: 70px">
-          <button class="ui green button" id="sub_btn"  onclick="check();">提交</button>
-      </div>
+         <c:if test="${nowTime > hw.h_endTime.time}">
+          <div style="margin-top: -5px;margin-left: 70px">
+             <button class="ui gray button">作业已结束</button>
+          </div>
+         </c:if>
+
+         <c:if test="${nowTime < hw.h_endTime.time}">
+             <div style="margin-top: -5px;margin-left: 70px">
+                 <button class="ui green button" id="sub_btn"  onclick="check();">提交</button>
+             </div>
+         </c:if>
+
       <br />
 
   </div>

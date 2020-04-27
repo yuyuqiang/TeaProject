@@ -70,6 +70,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-websocket:4.3.14.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-messaging:4.3.14.RELEASE" />
           <element id="library" level="project" name="Maven: javax.websocket:javax.websocket-api:1.0" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.41" />
         </element>
       </element>
       <element id="directory" name="META-INF">

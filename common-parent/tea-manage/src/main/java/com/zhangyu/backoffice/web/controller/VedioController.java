@@ -109,6 +109,8 @@ public class VedioController extends BaseController<Vedio> {
         IOUtils.closeQuietly (is);
         IOUtils.closeQuietly(os);
 
+        vedio.setDownNum(vedio.getDownNum()+1);
+        vedioService.updateVedio(vedio,Integer.parseInt(id));
         //由于当前功能是在实现下载，是不需要转发到任意页面。数据直接从服务端的servlet通过response获取到的字节输出流将数据发送到客户端即可。
         return null;
     }
@@ -148,32 +150,19 @@ public class VedioController extends BaseController<Vedio> {
     //addVedio
     @RequestMapping("addVedio")
     public String addVedio(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //接受表单参数
-//        String vedioName=request.getParameter("vedioName");
-//        System.out.println("oooooooooooooooo"+vedioName);//null
-
-        //打印request对象内的输入流中的数据
-//
-//        InputStream is = request.getInputStream();
-//        int i=is.read();
-//        while(i!=-1) {
-//        System.out.print((char)i);
-//        i=is.read();
-//        }
-
         Map<String,String> map=new HashMap<String,String>();//携带表单名称以及表单参数
         Vedio vedio=new Vedio(); //携带Vedio数据，向 service,dao进行传递
 
-//        //1_创建DiskFiletemFactory对象设置允许上传文件大小
+       //1_创建DiskFiletemFactory对象设置允许上传文件大小
         DiskFileItemFactory fac=new DiskFileItemFactory();
         fac.setSizeThreshold(1024*1024*200); //允许上传文件的最大为200MB
-//        //2_创建ServletFileUpload upload
+        //2_创建ServletFileUpload upload
         ServletFileUpload upload=new ServletFileUpload(fac);
         upload.setHeaderEncoding("UTF-8");
-//        //3_通过upload解析request,得到集合<FileItem>
-//        // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
+        //3_通过upload解析request,得到集合<FileItem>
+        // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
         List<FileItem> list=upload.parseRequest(request);
-//        //4_遍历集合
+        //4_遍历集合
         for (FileItem item : list) {
             //5_判断当前FileItem是普通项还是上传项？
             //什么是普通项：表单中的普通字段，非上传字段
@@ -183,10 +172,10 @@ public class VedioController extends BaseController<Vedio> {
                 //普通项
                 //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
                 String name=item.getFieldName();
-                String value=item.getString();
-//                System.out.println("lllllllllllll"+name); //vedioName  vedioPro
-//                System.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
-                map.put(item.getFieldName(), item.getString());
+                 String value=item.getString("UTF-8");
+
+                System.out.println("lllllllllllll"+name+value); //vedioName  vedioProSystem.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
+                map.put(item.getFieldName(), value);
             }else {
                 //如果是上传项：在服务端指定目录/upload/ 创建一个文件，将上传项中文件的二进制数据输出到创建好的文件中
                 //获取到文件名称
@@ -217,6 +206,8 @@ public class VedioController extends BaseController<Vedio> {
         vedio.setDel("no");
         //Vedio [vedioId=0, vedioName=33333333333, vedioPro=44444444444444, vedioAttachment=6437C1D60C404656A48D04B811B5B519.bmp, attachmentOldName=11.bmp, uploadTime=null, del=null]
         //6_将普通项的数据以及文件的位置传递到service,dao.进行数据的保存
+
+        System.out.println("sss"+vedio);
         vedioService.addVedio(vedio);
 
         response.sendRedirect("findVediosWithPageByTeacher.do?num=1");

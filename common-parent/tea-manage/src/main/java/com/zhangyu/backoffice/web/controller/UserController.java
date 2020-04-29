@@ -4,6 +4,7 @@ import com.zhangyu.backoffice.web.controller.base.BaseController;
 import me.zhangyu.model.*;
 import me.zhangyu.service.*;
 import me.zhangyu.untils.DateFormatUtil;
+import me.zhangyu.untils.DownLoadUtils;
 import me.zhangyu.untils.UploadUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
@@ -82,7 +83,11 @@ public class UserController extends BaseController<User> {
     @RequestMapping("homeworkPrev")
     public String findPrevhomework(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        List<StudentHomework> list= userService.findPreStudentHomework();
+        if(user==null){
+            response.sendRedirect("page404.do");
+        }
+        int subjectId = user.getSubjectId();
+        List<StudentHomework> list= userService.findPreStudentHomework(subjectId);
         request.setAttribute("list", list);
         request.setAttribute("nowTime",System.currentTimeMillis());
         System.out.println("lll"+System.currentTimeMillis());
@@ -112,7 +117,7 @@ public class UserController extends BaseController<User> {
         int h_id = homework.getH_id();
         int stu_id=user.getId();
         String h_name = homework.getH_name();
-        String shw_content = request.getParameter("shw_content");
+        String value =null;
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         if (System.currentTimeMillis()<homework.getH_endTime().getTime()){
@@ -130,6 +135,7 @@ public class UserController extends BaseController<User> {
             // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
             List<FileItem> list=upload.parseRequest(request);
 
+
             for (FileItem item : list) {
                 //5_判断当前FileItem是普通项还是上传项？
                 //什么是普通项：表单中的普通字段，非上传字段
@@ -139,7 +145,7 @@ public class UserController extends BaseController<User> {
                     //普通项
                     //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
                     String name=item.getFieldName();
-                    String value=item.getString();
+                    value=item.getString("UTF-8");
                     System.out.println("lllllllllllll"+name);
                     System.out.println("mmmmmmmmmmmmmmm"+value);
                     map.put(item.getFieldName(), item.getString());
@@ -169,7 +175,8 @@ public class UserController extends BaseController<User> {
             studentHomework.setH_id(h_id);
             studentHomework.setStu_id(stu_id);
             studentHomework.setH_subTime(sdf.format(new Date()));
-             System.out.println("hhh"+h_id+stu_id);
+            userService.updateStudentHomework(studentHomework,h_name);
+
             studentSubmitHomework  = userService.findSubmitHomeworkBySIdAndHId(stu_id,h_id);
             System.out.println("hhhj"+userService.findSubmitHomeworkBySIdAndHId(stu_id,h_id));
             if (studentSubmitHomework==null){
@@ -179,17 +186,17 @@ public class UserController extends BaseController<User> {
                 studentSubmitHomework.setStu_id(stu_id);
                 studentSubmitHomework.setIsSubmit(1);
                 studentSubmitHomework.setH_id(h_id);
-                studentSubmitHomework.setShw_content(shw_content);
+                studentSubmitHomework.setShw_content(value);
                 studentSubmitHomework.setSubData(sdf.format(new Date()));
                 userService.submithomework(studentSubmitHomework,h_id);
 
             }else{
                 BeanUtils.populate(studentSubmitHomework, map);
-                studentSubmitHomework.setShw_content(shw_content);
+                studentSubmitHomework.setShw_content(value);
                 studentSubmitHomework.setSubData(sdf.format(new Date()));
                 userService.updatesubmithomework(studentSubmitHomework,h_id);
             }
-            userService.updateStudentHomework(studentHomework,h_name);
+
             response.sendRedirect("homeworkPrev.do");
        }else
         {

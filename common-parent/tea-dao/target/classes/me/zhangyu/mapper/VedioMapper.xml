@@ -27,7 +27,11 @@
     </select>
 
     <select id="addVedio" resultType="me.zhangyu.model.Vedio" parameterType="me.zhangyu.model.Vedio">
-        INSERT INTO t_vedio (vedioId,vedioName,vedioPro,vedioAttachment,attachmentOldName,uploadTime,del) values(null,#{vedio.vedioName},#{vedio.vedioPro},#{vedio.vedioAttachment},#{vedio.attachmentOldName},#{vedio.uploadTime},#{vedio.del})
+        INSERT INTO t_vedio (vedioId,vedioName,vedioPro,vedioAttachment,attachmentOldName,uploadTime,del,downNum) values(null,#{vedio.vedioName},#{vedio.vedioPro},#{vedio.vedioAttachment},#{vedio.attachmentOldName},#{vedio.uploadTime},#{vedio.del},0)
     </select>
+
+    <update id="updateVedio" parameterType="me.zhangyu.model.Vedio">
+		update t_vedio set downNum = #{vedio.downNum} where vedioId = #{id}
+	</update>
 
 </mapper>

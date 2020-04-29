@@ -2,6 +2,7 @@ package me.zhangyu.mapper;
 
 import me.zhangyu.mapper.base.BaseMapper;
 
+import me.zhangyu.model.Exam;
 import me.zhangyu.model.Vedio;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,4 +25,6 @@ public interface VedioMapper extends BaseMapper<Vedio> {
     void deleteVedioByTeacher(@Param("vId") String vId);
 
     void addVedio(@Param("vedio") Vedio vedio);
+    int updateVedio(@Param("vedio") Vedio vedio,@Param("id") int id);
+
 }

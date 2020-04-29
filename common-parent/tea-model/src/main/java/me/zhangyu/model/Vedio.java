@@ -8,6 +8,15 @@ public class Vedio {
     private String attachmentOldName; //视频附件原始名称
     private String uploadTime;//上传时间
     private String del;//视频是否删除
+    private int downNum;
+
+    public int getDownNum() {
+        return downNum;
+    }
+
+    public void setDownNum(int downNum) {
+        this.downNum = downNum;
+    }
 
     public Vedio() {
 

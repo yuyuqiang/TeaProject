@@ -25,9 +25,9 @@
     </tr>
     <tr align="center" bgcolor="#FAFAF1" height="22">
         <td width="4%">序号</td>
-        <td width="25%">标题</td>
-        <td width="10%">附件</td>
-        <td width="10%">操作</td>
+        <td width="17%">标题</td>
+        <td width="18%">附件</td>
+        <td width="6%">操作</td>
     </tr>
 
     <c:forEach items="${page.list}" var="v"  varStatus="status">
@@ -39,9 +39,8 @@
                     ${v.vedioName}
             </td>
             <td bgcolor="#FFFFFF" align="center">
-                    ${v.vedioAttachment}
-                &nbsp;&nbsp;&nbsp;
-                <a href="#" onclick="down('${v.vedioAttachment}','${v.attachmentOldName}')" style="font-size: 10px;color: red">down</a>
+                    ${v.attachmentOldName}
+                <a href="#" style="font-size: 10px;color: #7e7e7e">${v.downNum}人查看</a>
             </td>
             <td bgcolor="#FFFFFF" align="center">
                     <%--取消链接的默认行为 --%>

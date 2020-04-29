@@ -28,7 +28,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     void submitHomework(@Param("ssh") StudentSubmitHomework studentSubmitHomework,@Param("h_id")int h_id);
 
-    List<StudentHomework> findpreStudentHomework();
+    List<StudentHomework> findpreStudentHomework(@Param("id") int id);
 
     void updateStudentHomework(@Param("sh") StudentHomework studentHomework,@Param("h_name") String h_name);
 
@@ -37,6 +37,11 @@ public interface UserMapper extends BaseMapper<User> {
     StudentSubmitHomework findSubmitHomeworkByid(@Param("h_id") int h_id);
 
     List<User> findList(Map<String, Object> queryMap);
+    public int add(User student);
+    public int edit(User student);
+    public int delete(Long id);
+    public Integer getTotal(Map<String, Object> queryMap);
+    public User findByName(String name);
 
     StudentSubmitHomework findSubmitHomeworkBySIdAndHId(@Param("sid") int stu_id, @Param("hid") int h_id);
 }

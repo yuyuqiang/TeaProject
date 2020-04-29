@@ -11,7 +11,14 @@ public class StudentHomework {
     private String h_subTime;
     private double grade;
     private String h_content;
+    private Long subjectId;
     private Timestamp h_endTime;
+    public Long getSubjectId() {
+        return subjectId;
+    }
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
+    }
 
     public Timestamp getH_endTime() {
         return h_endTime;

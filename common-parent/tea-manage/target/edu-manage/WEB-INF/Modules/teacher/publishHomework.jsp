@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -25,11 +27,13 @@
         <div class="ui input" style=" margin-left: 120px!important;margin-top: -40px!important;">
             <input type="text"name="H_name" id="H_name" >
         </div>
+        <div class="zuo"style="margin-top: 25px!important;">所属专业：</div>
+        <select class="ui dropdown"name="subjectId"id ="subjectId" style="width:200px!important;margin-left: 120px;margin-top: -40px">
+            <c:forEach items="${subjectList}" var="subject">
+                <option value="${subject.id}" name="subjectId">${subject.name}</option>
+            </c:forEach>
+        </select>
 
-<%--        <div class="zuo"style="margin-top: 25px!important;">开始时间：</div>--%>
-<%--        <div class="ui input"  style=" margin-left: 120px!important;margin-top: -40px!important;">--%>
-<%--            <input type="datetime-local"name="H_startTime" id="H_startTime" >--%>
-<%--        </div>--%>
         <div class="ui calendar H_startTime" style="margin-top: 25px!important;margin-left: 10px;">
             <label class="zuo">开始时间：</label>
             <div class="ui input right icon">
@@ -44,10 +48,6 @@
                 <input type="text"style="margin-left:-2px!important;"  placeholder="选择结束时间"  name="H_endTime" id="H_endTime">
             </div>
         </div>
-<%--        <div class="zuo"style="margin-top: 25px!important;">结束时间：</div>--%>
-<%--        <div class="ui input"  style=" margin-left: 120px!important;margin-top: -40px!important;">--%>
-<%--            <input type="datetime-local"name="H_endTime" id="H_endTime" >--%>
-<%--        </div>--%>
         <br />
         <hr style="margin-top:20px;color: #bababa"/>
         <br />

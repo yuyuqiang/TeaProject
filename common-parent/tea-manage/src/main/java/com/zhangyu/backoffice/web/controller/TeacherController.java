@@ -3,7 +3,9 @@ package com.zhangyu.backoffice.web.controller;
 import com.zhangyu.backoffice.web.controller.base.BaseController;
 import me.zhangyu.model.*;
 import me.zhangyu.service.IUserService;
+import me.zhangyu.service.SubjectService;
 import me.zhangyu.service.TeacherService;
+import me.zhangyu.untils.Page;
 import me.zhangyu.untils.PageModel;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
@@ -23,14 +30,13 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * 创建请求处理类
@@ -44,6 +50,12 @@ public class TeacherController extends BaseController<Teacher> {
     public static Homework homework;
     public Teacher teacher;
     public static  int t_id ;
+
+    @Autowired
+    private SubjectService subjectService;
+
+    @Autowired
+    private IUserService userService;
 
     @RequestMapping("teaLogin")
     public String teacherLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -119,7 +131,6 @@ public class TeacherController extends BaseController<Teacher> {
         //调用业务层删除老师功能
         System.out.println("delid:"+id);
         teacherService.delTeacherById(id);
-
         //重定向到/TeacherServlet?method=findTeachersWithPage
         response.sendRedirect("teaInfo.do?num=1");
         return null;
@@ -157,6 +168,8 @@ public class TeacherController extends BaseController<Teacher> {
         Date time=null;
         Timestamp startTime=null;
         Timestamp endTime=null;
+        String subjectId = request.getParameter("subjectId");
+        System.out.println("sub111;"+subjectId);
         String H_name = request.getParameter("H_name");
         String H_startTime = request.getParameter("H_startTime");
         String H_endTime = request.getParameter("H_endTime");
@@ -181,6 +194,7 @@ public class TeacherController extends BaseController<Teacher> {
         homework.setH_name(H_name);
         homework.setH_content(H_content);
         homework.setT_id(teacher.getTeaId());
+        homework.setSubjectId(Long.valueOf(subjectId));
 
 
 
@@ -188,6 +202,7 @@ public class TeacherController extends BaseController<Teacher> {
         studentHomework.setH_startTime(startTime);
         studentHomework.setH_content(H_content);
         studentHomework.setH_endTime(endTime);
+        studentHomework.setSubjectId(Long.valueOf(subjectId));
 
         response.setHeader("content-type", "text/html;charset=utf-8");
         response.setCharacterEncoding("utf-8");
@@ -225,7 +240,7 @@ public class TeacherController extends BaseController<Teacher> {
         return CHECKHOMEWORK_PAGE;
     }
 
-    @RequestMapping("studentHomeworkDown")
+    @RequestMapping(value = "studentHomeworkDown",produces={"application/json;charset=utf-8"})
     public ResponseEntity<byte[]> studentHomeworkDown(HttpServletResponse response, HttpSession session, HttpServletRequest request) throws IOException, SQLException {
         String id = request.getParameter("id");
         StudentSubmitHomework studentSubmitHomework = teacherService.findSubmitHomeworkByid(id);
@@ -239,7 +254,7 @@ public class TeacherController extends BaseController<Teacher> {
         //设置响应头
         HttpHeaders headers = new HttpHeaders();
         //通知浏览器以下载的方式打开文件
-        headers.setContentDispositionFormData("attachment", fileName);
+        headers.setContentDispositionFormData("attachment", new String(fileName.getBytes("UTF-8"),"iso-8859-1"));
         //定义以流的方式下载返回文件数据
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.OK);
@@ -280,8 +295,181 @@ public class TeacherController extends BaseController<Teacher> {
     }
 
     @RequestMapping("publishHomeworkUI")
-    public String teacherPublishHomework(){
-        return PUBLISHHOMEWORK_PAGE;
+    public ModelAndView list(ModelAndView model){
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("offset", 0);
+        queryMap.put("pageSize", 99999);
+        model.addObject("subjectList", subjectService.findList(queryMap));
+        model.setViewName("teacher/publishHomework");
+        return model;
+    }
+
+    /**
+     * 考生列表页面
+     * @param model
+     * @return
+     */
+    @RequestMapping(value="list",method= RequestMethod.GET)
+    public ModelAndView list1(ModelAndView model){
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("offset", 0);
+        queryMap.put("pageSize", 99999);
+        model.addObject("subjectList", subjectService.findList(queryMap));
+        model.setViewName("teacher/studentList");
+        return model;
+    }
+
+    /**
+     * 模糊搜索分页显示列表查询
+     * @param username
+     * @param page
+     * @return
+     */
+    @RequestMapping(value="list",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> list(
+            @RequestParam(name="username",defaultValue="") String username,
+            @RequestParam(name="subjectId",required=false) Long subjectId,
+            Page page
+    ){
+        Map<String, Object> ret = new HashMap<String, Object>();
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("username", username);
+        if(subjectId != null){
+            queryMap.put("subjectId", subjectId);
+        }
+        queryMap.put("offset", page.getOffset());
+        queryMap.put("pageSize", page.getRows());
+        ret.put("rows", userService.findList(queryMap));
+        ret.put("total", userService.getTotal(queryMap));
+        return ret;
+    }
+
+    /**
+     * 添加考生
+     * @param student
+     * @return
+     */
+    @RequestMapping(value="add",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> add(User student){
+        Map<String, String> ret = new HashMap<String, String>();
+        if(student == null){
+            ret.put("type", "error");
+            ret.put("msg", "请填写正确的考生信息!");
+            return ret;
+        }
+        if(StringUtils.isEmpty(student.getUsername())){
+            ret.put("type", "error");
+            ret.put("msg", "请填写考生用户名!");
+            return ret;
+        }
+        if(StringUtils.isEmpty(student.getPassword())){
+            ret.put("type", "error");
+            ret.put("msg", "请填写考生密码!");
+            return ret;
+        }
+
+        //添加之前判断登录名是否存在
+        if(isExistName(student.getUsername(), -1l)){
+            ret.put("type", "error");
+            ret.put("msg", "该登录账号已经存在!");
+            return ret;
+        }
+        if(userService.add(student) <= 0){
+            ret.put("type", "error");
+            ret.put("msg", "添加失败，请联系管理员!");
+            return ret;
+        }
+        ret.put("type", "success");
+        ret.put("msg", "添加成功!");
+        return ret;
+    }
+
+    /**
+     * 编辑考生
+     * @param student
+     * @return
+     */
+    @RequestMapping(value="edit",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> edit(User student){
+        Map<String, String> ret = new HashMap<String, String>();
+        if(student == null){
+            ret.put("type", "error");
+            ret.put("msg", "请填写正确的学科信息!");
+            return ret;
+        }
+        if(StringUtils.isEmpty(student.getUsername())){
+            ret.put("type", "error");
+            ret.put("msg", "请填写考生用户名!");
+            return ret;
+        }
+        if(StringUtils.isEmpty(student.getPassword())){
+            ret.put("type", "error");
+            ret.put("msg", "请填写考生密码!");
+            return ret;
+        }
+
+        //编辑之前判断登录名是否存在
+        if(isExistName(student.getUsername(), (long) student.getId())){
+            ret.put("type", "error");
+            ret.put("msg", "该登录账号已经存在!");
+            return ret;
+        }
+        if(userService.edit(student) <= 0){
+            ret.put("type", "error");
+            ret.put("msg", "编辑失败，请联系管理员!");
+            return ret;
+        }
+        ret.put("type", "success");
+        ret.put("msg", "编辑成功!");
+        return ret;
+    }
+
+    /**
+     * 删除考生
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="delete",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> delete(Long id){
+        Map<String, String> ret = new HashMap<String, String>();
+        if(id == null){
+            ret.put("type", "error");
+            ret.put("msg", "请选择要删除的数据!");
+            return ret;
+        }
+        try {
+            if(userService.delete(id) <= 0){
+                ret.put("type", "error");
+                ret.put("msg", "删除失败，请联系管理员!");
+                return ret;
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            ret.put("type", "error");
+            ret.put("msg", "该考生下存在考试信息，不能删除!");
+            return ret;
+        }
+
+        ret.put("type", "success");
+        ret.put("msg", "删除成功!");
+        return ret;
+    }
+
+    /**
+     * 判断用户名是否存在
+     * @param name
+     * @param id
+     * @return
+     */
+    private boolean isExistName(String name,Long id){
+        User student = userService.findByName(name);
+        if(student == null)return false;
+        if(student.getId() == id.longValue())return false;
+        return true;
     }
 
     @RequestMapping(TEAMANAGE)

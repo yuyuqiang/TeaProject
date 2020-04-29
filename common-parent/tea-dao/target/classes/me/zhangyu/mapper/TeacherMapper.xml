@@ -27,11 +27,11 @@
     </select>
 
     <select id="addHomework" resultType="me.zhangyu.model.Homework" parameterType="me.zhangyu.model.Homework">
-        INSERT INTO t_Homework (H_id,T_id,H_name,H_startTime,H_endTime,H_content) values(null,#{homework.T_id},#{homework.H_name},#{homework.H_startTime},#{homework.H_endTime},#{homework.H_content})
+        INSERT INTO t_Homework (H_id,T_id,H_name,H_startTime,H_endTime,H_content,subjectId) values(null,#{homework.T_id},#{homework.H_name},#{homework.H_startTime},#{homework.H_endTime},#{homework.H_content},#{homework.subjectId})
     </select>
 
     <select id="addStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
-        INSERT INTO t_stu_homework (id,stu_id,h_name,h_startTime,h_subTime,grade,h_content,h_endTime) values(null,null,#{sh.h_name},#{sh.h_startTime},'未提交',null,#{sh.h_content},#{sh.endTime})
+        INSERT INTO t_stu_homework (id,stu_id,h_name,h_startTime,h_subTime,grade,h_content,subjectId,h_endTime) values(null,null,#{sh.h_name},#{sh.h_startTime},'未提交',null,#{sh.h_content},#{sh.subjectId},#{sh.h_endTime})
     </select>
 
     <select id="findPrevHomework" resultType="me.zhangyu.model.Homework" parameterType="List">

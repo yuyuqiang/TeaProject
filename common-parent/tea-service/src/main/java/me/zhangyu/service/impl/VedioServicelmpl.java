@@ -103,4 +103,9 @@ public class VedioServicelmpl extends BaseServiceImpl<Vedio> implements VedioSer
     public void addVedio(Vedio vedio)throws SQLException {
         vedioMapper.addVedio(vedio);
     }
+
+    @Override
+    public int updateVedio(Vedio vedio,int id) {
+        return vedioMapper.updateVedio(vedio,id);
+    }
 }

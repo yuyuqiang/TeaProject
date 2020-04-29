@@ -25,7 +25,7 @@
     </select>
 
     <select id="findpreStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="List">
-        SELECT * FROM t_stu_homework ORDER BY id DESC LIMIT 0,5
+        SELECT * FROM t_stu_homework where subjectId = #{id}
     </select>
 
     <select id="updateStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="me.zhangyu.model.StudentHomework">
@@ -37,7 +37,7 @@
     </select>
 
     <select id="findSubmitHomeworkByid" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
-         SELECT * FROM t_submithw WHERE h_id = #{h_id}
+         SELECT * FROM t_submithw WHERE id = #{id}
     </select>
 
     <select id="findSubmitHomeworkBySIdAndHId" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
@@ -50,9 +50,41 @@
         <if test="username != null">
             and username like '%${username}%'
         </if>
-
+        <if test="subjectId != null">
+            and subjectId = #{subjectId}
+        </if>
         <if test="offset != null and pageSize != null">
             limit #{offset},#{pageSize}
         </if>
     </select>
+
+    <!-- 考生插入操作 -->
+    <insert id="add" parameterType="me.zhangyu.model.User">
+		insert into stu_user(id,subjectId,username,password,t_id) values(null,#{subjectId},#{username},#{password},#{t_id})
+	</insert>
+    <!-- 考生更新操作 -->
+    <update id="edit" parameterType="me.zhangyu.model.User">
+		update stu_user set username = #{username},subjectId = #{subjectId},password = #{password}where id = #{id}
+	</update>
+
+    <!-- 模糊搜索总条数 -->
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        select count(*) from stu_user where 1 = 1
+        <if test="username != null">
+            and username like '%${username}%'
+        </if>
+        <if test="subjectId != null">
+            and subjectId = #{subjectId}
+        </if>
+    </select>
+    <!-- 删除考生信息 -->
+    <delete id="delete" parameterType="Long">
+		delete from stu_user where id =${value}
+	</delete>
+
+    <!-- 考生信息按登录名查询 -->
+    <select id="findByName" parameterType="String" resultType="me.zhangyu.model.User">
+		select * from stu_user where username = #{value}
+	</select>
+
 </mapper>

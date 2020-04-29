@@ -9,6 +9,15 @@ public class Homework {
     private String H_content;
     private Timestamp H_startTime;
     private Timestamp H_endTime;
+    private Long subjectId;
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
+    }
 
     public Homework(){}
 

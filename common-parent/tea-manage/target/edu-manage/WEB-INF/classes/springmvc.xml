@@ -45,19 +45,19 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!-- 文件上传 -->
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 上传文件大小限制 -->
-        <property name="maxUploadSize">
-            <value>10485760</value>
-        </property>
-        <!-- 请求的编码格式, 和 jsp 页面一致 -->
-        <property name="defaultEncoding">
-            <value>UTF-8</value>
-        </property>
+<!--    &lt;!&ndash; 文件上传 &ndash;&gt;-->
+<!--    <bean id="multipartResolver"-->
+<!--          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+<!--        &lt;!&ndash; 上传文件大小限制 &ndash;&gt;-->
+<!--        <property name="maxUploadSize">-->
+<!--            <value>10485760</value>-->
+<!--        </property>-->
+<!--        &lt;!&ndash; 请求的编码格式, 和 jsp 页面一致 &ndash;&gt;-->
+<!--        <property name="defaultEncoding">-->
+<!--            <value>UTF-8</value>-->
+<!--        </property>-->
 
-    </bean>
+<!--    </bean>-->
 
     <!-- 静态资源处理 -->
     <mvc:default-servlet-handler/>
@@ -94,11 +94,11 @@
                     <constructor-arg index="1" value="*"/>
                     <constructor-arg index="2" value="UTF-8"/>
                 </bean>
-                <bean class="org.springframework.http.MediaType">
-                    <constructor-arg index="0" value="application"/>
-                    <constructor-arg index="1" value="json"/>
-                    <constructor-arg index="2" value="UTF-8"/>
-                </bean>
+<!--                <bean class="org.springframework.http.MediaType">-->
+<!--                    <constructor-arg  index="0" value="application"/>-->
+<!--                    <constructor-arg index="1" value="json"/>-->
+<!--                    <constructor-arg index="2" value="UTF-8"/>-->
+<!--                </bean>-->
             </list>
         </property>
     </bean>

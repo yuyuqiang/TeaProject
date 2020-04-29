@@ -33,7 +33,7 @@
                 <form action="" method="post">
                     <div class="test_title">
                         <p class="test_time">
-                            <img style="float:left;margin-top:15px;margin-left:10px;" src="${pageContext.request.contextPath}/static/home/exam/images/time.png" width="16px"><b class="alt-1">用时${exam.avaliableTime }分钟</b>
+                            <img style="float:left;margin-top:15px;margin-left:10px;" src="${pageContext.request.contextPath}/static/home/exam/images/time.png" width="16px"><b class="alt-1">${exam.avaliableTime }分钟</b>
                         </p>
                         <font><input type="button" disabled="disabled" style="background-color:#e4e4e4;" name="test_jiaojuan" value="交卷"></font>
                     </div>
@@ -299,7 +299,7 @@
                         </h1>
                         <p class="test_time">
                             <img style="float:left;margin-top:15px;margin-left:10px;" src="${pageContext.request.contextPath}/static/home/exam/images/time.png" width="16px">
-                            <b class="alt-1">用时${exam.avaliableTime }分钟</b>
+                            <b class="alt-1">${exam.avaliableTime }分钟</b>
                         </p>
                     </div>
                     <c:if test="${exam.singleQuestionNum !=0 }">

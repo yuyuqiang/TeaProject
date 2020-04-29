@@ -38,7 +38,7 @@
       <hr style="margin-top:65px;color: #eee"/>
       <div class="ui form" style="width: 99%!important;">
           <div  class="field" style=" margin-left: 70px!important;margin-top: 15px!important;">
-              <textarea rows="10" name="shw_content" cols="50" warp="virtual"></textarea>
+              <textarea rows="10" name="shw_content" id="shw_content" cols="50" warp="virtual"></textarea>
           </div>
       </div>
 

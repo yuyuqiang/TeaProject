@@ -31,7 +31,7 @@ public interface IUserService extends IBaseService<User> {
 
     void submithomework(StudentSubmitHomework studentSubmitHomework,int h_id);
 
-    List<StudentHomework> findPreStudentHomework() throws SQLException;
+    List<StudentHomework> findPreStudentHomework(int id) throws SQLException;
 
     void updateStudentHomework(StudentHomework studentHomework,String h_name) throws SQLException;
 
@@ -42,4 +42,10 @@ public interface IUserService extends IBaseService<User> {
     public List<User> findList(Map<String, Object> queryMap);
 
     StudentSubmitHomework findSubmitHomeworkBySIdAndHId(int stu_id, int h_id);
+    public User findByName(String name);
+
+    public int add(User student);
+    public int edit(User student);
+    public int delete(Long id);
+    public Integer getTotal(Map<String, Object> queryMap);
 }

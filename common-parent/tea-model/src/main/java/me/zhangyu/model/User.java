@@ -5,6 +5,15 @@ public class User {
     private int subjectId;//所属学科专业ID
     private String username;
     private String password;
+    private String t_id;
+
+    public String getT_id() {
+        return t_id;
+    }
+
+    public void setT_id(String t_id) {
+        this.t_id = t_id;
+    }
 
     public User(){}
     public int getId() {
@@ -24,11 +33,11 @@ public class User {
     }
 
     public String getPassword() {
-        return password.trim();
+        return password;
     }
 
     public void setPassword(String password) {
-        this.password = password.trim();
+        this.password = password;
     }
 
     public int getSubjectId() {

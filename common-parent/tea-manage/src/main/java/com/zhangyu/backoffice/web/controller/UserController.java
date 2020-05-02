@@ -61,6 +61,15 @@ public class UserController extends BaseController<User> {
     private String dirPath = "E:\\TeachingWebsite";
     private int pageSize = 10;
 
+    @RequestMapping("login_index")
+    public ModelAndView list2(ModelAndView model){
+        Map<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("offset", 0);
+        queryMap.put("pageSize", 99999);
+        model.addObject("subjectList", subjectService.findList(queryMap));
+        model.setViewName("teacher/createSubject");
+        return model;
+    }
     @RequestMapping("login")
     public String userlogin(HttpServletRequest request, HttpSession session, RedirectAttributes attributes)throws ServletException {
         String username = request.getParameter("username");

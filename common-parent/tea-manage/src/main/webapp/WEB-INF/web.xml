@@ -33,6 +33,9 @@
     <url-pattern>*.do</url-pattern>
     <url-pattern>*.mp4</url-pattern>
     <url-pattern>*.avi</url-pattern>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.gif</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
   </servlet-mapping>
 
   <filter>

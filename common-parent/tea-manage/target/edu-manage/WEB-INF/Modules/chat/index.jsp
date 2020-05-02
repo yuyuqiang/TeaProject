@@ -18,7 +18,7 @@
 <body>
  <jsp:include page="include/header.jsp"/>
  <div class="am-cf admin-main">
-    <jsp:include page="include/sidebar.jsp"/>
+<%--    <jsp:include page="include/sidebar.jsp"/>--%>
 
     <!-- content start -->
     <div class="admin-content">
@@ -29,7 +29,7 @@
                 </ul>
             </div>
             <!-- 输入区 -->
-            <div class="am-form-group am-form">
+            <div class="am-form-group am-form" style="margin-left: 5px">
                 <textarea class="" id="message" name="message" rows="5"  placeholder="这里输入你想发送的信息..."></textarea>
             </div>
             <!-- 接收者 -->
@@ -259,6 +259,7 @@
             var li = "<li>"+item+"</li>";
             if('${userid}' != item){    //排除自己
                 li = "<li>"+item+" <button type=\"button\" class=\"am-btn am-btn-xs am-btn-primary am-round\" onclick=\"addChat('"+item+"');\"><span class=\"am-icon-phone\"><span> 私聊</button></li>";
+
             }
             $("#list").append(li);
         });

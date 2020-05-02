@@ -17,7 +17,7 @@
         <div class="header_top">
             <header>
                 <div class="header_logo">
-                    <h1>《软件工程》教学辅助网站</h1>
+                    <img  style="width: 180px;height:40px;margin-top: 0px"   src="${pageContext.request.contextPath}/assets1/Images/favicon.png">
                 </div>
                 <div class="header_tab">
                     <ul>
@@ -40,6 +40,7 @@
         <div class="header_nav">
             <nav>
                 <ul id="showMainNav" class="fix">
+
                     <li class="navContent nav_current">
                         <a href="#" class="showNav" id="user" data-name="main_iframe"
                            onclick="Common.switchNavigation(this);"
@@ -51,12 +52,12 @@
                            onclick="Common.switchNavigation(this);"
                            data-url="${pageContext.request.contextPath}/user/examManage.do">在线测试</a>
                     </li>
-
                     <li class="navContent">
-                        <a href="#" class="showNav" id="salary" data-name="main_iframe"
+                        <a href="#" class="showNav" id="chat" data-name="main_iframe"
                            onclick="Common.switchNavigation(this);"
-                           data-url="${pageContext.request.contextPath}/user/chat_index.do">社区</a>
+                           data-url="${pageContext.request.contextPath}/user/chat.do">社区</a>
                     </li>
+
                 </ul>
             </nav>
         </div>

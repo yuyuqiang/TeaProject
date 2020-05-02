@@ -76,6 +76,8 @@ public class TeacherController extends BaseController<Teacher> {
         }
     }
 
+
+
     @RequestMapping("teaIndex")
     public String index(){
         return TEAINDEX_PAGE;
@@ -94,6 +96,7 @@ public class TeacherController extends BaseController<Teacher> {
         //转发到jsp
         return TEAINFO_PAGE;
     }
+
 
     @RequestMapping("teacherAddUI")
     public String teaADD(){
@@ -471,6 +474,35 @@ public class TeacherController extends BaseController<Teacher> {
         if(student.getId() == id.longValue())return false;
         return true;
     }
+
+//    /**
+//     * 添加学科专业
+//     * @param subject
+//     * @return
+//     */
+//    @RequestMapping(value="add",method=RequestMethod.POST)
+//    @ResponseBody
+//    public Map<String, String> add(Subject subject){
+//        Map<String, String> ret = new HashMap<String, String>();
+//        if(subject == null){
+//            ret.put("type", "error");
+//            ret.put("msg", "请填写正确的学科信息!");
+//            return ret;
+//        }
+//        if(StringUtils.isEmpty(subject.getName())){
+//            ret.put("type", "error");
+//            ret.put("msg", "请填写学科名称!");
+//            return ret;
+//        }
+//        if(subjectService.add(subject) <= 0){
+//            ret.put("type", "error");
+//            ret.put("msg", "添加失败，请联系管理员!");
+//            return ret;
+//        }
+//        ret.put("type", "success");
+//        ret.put("msg", "添加成功!");
+//        return ret;
+//    }
 
     @RequestMapping(TEAMANAGE)
     public String teaManage(){

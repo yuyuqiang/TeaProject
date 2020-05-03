@@ -5,7 +5,7 @@
 
     <!-- 学科专业插入操作 -->
     <insert id="add" parameterType="me.zhangyu.model.Subject">
-		insert into subject(id,name,remark) values(null,#{name},#{remark})
+		insert into subject(id,name,remark，subNum,createTime,image) values(null,#{name},#{remark},#{subNum},#{createTime},#{image})
 	</insert>
     <!-- 学科专业更新操作 -->
     <update id="edit" parameterType="me.zhangyu.model.Subject">

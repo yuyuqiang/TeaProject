@@ -5,14 +5,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets1/Scripts/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets1/Scripts/common.js"></script>
 </head>
-<body>
+<body style="background: #f5f5f5" >
     <form id="form1">
     <div class="main">
         <div class="sidbar" id="sidbar">
             <div class="sub_nav">
                 <h2><p class="systemIcon">教学资料</p></h2>
-                <div class="switch_subNav">
-                    <ul id="show_iframe" class="switch_nav">
+                <div class="switch_subNav" >
+                    <ul id="show_iframe" class="switch_nav"  style="background: #ffffff">
 						<li class="nav_current">
 							<a href="#" class="subNavigation" id="A001010"
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"

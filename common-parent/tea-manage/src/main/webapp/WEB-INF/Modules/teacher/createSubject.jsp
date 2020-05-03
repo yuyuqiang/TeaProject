@@ -185,7 +185,7 @@
 <script>
 
 
-
+    $('#ui modal').modal(show());
     /**
      * Name 打开添加窗口
      */

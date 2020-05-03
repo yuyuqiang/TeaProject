@@ -48,7 +48,7 @@
                         </tr>
                         <tr>
                             <td align="center">
-                                <a href="${pageContext.request.contextPath}/vedio/vedioUpdown.do?id=${vedio.vedioId}" style="font-size: 13px;color: red">${vedio.vedioName}</a>
+                                <a href="${pageContext.request.contextPath}/vedio/vedioUpdown.do?id=${vedio.vedioId}" style="font-size: 13px;color: red">${vedio.attachmentOldName}</a>
                                 <a  class="pn-loperator" style="color: red"
                                         href="${pageContext.request.contextPath}/vedio/playVedio.do?id=${vedio.vedioId}" >播放</a>
 

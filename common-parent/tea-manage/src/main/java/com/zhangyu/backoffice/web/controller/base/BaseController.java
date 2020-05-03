@@ -41,6 +41,7 @@ public abstract class BaseController<T> {
     public static  String VEDIOUPDOWN_PAGE;
     public static  String HOMEWORKPREV_PAGE;
     public static  String HOMEWORKDETAIL_PAGE;
+    public static  String STUDENTSUBJECTINDEX_PAGE;
 
     public static final String INDEX = "index";
     public static final String LOGIN ="userlogin";
@@ -51,6 +52,7 @@ public abstract class BaseController<T> {
     public static final String VEDIOUPDOWN="vedioUpdown";
     public static final String HOMEWORKPREV="homeworkPrev";
     public static final String HOMEWORKDETAIL="homeworkDetail";
+    public static final String STUDENTSUBJECTINDEX="studentSubjectindex";
 
     //老师页面
     public static  String TEAINFO_PAGE;//老师信息
@@ -124,6 +126,7 @@ public abstract class BaseController<T> {
         UMANAGE_PAGE = modelName1 + "/" + MANAGE;
         WELCOMEEXAM_PAGE = modelName1 + "/" +WELCOMEEXAM;
         EXAMMANAGE_PAGE = modelName1 + "/" +EXAMMANAGE;
+        STUDENTSUBJECTINDEX_PAGE = modelName1 + "/" +STUDENTSUBJECTINDEX;
 
         VEDIO_PAGE = modelName1 + "/"+VEDIO;
         VEDIOALL_PAGE = modelName1 + "/"+VEDIOALL;

@@ -85,7 +85,6 @@ public class UserController extends BaseController<User> {
 
         }
         return ULOGIN_PAGE;
-
     }
 
 
@@ -448,6 +447,31 @@ public class UserController extends BaseController<User> {
         model.addObject("userid",user.getId());
         ModelAndView view = new ModelAndView("chat/index");
         return view;
+    }
+
+    /**
+     * 聊天主页
+     */
+    @RequestMapping(value = "studentSubjectindex")
+    public String studentSubjectindex(HttpServletRequest request, HttpSession session, RedirectAttributes attributes)throws ServletException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        user = userService.validateUserExist(username);
+        if(null!=user && password.equals(user.getPassword())){
+            session.setAttribute("user",user);
+            request.setAttribute("username",user.getUsername());
+            request.setAttribute("subjectId",user.getSubjectId());
+            Map<String, Object> queryMap = new HashMap<String, Object>();
+            queryMap.put("offset", 0);
+            queryMap.put("pageSize", 99999);
+            request.setAttribute("subjectList", subjectService.findList(queryMap));
+            return STUDENTSUBJECTINDEX_PAGE;
+        }
+        else {
+            attributes.addFlashAttribute("message","用户名或密码错误");
+
+        }
+        return ULOGIN_PAGE;
     }
 
 

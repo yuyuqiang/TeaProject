@@ -72,14 +72,42 @@ public class VedioController extends BaseController<Vedio> {
     }
     @RequestMapping(PLAYVEDIO)
     public String playVedioById(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //获取到视频id
-        String vId=request.getParameter("id");
-        //将视频id传递给service,调用service功能，返回视频对象
-        Vedio vedio=vedioService.findVedioByVid(vId);
-        //将返回的视频对象放入request
-        request.setAttribute("vedio", vedio);
-        //转发到/play/playVedio.jsp
-        return PLAYVEDIO_PAGE;
+//        //获取到视频id
+//        String vId=request.getParameter("id");
+//        //将视频id传递给service,调用service功能，返回视频对象
+//        Vedio vedio=vedioService.findVedioByVid(vId);
+//        //将返回的视频对象放入request
+//        request.setAttribute("vedio", vedio);
+//        //转发到/play/playVedio.jsp
+//        return PLAYVEDIO_PAGE;
+
+
+        //接受客户端视频的id
+        String id=request.getParameter("id");
+        //调用service功能，根据视频的id获取视频对象
+        Vedio vedio=vedioService.findVedioByVid(id);
+        //获取到项目下upload目录的绝对路径
+        String realPath = request.getServletContext().getRealPath("/WEB-INF/Modules/upload/");
+        System.out.println("llllllll"+realPath);
+        //实例化一个File代表，代表待下载的视频。
+        File file=new File(realPath,vedio.getVedioAttachment());
+        //通过response对象设置一对消息头 火狐浏览器出下载界面用
+        //DownLoadUtils.setConentType(request, vedio.getVedioAttachment(), response);
+
+        //通过File获取输入流
+        InputStream is=new FileInputStream(file);
+        //通过response获取到输出流
+        OutputStream os = response.getOutputStream();
+
+        //   将输入流中的数据刷出到输出流中
+        IOUtils.copy(is, os);
+        IOUtils.closeQuietly (is);
+        IOUtils.closeQuietly(os);
+
+        vedio.setDownNum(vedio.getDownNum()+1);
+        vedioService.updateVedio(vedio,Integer.parseInt(id));
+        //由于当前功能是在实现下载，是不需要转发到任意页面。数据直接从服务端的servlet通过response获取到的字节输出流将数据发送到客户端即可。
+        return null;
     }
 
 
@@ -95,9 +123,9 @@ public class VedioController extends BaseController<Vedio> {
         //实例化一个File代表，代表待下载的视频。
         File file=new File(realPath,vedio.getVedioAttachment());
         //通过response对象设置一对消息头
-        DownLoadUtils.setConentType(request, vedio.getVedioAttachment(), response);
+         DownLoadUtils.setConentType(request, vedio.getVedioAttachment(), response);
 
-        //response.setHeader("Content-disposition", "attachment;filename="+vedio.getVedioAttachment());
+       // response.setHeader("Content-disposition", "attachment;filename="+vedio.getVedioAttachment());
 
         //通过File获取输入流
         InputStream is=new FileInputStream(file);

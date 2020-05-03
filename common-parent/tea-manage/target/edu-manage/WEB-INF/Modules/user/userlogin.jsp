@@ -184,7 +184,7 @@
         if(document.ThisForm.userType.value=="1"){
             //向学生模块进行提交
 
-            document.getElementById("fm").action="${pageContext.request.contextPath}/user/login.do";
+            document.getElementById("fm").action="${pageContext.request.contextPath}/user/studentSubjectindex.do";
 
         }
         document.getElementById("fm").submit();

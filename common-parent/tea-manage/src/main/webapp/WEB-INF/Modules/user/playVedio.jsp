@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +24,9 @@
         <video width="100%" height="100%" controls="controls">
 
             <source type="video/mp4"
-                    src="${pageContext.request.contextPath}/WEB-INF/Modules/upload/${vedio.vedioAttachment}"
+                    src="E:/TeachingWebsite/TeaProject/common-parent/tea-manage/target/edu-manage/WEB-INF/Modules/upload/${vedio.vedioAttachment}"
             />
+
         </video>
     </div>
 </div>

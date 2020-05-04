@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ page isELIgnored="false" %>
+
 
 <html>
 <head>
@@ -20,6 +22,8 @@
 
 </head>
 <body>
+<form action="" id="fm" name="formAdd" method="post" enctype="multipart/form-data">
+
   <table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
     <tr bgcolor="#E7E7E7">
     </tr>
@@ -27,10 +31,12 @@
         <td width="4%">序号</td>
         <td width="17%">标题</td>
         <td width="18%">附件</td>
+
         <td width="6%">操作</td>
+
     </tr>
 
-    <c:forEach items="${page.list}" var="v"  varStatus="status">
+    <c:forEach items="${page.list}" var="v"  varStatus="status" >
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
             <td bgcolor="#FFFFFF" align="center">
                     ${status.index+1}
@@ -45,7 +51,6 @@
             <td bgcolor="#FFFFFF" align="center">
                     <%--取消链接的默认行为 --%>
                 <a href="javascript:void(0)" onclick="delVedio(${v.vedioId})"  class="pn-loperator">删除</a>
-
             </td>
         </tr>
     </c:forEach>
@@ -60,6 +65,8 @@
         </td>
     </tr>
 </table>
+</form>
+
 </body>
 
 <script>
@@ -70,6 +77,10 @@
             location.href="${pageContext.request.contextPath}/vedio/deleteVedioByTeacher.do?id="+vId;
         }
     }
+    <%--function addVedioImage(vId){--%>
+    <%--    document.getElementById("fm").action="${pageContext.request.contextPath}/vedio/addVedioImage.do?id="+vId;--%>
+    <%--    document.getElementById("fm").submit();--%>
+    <%--}--%>
 
     function vedioAdd(){
             location.href="${pageContext.request.contextPath}/vedio/vedioAddUI.do";

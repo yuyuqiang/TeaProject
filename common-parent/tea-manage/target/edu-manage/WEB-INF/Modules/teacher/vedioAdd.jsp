@@ -31,13 +31,22 @@
         </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
             <td width="25%" bgcolor="#FFFFFF" align="right">
-                附件上传：
+                封面上传：
             </td>
             <td width="75%" bgcolor="#FFFFFF" align="left">
-                <input type="file" name="attachmentOldName" id="attachmentOldName" style="width: 360px;"/>
+                <input type="file" name="image" id="image" style="width: 360px;"/>
 
             </td>
         </tr>
+        <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
+        <td width="25%" bgcolor="#FFFFFF" align="right">
+            附件上传：
+        </td>
+        <td width="75%" bgcolor="#FFFFFF" align="left">
+            <input type="file" name="attachmentOldName" id="attachmentOldName" style="width: 360px;"/>
+
+        </td>
+    </tr>
         <tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='red';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22">
             <td width="25%" bgcolor="#FFFFFF" align="right">
                 视频介绍：

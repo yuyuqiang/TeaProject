@@ -21,4 +21,6 @@ public interface VedioService extends IBaseService<Vedio> {
      void addVedio(Vedio vedio) throws SQLException;
 
      int updateVedio(Vedio vedio,int id);
+
+    void addVedioImage(Vedio vedio, String id);
 }

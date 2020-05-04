@@ -5,10 +5,28 @@ public class Vedio {
     private String vedioName;
     private String vedioPro; //视频简介
     private String vedioAttachment; //视频附件名称
+    private String image;
+    private String imageAttachment;
     private String attachmentOldName; //视频附件原始名称
     private String uploadTime;//上传时间
     private String del;//视频是否删除
     private int downNum;
+
+    public String getImageAttachment() {
+        return imageAttachment;
+    }
+
+    public void setImageAttachment(String imageAttachment) {
+        this.imageAttachment = imageAttachment;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getDownNum() {
         return downNum;

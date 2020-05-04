@@ -108,4 +108,9 @@ public class VedioServicelmpl extends BaseServiceImpl<Vedio> implements VedioSer
     public int updateVedio(Vedio vedio,int id) {
         return vedioMapper.updateVedio(vedio,id);
     }
+
+    @Override
+    public void addVedioImage(Vedio vedio, String id) {
+        vedioMapper.addVedioImage(vedio,id);
+    }
 }

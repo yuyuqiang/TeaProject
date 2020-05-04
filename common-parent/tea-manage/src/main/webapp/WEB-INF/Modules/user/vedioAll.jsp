@@ -13,6 +13,8 @@
 <head>
     <title>教学视频</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+
     <link rel="Stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets1/Styles/me.css"/>
     <style type="text/css">
         .c1-bline{border-bottom:#999 1px dashed;border-top:1px;}
@@ -22,73 +24,128 @@
     </style>
 </head>
 <body>
+<%--<div>--%>
+<%--    <h3>教学视频</h3>--%>
+<%--    <hr>--%>
+<%--    <div id="welcome">--%>
+<%--        <div>--%>
+<%--            <div class="c1-body">--%>
+
+<%--                <c:forEach  items="${page.list}" var="v">--%>
+<%--                    <div class="c1-bline" style="padding:7px 0px;">--%>
+<%--                        <div class="f-left">--%>
+<%--                            <img src="${pageContext.request.contextPath}/assets1/Images/head-mark4.gif"--%>
+<%--                                 align="middle"--%>
+<%--                                 class="img-vm" border="0"/>--%>
+<%--                            <a href="${pageContext.request.contextPath}/vedio/vedioDetail.do?id=${v.vedioId}">--%>
+<%--                                    ${v.vedioName}--%>
+<%--                            </a>--%>
+<%--                        </div>--%>
+<%--                        <div class="f-right">${v.uploadTime}</div>--%>
+<%--                        <div class="clear"></div>--%>
+<%--                    </div>--%>
+<%--                </c:forEach>--%>
+<%--                <%@ include file="/WEB-INF/Modules/pageFile.jsp" %>--%>
+<%--                <div class="pg-3"></div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--&lt;%&ndash;        <p class="more"><a href="${pageContext.request.contextPath}/vedio/pageVedio.do&num=1">more</a></p>&ndash;%&gt;--%>
+
+<%--    </div>--%>
+<%--</div>--%>
 <div>
-    <h3>教学视频</h3>
-    <hr>
-    <div id="welcome">
-        <div>
-            <div class="c1-body">
-
-                <c:forEach  items="${page.list}" var="v">
-                    <div class="c1-bline" style="padding:7px 0px;">
-                        <div class="f-left">
-                            <img src="${pageContext.request.contextPath}/assets1/Images/head-mark4.gif"
-                                 align="middle"
-                                 class="img-vm" border="0"/>
-                            <a href="${pageContext.request.contextPath}/vedio/vedioDetail.do?id=${v.vedioId}">
-                                    ${v.vedioName}
-                            </a>
-                        </div>
-                        <div class="f-right">${v.uploadTime}</div>
-                        <div class="clear"></div>
-                    </div>
-                </c:forEach>
-                <%@ include file="/WEB-INF/Modules/pageFile.jsp" %>
-<%--                <div style="text-align: center;">--%>
-<%--                    共${page.totalPageNum}页/第${page.currentPageNum}页--%>
-<%--                    <a href="${pageContext.request.contextPath}/vedio/vedioAll.do?num=1">首页</a>--%>
-<%--                    <a href="${pageContext.request.contextPath}/vedio/vedioAll.do?num=${page.prevPageNum}">上一页</a>--%>
-
-<%--                    <c:forEach begin="${page.startPage}"  end="${page.endPage}" var="i">--%>
-<%--                        <a href="${pageContext.request.contextPath}/vedio/vedioAll.do?num=${i}">${i}</a>--%>
-<%--                    </c:forEach>--%>
-
-<%--                    <a href="${pageContext.request.contextPath}/vedio/vedioAll.do?num=${page.nextPageNum}">下一页</a>--%>
-<%--                    <a href="${pageContext.request.contextPath}/vedio/vedioAll.do?num=${page.totalPageNum}">末页</a>--%>
-
-<%--                    <input type="text" name="pagenum" id="pagenum" size="1"/>--%>
-<%--                    <input type="button" value="前往" onclick="jump()"/>--%>
-<%--                    <script type="text/javascript">--%>
-<%--                        function jump(){--%>
-<%--                            var totalPage=${page.totalPageNum};--%>
-<%--                            //获取用户输入内容--%>
-<%--                            var pagenum=document.getElementById("pagenum").value;--%>
-<%--                            //如果用户输入的是字母，提示请输入合法的数字--%>
-<%--                            //如果用户输入是数字，但是大于总页数，提示请输入合法的页数--%>
-<%--                            var reg =/^[1-9][0-9]{0,1}$/;--%>
-<%--                            if(!reg.test(pagenum)){--%>
-<%--                                //不是一个有效数字--%>
-<%--                                alert("请输入符合规定的数字");--%>
-<%--                                return ;--%>
-<%--                            } if(parseInt(pagenum)>parseInt(${page.totalPageNum})){--%>
-<%--                                //超过了总页数--%>
-<%--                                alert("不能大于总页数");--%>
-<%--                                return;--%>
-<%--                            }--%>
-<%--                            //如果输入的是数字，而且小于总页数，跳转到指定的页数--%>
-<%--                           window.location.href="${pageContext.request.contextPath}/vedio/vedioAll.do?num="+pagenum;--%>
-<%--                        }--%>
-<%--                    </script>--%>
+  <h3>教学视频</h3>
+<%--  <c:forEach  items="${page.list}" var="v">--%>
+<%--    <div class="ui special cards">--%>
+<%--        <div class="card">--%>
+<%--            <div class="blurring dimmable image" style="height: 100px!important;">--%>
+<%--                <div class="ui dimmer">--%>
+<%--                    <div class="content">--%>
+<%--                        <div class="center">--%>
+<%--                           <a href="">--%>
+<%--                               <i class="play icon"></i>--%>
+<%--                           </a>--%>
+<%--&lt;%&ndash;                            <div class="ui inverted button">添加好友</div>&ndash;%&gt;--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 <%--                </div>--%>
+<%--&lt;%&ndash;                <img src="E:\TeachingWebsite\TeaProject\common-parent\tea-manage\src\main\webapp\WEB-INF\Modules\upload\\${v.imageAttachment}">&ndash;%&gt;--%>
+<%--                <img src="${pageContext.request.contextPath}/assets1/upload/${v.imageAttachment}">--%>
+<%--            </div>--%>
+<%--            <div class="content">--%>
+<%--                <a class="header"> ${v.vedioName}</a>--%>
+<%--                <div class="meta">--%>
+<%--                    <span class="date">更新于${v.uploadTime}</span>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="extra content">--%>
+<%--                <a><i class="users icon"></i> ${v.downNum} 已查看 </a>--%>
+<%--                <i class="download icon"></i>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--     </div>--%>
+<%--  </c:forEach>--%>
+  <c:forEach  items="${page.list}" var="v">
 
-                <div class="pg-3"></div>
+    <div class="ui divided items">
+        <div class="item" >
+         <div class="ui special cards">
+           <div class="blurring dimmable image" style="height: 160px;width: 300px">
+             <div class="ui dimmer">
+                <div class="content">
+                    <div class="content">
+
+                        <a href="${pageContext.request.contextPath}/vedio/playVedio.do?id=${v.vedioId}" >
+                            <i class="play huge icon"></i>
+                        </a>
+<%--                           <button class="ui icon button">--%>
+<%--                                  <i class="play huge icon"></i>--%>
+<%--                           </button>--%>
+                    </div>
+
+                </div>
+             </div>
+             <img style="height: 160px;width: 300px" src="${pageContext.request.contextPath}/assets1/upload/${v.imageAttachment}">
+           </div>
+         </div>
+           <div class="content" style="margin-left: 40px">
+                <a class="header">${v.vedioName}</a>
+                <div class="meta">
+                    <span class="cinema">更新于${v.uploadTime}</span>
+                </div>
+                <div class="description">
+                    <p>${v.vedioPro}</p>
+                </div>
+                <div class="extra">
+                    <div href="" class="ui right floated primary button" onclick="down(${v.vedioId})">下载 <i class="right download icon"></i> </div>
+                    <div class="ui label">VEDIO</div>
+                    <div class="ui label"><i class="users icon"></i> ${v.downNum} 人已查看</div>
+                </div>
             </div>
         </div>
-<%--        <p class="more"><a href="${pageContext.request.contextPath}/vedio/pageVedio.do&num=1">more</a></p>--%>
 
+        <div class="item" style="margin-top: 20px">
+            <div class="content">
+            </div>
+        </div>
     </div>
+  </c:forEach>
+
+
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script>
+    $('.special.cards .image').dimmer({
+        on: 'hover'
+    });
+    function down(vid) {
+        location.href="${pageContext.request.contextPath}/vedio/vedioUpdown.do?id="+vid;
+    }
+</script>
 
 </body>
 </html>

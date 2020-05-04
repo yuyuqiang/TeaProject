@@ -10,7 +10,9 @@ public class UploadUtils {
         //realname  可能是 11.mp4
         //获取后缀名
         int index = realName.lastIndexOf(".");
+
         String uuidName=UUIDUtils.getId();
+        System.out.println("bbbbbbbb"+uuidName+realName.substring(index+1));
         return uuidName+realName.substring(index);
 
     }

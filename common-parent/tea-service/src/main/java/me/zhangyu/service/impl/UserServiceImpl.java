@@ -137,6 +137,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     }
 
     @Override
+    public Notice findNoticeByid(int id) {
+        return userMapper.findNoticeByid(id);
+    }
+
+    @Override
     public User findById(int id) {
         return userMapper.findById(id);
     }

@@ -539,7 +539,7 @@ public class TeacherController extends BaseController<Teacher> {
      * 公告
      */
     @RequestMapping(value = "publishNotice")
-    public String publishNotice(HttpServletRequest request,HttpServletResponse response){
+    public String publishNotice(HttpServletRequest request,HttpServletResponse response)throws Exception{
         String noticeName = request.getParameter("noticeName");
         String noticeContent = request.getParameter("noticeContent");
         System.out.println("vvv"+noticeContent+noticeName);
@@ -548,7 +548,8 @@ public class TeacherController extends BaseController<Teacher> {
         notice.setNoticeContent(noticeContent);
         notice.setNoticeName(noticeName);
         teacherService.publishNotice(notice);
-       return TEAINDEX_PAGE;
+        response.sendRedirect("teaIndex.do");
+       return null;
     }
 
 

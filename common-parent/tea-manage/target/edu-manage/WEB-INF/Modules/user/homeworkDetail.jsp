@@ -18,7 +18,7 @@
     <link rel="stylesheet" herf="${pageContext.request.contextPath}/static/css/me.css">
 
 </head>
-<body>
+<body style="margin-left: 20px">
  <form id="fm" action="${pageContext.request.contextPath}/user/submitHomework.do" name="formAdd" method="post" enctype="multipart/form-data">
      <div  style="margin-top: 15px">
       <div>

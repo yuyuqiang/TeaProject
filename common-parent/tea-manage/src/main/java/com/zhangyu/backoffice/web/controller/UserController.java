@@ -14,14 +14,17 @@ import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -482,6 +485,44 @@ public class UserController extends BaseController<User> {
         }
         return ULOGIN_PAGE;
     }
+
+//    /**
+//     * 聊天主页
+//     */
+//    @RequestMapping(value = "notice")
+//    public String notice(ModelAndView model,HttpServletRequest request,HttpServletResponse response){
+//        Map<String, String> ret = new HashMap<String, String>();
+//        String id = request.getParameter("id");
+//        System.out.println("uuu"+id);
+//        Notice notice = userService.findNoticeByid(Integer.valueOf(id));
+//        System.out.println("yyyyy"+notice);
+//        model.addObject("noticeName",notice.getNoticeName());
+//        model.addObject("noticeContent",notice.getNoticeContent());
+////        try {
+////            response.sendRedirect("manage.do");
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+//        return "";
+//    }
+
+    @RequestMapping(value="notice",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> notice(HttpServletRequest request,ModelAndView model){
+        Map<String, String> ret = new HashMap<String, String>();
+        String id = request.getParameter("id");
+        System.out.println("uuu"+id);
+        Notice notice = userService.findNoticeByid(Integer.valueOf(id));
+        System.out.println("yyyyy"+notice);
+        model.addObject("noticeName",notice.getNoticeName());
+        model.addObject("noticeContent",notice.getNoticeContent());
+        ret.put("type", "success");
+        ret.put("noticeName", notice.getNoticeName());
+        ret.put("noticeContent", notice.getNoticeContent());
+
+        return ret;
+    }
+
 
 
 }

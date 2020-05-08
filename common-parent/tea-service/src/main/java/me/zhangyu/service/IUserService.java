@@ -47,4 +47,6 @@ public interface IUserService extends IBaseService<User> {
     public Integer getTotal(Map<String, Object> queryMap);
 
     List<Notice> findNoticeList();
+
+    Notice findNoticeByid(int id);
 }

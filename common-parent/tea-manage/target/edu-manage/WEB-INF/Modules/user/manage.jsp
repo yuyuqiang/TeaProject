@@ -16,7 +16,7 @@
 	</style>
 </head>
 <body  style="background: #f5f5f5 ; overflow-x: hidden" >
-    <form id="form1">
+<form id="fm" action="" method="post">
     <div class="main">
         <div class="sidbar" id="sidbar" style="margin-right: 30px!important;">
             <div class="sub_nav" style="margin-right: 20px!important;">
@@ -59,10 +59,11 @@
         <c:forEach items="${list}"  var="notice">
 		<div class="ui segment">
 			<i class="blue volume up icon"></i>
-
-			<div id="info" class="info" style="margin-top: -30px;margin-left: 20px">
-			   <div class="inner" >
-				   <p onclick="noticeDetail()" class="txt" style="color: #3e8cff" >${notice.noticeName}...${notice.createTime}</p>
+			<div id="info"  class="info" style="margin-top: -30px;margin-left: 20px">
+			   <div class="inner" onclick="noticeDetail(${notice.id})">
+				   <a   >
+					   <p  class="txt" style="color: #3e8cff" >${notice.noticeName}...${notice.createTime}</p>
+				   </a>
 		       </div>
 	       </div>
 
@@ -72,26 +73,14 @@
 
 	</div>
 
-<%--		公告--%>
-		<div class="ui segment" >
-			<div class="ui modal" style="width: 800px;align-content: center">
-				<div class="header" style="align-content: center">编辑公告</div>
-				<div class="field">
-					<h3 style="margin-top: 15px;margin-left: 20px">标题:</h3>
-					<input type="text" style="margin-top: -40px;margin-left: 70px;height: 30px" height="600px" id="noticeName" name="noticeName" >
-				</div>
-				<div class="content">
-					<div class="ui form">
-						<div  class="field" style=" ">
-							<textarea rows="10" name="noticeContent" id="noticeContent" cols="50" warp="virtual"></textarea>
-						</div>
 
-					</div>
-				</div>
-				<div class="actions">
-					<div href="#" class="ui blue button" onclick="publish()">发布</div>
-					<div class="ui cancel button">Cancel</div>
-				</div>
+		<div class="ui modal" style="width: 500px;">
+			<div class="header" align="center" id="noticeName" name="noticeName"></div>
+			<div class="content">
+				<p id="noticeContent" name="noticeContent"></p>
+			</div>
+			<div class="actions">
+				<div class="ui cancel button">Cancel</div>
 			</div>
 		</div>
         <!--====这里是弹出层的内容====-->
@@ -99,7 +88,7 @@
 			<iframe class="common_iframe" id="A001010_iframe" frameborder="0" border="0" src="${pageContext.request.contextPath}/vedio/vedioAll.do?num=1"></iframe>
 		</div>
     </div>
-    </form>
+</form>
 </body>
 
 <script>
@@ -122,8 +111,26 @@
 	}
 	scroll();
 
-	function noticeDetail() {
-		window.location.href="${pageContext.request.contextPath}/user/";
+	function noticeDetail(id) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/user/notice.do",
+			dataType : 'json',
+			type : 'post',
+			data : {"id":id},
+			success : function(data) {
+				if (data.type == 'success') {
+					// $("#noticeName").val(data.noticeName);
+					// $("#noticeContent").val(data.noticeContent);
+					document.getElementById("noticeName").innerHTML=data.noticeName;
+					document.getElementById("noticeContent").innerHTML=data.noticeContent;
+					$('.ui.modal')
+							.modal('show')
+					;
+				} else {
+					$.messager.alert('信息提示', data.msg, 'warning');
+				}
+			}
+		});
 
 	}
 </script>

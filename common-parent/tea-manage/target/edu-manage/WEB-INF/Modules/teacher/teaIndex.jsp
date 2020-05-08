@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,11 +121,11 @@
         <div class="header" style="align-content: center">编辑公告</div>
         <div class="field">
             <h3 style="margin-top: 15px;margin-left: 20px">标题:</h3>
-            <input type="text" style="margin-top: -40px;margin-left: 70px;height: 30px" height="600px" id="noticeName" name="noticeName" >
+            <input id="noticeName" name="noticeName" type="text" style="margin-top: -40px;margin-left: 70px;height: 30px" height="600px"  >
         </div>
         <div class="content">
             <div class="ui form">
-                <div  class="field" style=" ">
+                <div  class="field" >
                     <textarea rows="10" name="noticeContent" id="noticeContent" cols="50" warp="virtual"></textarea>
                 </div>
 
@@ -174,6 +175,8 @@
 
 
     function notice() {
+
+
         $('.ui.modal')
             .modal('show')
         ;
@@ -181,7 +184,12 @@
     }
 
     function publish() {
-        location.href="${pageContext.request.contextPath}/teacher/publishNotice.do";
+        var name=$("#noticeName").val();
+        var content=$("#noticeContent").val();
+
+        // var name= document.getElementById("noticeName");
+        // var content = document.getElementById("noticeContent").lastChild;
+        location.href="${pageContext.request.contextPath}/teacher/publishNotice.do?noticeName="+name+"&noticeContent="+content;
 
     }
 </script>

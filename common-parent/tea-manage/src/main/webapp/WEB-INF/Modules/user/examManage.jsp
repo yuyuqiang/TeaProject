@@ -69,10 +69,11 @@
                 <c:forEach items="${list}"  var="notice">
                     <div class="ui segment">
                         <i class="blue volume up icon"></i>
-
-                        <div id="info" class="info" style="margin-top: -30px;margin-left: 20px">
-                            <div class="inner" >
-                                <p class="txt" style="color: #3e8cff" >${notice.noticeName}...${notice.createTime}</p>
+                        <div id="info"  class="info" style="margin-top: -30px;margin-left: 20px">
+                            <div class="inner" onclick="noticeDetail(${notice.id})">
+                                <a   >
+                                    <p  class="txt" style="color: #3e8cff" >${notice.noticeName}...${notice.createTime}</p>
+                                </a>
                             </div>
                         </div>
 
@@ -81,6 +82,18 @@
             </div>
 
         </div>
+
+        <div class="ui modal" style="width: 500px">
+            <div class="header" align="center" id="noticeName" name="noticeName"></div>
+            <div class="content">
+                <p id="noticeContent" name="noticeContent"></p>
+            </div>
+            <div class="actions">
+                <div class="ui cancel button">Cancel</div>
+            </div>
+        </div>
+
+
 
         <!--====这里是弹出层的内容====-->
 		<div id="common_iframe" class="maincontent">
@@ -108,6 +121,29 @@
         }, 30);
     }
     scroll();
+
+    function noticeDetail(id) {
+        $.ajax({
+            url : "${pageContext.request.contextPath}/user/notice.do",
+            dataType : 'json',
+            type : 'post',
+            data : {"id":id},
+            success : function(data) {
+                if (data.type == 'success') {
+                    // $("#noticeName").val(data.noticeName);
+                    // $("#noticeContent").val(data.noticeContent);
+                    document.getElementById("noticeName").innerHTML=data.noticeName;
+                    document.getElementById("noticeContent").innerHTML=data.noticeContent;
+                    $('.ui.modal')
+                        .modal('show')
+                    ;
+                } else {
+                    $.messager.alert('信息提示', data.msg, 'warning');
+                }
+            }
+        });
+
+    }
 </script>
 
 </html>

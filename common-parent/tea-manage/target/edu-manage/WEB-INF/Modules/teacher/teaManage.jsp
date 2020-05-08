@@ -106,6 +106,16 @@
                 </div>
             </div>
         </div>
+
+		<div class="ui modal" style="width: 500px">
+			<div class="header" align="center" id="noticeName" name="noticeName"></div>
+			<div class="content">
+				<p id="noticeContent" name="noticeContent"></p>
+			</div>
+			<div class="actions">
+				<div class="ui cancel button">Cancel</div>
+			</div>
+		</div>
         <!--====这里是弹出层的内容====-->
 		<div id="common_iframe" class="maincontent">
 			<iframe class="common_iframe" id="A001010_iframe" frameborder="0" border="0" src="${pageContext.request.contextPath}/vedio/findVediosWithPageByTeacher.do?num=1"></iframe>

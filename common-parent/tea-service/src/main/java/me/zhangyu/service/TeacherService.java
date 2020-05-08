@@ -38,4 +38,6 @@ public interface TeacherService extends IBaseService<Teacher> {
     void updateStudentHomeworkGrade(StudentHomework studentHomework, int hid, int sid) throws SQLException;
 
     String[] findStudentByclass() throws SQLException;
+
+    void publishNotice(Notice notice);
 }

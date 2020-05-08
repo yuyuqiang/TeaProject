@@ -16,11 +16,9 @@
     <script src="https://cdn.bootcss.com/html5media/1.1.8/html5media.js"></script></head>
 <body>
 
+<h4 style="margin-left:100px;">教学资料>教学视频>${vedio.vedioName}</h4>
 <div style="width:784px; margin:0 auto;border:3px solid #73a6c3;">
     <div style="width:100%; height:100%; margin-top:0px;border:0px solid green;padding:1px">
-        <%--
-            在html5中 vedio标签支持播放
-         --%>
         <video width="100%" height="100%" controls="controls">
 
             <source type="video/mp4"

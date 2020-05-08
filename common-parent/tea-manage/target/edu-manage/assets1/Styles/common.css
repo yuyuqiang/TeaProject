@@ -1,5 +1,5 @@
 
-html,body{-webkit-text-size-adjust:none; background-color: White;}
+html,body{-webkit-text-size-adjust:none; background-color: #f5f5f5;}
 form{ position: relative;}
 body{
 	text-align: center;
@@ -149,7 +149,7 @@ iframe{ overflow: hidden; }
 .select_contract,
 .factory_edit, 
 .reportFormsTitle {
-    background: url("../Images/sprite_icon.png") no-repeat; /* For IE 6 and 7 */
+    /*background: url("../Images/sprite_icon.png") no-repeat; !* For IE 6 and 7 *!*/
 }
 
 /**
@@ -270,8 +270,9 @@ select{ height: 20px; border: 1px solid #6699FF; *border: 1px solid #999;}
 
 
 /*主要内容的样式*/
-.main       { text-align: left;margin-left: 25px;*margin-left: 15px;position: relative;}
-.maincontent    { width: 1000px; height: 500px;padding: 0 15px;position: absolute;z-index: 2;top: 0;*top:2px;bottom: 0;left: 199px;background-color: #fff;border: 1px solid #eee;-moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;-moz-box-shadow: 2px 2px 2px #eee;-webkit-box-shadow: 2px 2px 2px #eee;-o-box-shadow: 2px 2px 2px #eee;box-shadow: 2px 2px 2px #eee;}
+.main       { text-align: left;margin-left: 5px;*margin-left: 15px;position: relative;}
+/*.maincontent    {margin-left: 20px; width: 1025px; height: 500px;padding: 0 15px;position: absolute;z-index: 2;top: 0;*top:2px;bottom: 0;left: 199px;background-color: #fff;border: 1px solid #eee;-moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;-moz-box-shadow: 2px 2px 2px #eee;-webkit-box-shadow: 2px 2px 2px #eee;-o-box-shadow: 2px 2px 2px #eee;box-shadow: 2px 2px 2px #eee;}*/
+.maincontent    {margin-left: 20px; width: 1025px; height: 500px;padding: 0 0px;position: absolute;z-index: 2;top: 0;*top:2px;bottom: 0;left: 199px;background-color: #fff;border: 1px solid #eee;-moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;-moz-box-shadow: 2px 2px 2px #eee;-webkit-box-shadow: 2px 2px 2px #eee;-o-box-shadow: 2px 2px 2px #eee;box-shadow: 2px 2px 2px #eee;}
 #slice_sidbar   { width: 10px;height: 31px; position: absolute; top: 30px; left: 0;cursor: pointer; background-position: -19px -896px;}
 #mainContent    { position: relative;}
 
@@ -382,19 +383,21 @@ select{ height: 20px; border: 1px solid #6699FF; *border: 1px solid #999;}
 .feedbackLabel textarea{ width: 98%; height: 50px; border: 1px solid #6699ff; overflow-x: hidden; overflow-y: auto;}
 
 /*侧边栏的样式*/
-.sidbar        { width:200px;height: 480px;padding-top: 30px;}
-.sub_nav       { margin-bottom: 12px;font-size: 13px;color: #000;border: 1px solid #eee;-moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;-moz-box-shadow: 2px 2px 2px #eee;-webkit-box-shadow: 2px 2px 2px #eee;-o-box-shadow: 2px 2px 2px #eee;box-shadow: 2px 2px 2px #eee;}
+.sidbar        { width:200px;height: 480px;padding-top: 0px;}
+/*.sub_nav       { margin-bottom: 12px;font-size: 13px;color: #000;border: 1px solid #eee;-moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;-moz-box-shadow: 2px 2px 2px #eee;-webkit-box-shadow: 2px 2px 2px #eee;-o-box-shadow: 2px 2px 2px #eee;box-shadow: 2px 2px 2px #eee;}*/
+.sub_nav       { margin-bottom: 12px;font-size: 13px;color: #000;}
 .sub_nav h2    { height: 32px;line-height: 32px;vertical-align: middle;font-size: 13px;margin-left: 1px;margin-bottom: 12px;background: url("../Images/salespad_list_bg_001.png") repeat-x;}
 .sub_nav h2 p  { padding-left: 40px;}
 .switch_subNav              { position: relative;height: 360px; z-index:100;}
-.sub_nav ul                 { height: 360px;margin-bottom: 12px;width: 100%; padding-left: 8px;}
+.sub_nav ul                 { height: 360px;margin-bottom: 12px;width: 210px; padding-left: 8px;border: 1px solid #1d1d1d;  -moz-border-radius: 8px 8px 8px 8px;-webkit-border-radius: 8px 8px 8px 8px;-o-border-radius: 8px 8px 8px 8px;border-radius: 8px 8px 8px 8px;}
 .showNav                    { display: block;height: 36px;line-height: 36px;color: #000;vertical-align: middle;margin-left: 3px;background-position: -14px -845px;}
 .showNav:hover              { color: #FFF; }       
-.sub_nav ul .nav_current    { width:192px; height: 36px;border: 1px solid #eee; border-right: none; -moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;}
-.sub_nav ul .nav_current a  { color: #0099ff;background-color: #fff;}
+/*.sub_nav ul .nav_current    { margin-top: 10px; width:180px; height: 36px;border: 1px solid #272C33;  -moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;}*/
+.sub_nav ul .nav_current    { margin-top: 10px; width:180px; height: 36px;}
+.sub_nav ul .nav_current a  { color: #ffffff;}
 .online_server a            { display: block;height: 50px;color: #000;line-height: 50px;vertical-align: middle;border-top: 1px dashed #ccc;margin-left: 2px;padding-left: 50px;background-position: 0 -312px;}
 .sub_handle_guid            { display: block;background-color: #ccecf9;height: 58px;border: 1px solid #eee;-moz-border-radius: 4px 4px 4px 4px;-webkit-border-radius: 4px 4px 4px 4px;-o-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;}
-.sub_nav ul li a            { display: block;height: 36px;line-height: 36px;color: #000;vertical-align: middle;margin-left: 3px;padding-left: 28px;background-position: -14px -845px;}
+.sub_nav ul li a            { display: block;height: 36px;line-height: 36px;color: #000;vertical-align: middle;margin-left: 3px; padding-left: 28px;background-position: -14px -845px;}
 .sub_nav ul li a:hover      { color: #0099ff; }       
 
 /**

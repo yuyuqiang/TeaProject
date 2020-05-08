@@ -25,7 +25,7 @@ public class ChatServer {
     private static int onlineCount = 0; //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static CopyOnWriteArraySet<ChatServer> webSocketSet = new CopyOnWriteArraySet<ChatServer>();
     private Session session;    //与某个客户端的连接会话，需要通过它来给客户端发送数据
-    private String userid;      //用户名
+    private String username;      //用户名
     private HttpSession httpSession;    //request的session
 
     private static List list = new ArrayList<>();   //在线列表,记录用户名称
@@ -41,10 +41,10 @@ public class ChatServer {
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1;
         this.httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-        this.userid=(String) httpSession.getAttribute("userid");    //获取当前用户
-        list.add(userid);           //将用户名加入在线列表
-        routetab.put(userid, session);   //将用户名和session绑定到路由表
-        String message = getMessage("[" + userid + "]加入聊天室,当前在线人数为"+getOnlineCount()+"位", "notice",  list);
+        this.username=(String) httpSession.getAttribute("username");    //获取当前用户
+        list.add(username);           //将用户名加入在线列表
+        routetab.put(username, session);   //将用户名和session绑定到路由表
+        String message = getMessage("[" + username + "]加入聊天室,当前在线人数为"+getOnlineCount()+"位", "notice",  list);
         broadcast(message);     //广播
     }
 
@@ -55,9 +55,9 @@ public class ChatServer {
     public void onClose(){
         webSocketSet.remove(this);  //从set中删除
         subOnlineCount();           //在线数减1
-        list.remove(userid);        //从在线列表移除这个用户
-        routetab.remove(userid);
-        String message = getMessage("[" + userid +"]离开了聊天室,当前在线人数为"+getOnlineCount()+"位", "notice", list);
+        list.remove(username);        //从在线列表移除这个用户
+        routetab.remove(username);
+        String message = getMessage("[" + username +"]离开了聊天室,当前在线人数为"+getOnlineCount()+"位", "notice", list);
         broadcast(message);         //广播
     }
 

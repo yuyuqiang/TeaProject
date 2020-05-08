@@ -2,10 +2,7 @@ package me.zhangyu.service.impl;
 
 import com.sun.deploy.net.HttpRequest;
 import me.zhangyu.mapper.UserMapper;
-import me.zhangyu.model.Homework;
-import me.zhangyu.model.StudentHomework;
-import me.zhangyu.model.StudentSubmitHomework;
-import me.zhangyu.model.User;
+import me.zhangyu.model.*;
 import me.zhangyu.service.IUserService;
 import me.zhangyu.service.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
@@ -132,6 +129,11 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements IUserServi
     @Override
     public Integer getTotal(Map<String, Object> queryMap) {
         return userMapper.getTotal(queryMap);
+    }
+
+    @Override
+    public List<Notice> findNoticeList() {
+        return userMapper.findNoticeList();
     }
 
     @Override

@@ -37,9 +37,9 @@ var Common = (function (Common) {
             self.parent('li')
                 .addClass('nav_current');
 
-            self.parent('li')
-                .siblings('li')
-                .removeClass('nav_current');
+            // self.parent('li')
+            //     .siblings('li')
+            //     .removeClass('nav_current');
 
         } else {
             $('.navContent').removeClass('nav_current');

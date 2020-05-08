@@ -11,7 +11,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/assets1/Scripts/common.js"></script>
 </head>
 
-<body style="background: #f5f5f5">
+<body style="background: #f5f5f5;">
 <%--<form id="form1" >--%>
 <%--    <!--====这里放主导航====-->--%>
 <%--    <div class="header">--%>
@@ -61,8 +61,9 @@
     </div>
     <div style="margin-top: 20px;margin-right: 30px" >
         <h2 class="version"></h2>
+        <img class="ui avatar image" style="height: 40px;width: 40px" src="${pageContext.request.contextPath}/assets1/Images/touxiang.jpg">
         <span class="header_hi">Hi,</span><span
-            class="header_usename">张钰</span>！
+            class="header_usename">${username}</span>！
         <a href="javascript:void(0)" onclick="this.href='#'">退出</a>
     </div>
 
@@ -74,8 +75,7 @@
 
 
 <!--====下面是主要内容区域====-->
-    <div id="main_iframe"
-         class="index_mainIfram_position  mainIfram_position">
+    <div  id="main_iframe" class="index_mainIfram_position  mainIfram_position">
         <iframe class="main_iframe" id="home_iframe" frameborder="0"
                 border="0" src="${pageContext.request.contextPath}/user/manage.do"></iframe>
     </div>

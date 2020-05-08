@@ -36,4 +36,6 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
     void updateStudentHomeworkGrade(@Param("upsh") StudentHomework studentHomework, @Param("hid") int hid, @Param("sid") int sid);
 
     String[] findStudentByclass();
+
+    void publishNotice(@Param("notice") Notice notice);
 }

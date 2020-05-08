@@ -1,10 +1,7 @@
 package me.zhangyu.mapper;
 
 import me.zhangyu.mapper.base.BaseMapper;
-import me.zhangyu.model.Homework;
-import me.zhangyu.model.StudentHomework;
-import me.zhangyu.model.StudentSubmitHomework;
-import me.zhangyu.model.User;
+import me.zhangyu.model.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -44,4 +41,6 @@ public interface UserMapper extends BaseMapper<User> {
     public User findByName(String name);
 
     StudentSubmitHomework findSubmitHomeworkBySIdAndHId(@Param("sid") int stu_id, @Param("hid") int h_id);
+
+    List<Notice> findNoticeList();
 }

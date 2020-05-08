@@ -87,4 +87,9 @@
 		select * from stu_user where username = #{value}
 	</select>
 
+    <select id="findNoticeList" resultType="me.zhangyu.model.Notice" parameterType="List">
+        SELECT * FROM notice ORDER BY createTime DESC LIMIT 0,6
+    </select>
+
+
 </mapper>

@@ -79,7 +79,10 @@ public class TeacherController extends BaseController<Teacher> {
 
 
     @RequestMapping("teaIndex")
-    public String index(){
+    public String index(HttpServletRequest request)
+    {
+        request.setAttribute("username",teacher.getTeaRealName());
+
         return TEAINDEX_PAGE;
     }
 
@@ -286,7 +289,9 @@ public class TeacherController extends BaseController<Teacher> {
     }
 
     @RequestMapping("teaMessageManage")
-    public String teaMessageManage(){
+    public String teaMessageManage(HttpServletRequest request){
+        List<Notice> list=userService.findNoticeList();
+        request.setAttribute("list", list);
 
         return TEAMESSAGEMANAGE_PAGE;
     }
@@ -519,8 +524,32 @@ public class TeacherController extends BaseController<Teacher> {
         return "comments";
     }
 
+    /**
+     * 聊天主页
+     */
+    @RequestMapping(value = "chat")
+    public ModelAndView getIndex(ModelAndView model,HttpSession session){
+        session.setAttribute("username",teacher.getTeaRealName());
+        model.addObject("username",teacher.getTeaRealName());
+        ModelAndView view = new ModelAndView("chat/index");
+        return view;
+    }
 
-
+    /**
+     * 公告
+     */
+    @RequestMapping(value = "publishNotice")
+    public String publishNotice(HttpServletRequest request,HttpServletResponse response){
+        String noticeName = request.getParameter("noticeName");
+        String noticeContent = request.getParameter("noticeContent");
+        System.out.println("vvv"+noticeContent+noticeName);
+        Notice notice = new Notice();
+        notice.setCreateTime(new Date());
+        notice.setNoticeContent(noticeContent);
+        notice.setNoticeName(noticeName);
+        teacherService.publishNotice(notice);
+       return TEAINDEX_PAGE;
+    }
 
 
 }

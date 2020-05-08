@@ -29,7 +29,6 @@
     <script src="${pageContext.request.contextPath}/static/home/js/jquery.validationEngine-zh_CN.js" type="text/javascript"></script>
 
     <style>
-        h2{font-size:14px; margin:20px 0 10px 0;}
         .tm_param_list a{color:#000}
         .tm_param_list a:hover{color:#f00}
 
@@ -37,13 +36,13 @@
         .tm_blocker2{float:left; width:800px;}
     </style>
 </head>
-<body>
+<body style="overflow-x: hidden">
 
 <div class="tm_main" style="min-width:1000px">
 
     <div class="tm_container">
         <div class="tm_blocker2">
-            <h2>进行中的考试</h2>
+            <h2 style=" margin-top: 10px">进行中的考试</h2>
             <table width="100%" cellpadding="10" border="0" class="tm_table_list">
                 <thead>
                 <tr>

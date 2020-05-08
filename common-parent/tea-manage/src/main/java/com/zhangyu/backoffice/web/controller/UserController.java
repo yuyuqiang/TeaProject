@@ -222,7 +222,8 @@ public class UserController extends BaseController<User> {
     }
 
     @RequestMapping(INDEX)
-    public String index(){
+    public String index(HttpServletRequest request){
+        request.setAttribute("username",user.getUsername());
         return INDEX_PAGE;
 
     }
@@ -250,8 +251,13 @@ public class UserController extends BaseController<User> {
         System.out.println(user);
         return "Default";
     }
+    /*
+    用户管理
+     */
     @RequestMapping(MANAGE)
-    public String manage(){
+    public String manage(HttpServletRequest request){
+        List<Notice> list=userService.findNoticeList();
+        request.setAttribute("list", list);
         return UMANAGE_PAGE;
     }
 
@@ -411,7 +417,9 @@ public class UserController extends BaseController<User> {
 
 
     @RequestMapping("examManage")
-    public String examManage(){
+    public String examManage(HttpServletRequest request){
+        List<Notice> list=userService.findNoticeList();
+        request.setAttribute("list", list);
         return EXAMMANAGE_PAGE;
     }
 
@@ -443,14 +451,15 @@ public class UserController extends BaseController<User> {
      * 聊天主页
      */
     @RequestMapping(value = "chat")
-    public ModelAndView getIndex(ModelAndView model){
-        model.addObject("userid",user.getId());
+    public ModelAndView getIndex(ModelAndView model,HttpSession session){
+        model.addObject("username",user.getUsername());
+        session.setAttribute("username",user.getUsername());
         ModelAndView view = new ModelAndView("chat/index");
         return view;
     }
 
     /**
-     * 聊天主页
+     *
      */
     @RequestMapping(value = "studentSubjectindex")
     public String studentSubjectindex(HttpServletRequest request, HttpSession session, RedirectAttributes attributes)throws ServletException {

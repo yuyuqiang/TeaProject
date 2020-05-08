@@ -29,11 +29,12 @@
     <!-- Begin of toolbar -->
     <div id="wu-toolbar">
 
-        <div class="wu-toolbar-button">
-            <input type="button" value="编辑" onclick="openEdit();" iconCls="icon-search" style="margin-left: 10px">
-        </div>
-        <div class="wu-toolbar-button">
-            <input type="button" value="删除" onclick="remove();"iconCls="icon-search" style="margin-top: -24px!important;margin-left: 80px">
+        <div style="margin-top: 10px">
+
+            <input class="icon-edit" type="button" onclick="openEdit();" iconCls="icon-search" style="margin-left: 15px">
+            编辑
+            <input class="icon-delete3" type="button"  onclick="remove();"iconCls="icon-search" style="margin-left: 15px">
+            删除
         </div>
         <div class="wu-toolbar-search">
             <label>所属考试:</label>

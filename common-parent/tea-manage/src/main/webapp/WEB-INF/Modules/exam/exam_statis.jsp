@@ -24,7 +24,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/easyui/easyui/1.3.4/src/jquery.tabs.js"></script>
 
 </head>
-<body>
+<body style="margin-left: 20px">
 <div class="easyui-layout" data-options="fit:true">
     <!-- Begin of toolbar -->
     <div id="wu-toolbar">

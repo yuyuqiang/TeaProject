@@ -28,20 +28,13 @@
 <div class="easyui-layout"  data-options="fit:true">
     <!-- Begin of toolbar -->
     <div id="wu-toolbar">
-        <div>
-
-            <%--            <a href="#"  onclick="openAdd();"--%>
-            <%--               >添加--%>
-            <%--                <i data-icon="icon-add"></i>--%>
-            <%--            </a>--%>
-
-            <input type="button" value="添加" onclick="openAdd();"iconCls="icon-search" style="margin-left: 20px">
-        </div>
-        <div class="wu-toolbar-button">
-            <input type="button" value="编辑" onclick="openEdit();" iconCls="icon-search" style="margin-top: -22px!important;margin-left: 80px">
-        </div>
-        <div class="wu-toolbar-button">
-            <input type="button" value="删除" onclick="remove();"iconCls="icon-search" style="margin-top: -27px!important;margin-left: 150px">
+        <div style="margin-top: 10px">
+            <input class="icon-add" type="button"  onclick="openAdd();"iconCls="icon-search" style="margin-left: 20px">
+            添加
+            <input class="icon-edit" type="button" onclick="openEdit();" iconCls="icon-search" style="margin-left: 15px">
+            编辑
+            <input class="icon-delete3" type="button"  onclick="remove();"iconCls="icon-search" style="margin-left: 15px">
+            删除
         </div>
         <div class="wu-toolbar-search">
             <label>考试名称:</label><input id="search-name" class="wu-text" style="width:100px">

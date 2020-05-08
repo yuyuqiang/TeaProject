@@ -1,9 +1,6 @@
 package me.zhangyu.service;
 
-import me.zhangyu.model.Homework;
-import me.zhangyu.model.StudentHomework;
-import me.zhangyu.model.StudentSubmitHomework;
-import me.zhangyu.model.User;
+import me.zhangyu.model.*;
 import me.zhangyu.service.base.IBaseService;
 import org.apache.ibatis.annotations.Param;
 
@@ -48,4 +45,6 @@ public interface IUserService extends IBaseService<User> {
     public int edit(User student);
     public int delete(Long id);
     public Integer getTotal(Map<String, Object> queryMap);
+
+    List<Notice> findNoticeList();
 }

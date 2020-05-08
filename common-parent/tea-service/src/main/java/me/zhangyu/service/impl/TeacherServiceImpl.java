@@ -133,5 +133,10 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
         return teacherMapper.findStudentByclass();
     }
 
+    @Override
+    public void publishNotice(Notice notice) {
+        teacherMapper.publishNotice(notice);
+    }
+
 
 }

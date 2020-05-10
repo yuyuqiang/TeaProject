@@ -138,5 +138,10 @@ public class TeacherServiceImpl extends BaseServiceImpl<Teacher> implements Teac
         teacherMapper.publishNotice(notice);
     }
 
+    @Override
+    public List<StudentSubmitHomework> findSubmitHomework1(String hid) {
+        return teacherMapper.findSubmitHomework1(hid);
+    }
+
 
 }

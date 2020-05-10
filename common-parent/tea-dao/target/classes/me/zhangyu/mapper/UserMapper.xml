@@ -21,7 +21,7 @@
     </select>
 
     <select id="submitHomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="me.zhangyu.model.StudentSubmitHomework">
-        INSERT INTO t_submithw (id,stu_id,h_id,grade,homeAttachment,homeOldname,isSubmit,subData,shw_content) values(null,#{ssh.stu_id},#{h_id},null,#{ssh.homeAttachment},#{ssh.homeOldname},#{ssh.isSubmit},#{ssh.subData},#{ssh.shw_content})
+        INSERT INTO t_submithw (id,stu_id,h_id,grade,homeAttachment,homeOldname,isSubmit,subData,shw_content) values(null,#{ssh.stu_id},#{h_id},0,#{ssh.homeAttachment},#{ssh.homeOldname},#{ssh.isSubmit},#{ssh.subData},#{ssh.shw_content})
     </select>
 
     <select id="findpreStudentHomework" resultType="me.zhangyu.model.StudentHomework" parameterType="List">

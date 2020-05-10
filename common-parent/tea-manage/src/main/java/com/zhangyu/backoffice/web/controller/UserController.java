@@ -137,21 +137,15 @@ public class UserController extends BaseController<User> {
             studentSubmitHomework = new StudentSubmitHomework();
             StudentHomework studentHomework = new StudentHomework();
 
-            //1_创建DiskFiletemFactory对象设置允许上传文件大小
             DiskFileItemFactory fac=new DiskFileItemFactory();
             fac.setSizeThreshold(1024*1024*200); //允许上传文件的最大为200MB
-            //2_创建ServletFileUpload upload
             ServletFileUpload upload=new ServletFileUpload(fac);
-            //3_通过upload解析request,得到集合<FileItem>
-            // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
+
             List<FileItem> list=upload.parseRequest(request);
 
 
             for (FileItem item : list) {
-                //5_判断当前FileItem是普通项还是上传项？
-                //什么是普通项：表单中的普通字段，非上传字段
-                //什么是上传项：表单中包含file组件上传项，携带着上传到服务端文件
-                //item.isFormField()  ;;判断当前的item是否是表单项目
+
                 if(item.isFormField()) {
                     //普通项
                     //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
@@ -191,8 +185,9 @@ public class UserController extends BaseController<User> {
             studentSubmitHomework  = userService.findSubmitHomeworkBySIdAndHId(stu_id,h_id);
             System.out.println("hhhj"+userService.findSubmitHomeworkBySIdAndHId(stu_id,h_id));
             if (studentSubmitHomework==null){
-                studentSubmitHomework = new StudentSubmitHomework();
+                StudentSubmitHomework studentSubmitHomework = new StudentSubmitHomework();
                 //将MAP中的数据封装在对象上
+                System.out.println("nihao");
                 BeanUtils.populate(studentSubmitHomework, map);
                 studentSubmitHomework.setStu_id(stu_id);
                 studentSubmitHomework.setIsSubmit(1);
@@ -201,7 +196,8 @@ public class UserController extends BaseController<User> {
                 studentSubmitHomework.setSubData(sdf.format(new Date()));
                 userService.submithomework(studentSubmitHomework,h_id);
 
-            }else{
+            }else if(studentSubmitHomework!=null){
+                System.out.println("nibuhao");
                 BeanUtils.populate(studentSubmitHomework, map);
                 studentSubmitHomework.setShw_content(value);
                 studentSubmitHomework.setSubData(sdf.format(new Date()));
@@ -522,6 +518,8 @@ public class UserController extends BaseController<User> {
 
         return ret;
     }
+
+
 
 
 

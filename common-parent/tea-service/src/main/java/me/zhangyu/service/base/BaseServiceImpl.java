@@ -29,6 +29,9 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     @Autowired
     protected ExamPaperAnswerMapper examPaperAnswerMapper;
 
+    @Autowired
+    protected RarMapper rarMapper;
+
 
 
 

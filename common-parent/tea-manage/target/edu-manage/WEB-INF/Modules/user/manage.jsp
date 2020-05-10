@@ -30,6 +30,14 @@
                                data-name="common_iframe" onclick="Common.switchNavigation(this);"
 							   data-url="${pageContext.request.contextPath}/vedio/vedioAll.do?num=1">教学视频</a>
 						</li>
+
+						<li class="nav_current">
+							<i class=" white folder large icon" style="margin-top: 10px;margin-left: 10px"></i>
+							<a href="#" class="subNavigation" id="A001012"
+							   style="margin-top: -27px;margin-left: 20px"
+							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
+							   data-url="${pageContext.request.contextPath}/rar/rarPrev.do?num=1">教学课件</a>
+						</li>
 						<li class="nav_current">
 							<i class=" white edit outline large icon" style="margin-top: 10px;margin-left: 10px"></i>
 							<a href="#" class="subNavigation" id="A001011"

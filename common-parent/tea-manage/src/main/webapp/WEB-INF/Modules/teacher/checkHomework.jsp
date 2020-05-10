@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
     <link rel="stylesheet" herf="${pageContext.request.contextPath}/static/css/me.css">
 </head>
-<body>
+<body style="margin-left: 20px;margin-top: 20px">
  <form id="fm" action="${pageContext.request.contextPath}/teacher/publishHomeworkUI.do" name="formAdd" method="post" enctype="multipart/form-data">
+     <h4>未评分</h4>
      <table class="ui celled table">
          <thead>
          <tr align="center"><th>序号</th>
@@ -44,6 +45,33 @@
              </td>
            </tr>
           </c:forEach>
+         </tbody>
+     </table>
+     <h4>已评分</h4>
+     <table class="ui celled table">
+         <thead>
+         <tr align="center"><th>序号</th>
+             <th>学号</th>
+             <th>作业备注</th>
+             <th>附件</th>
+             <th>成绩</th>
+             <th>操作</th>
+         </tr></thead>
+         <tbody>
+         <c:forEach items="${list1}"  var="hw" varStatus="status">
+             <tr align="center">
+                 <td data-label="序号" style="width: 5%">${status.index+1}</td>
+                 <td data-label="学号">${hw.stu_id}</td>
+                 <td data-label="作业">${hw.shw_content}</td>
+                 <td data-label="附件">
+                     <a href="${pageContext.request.contextPath}/teacher/studentHomeworkDown.do?id=${hw.id}" style="font-size: 13px;color: #3e8cff">${hw.homeOldname}</a>
+                 </td>
+                 <td data-label="成绩">${hw.grade}</td>
+                 <td  data-label="评分" >
+                     <a href="#" name="rating1" id="rating1" onclick="rating(${hw.h_id},${hw.id},${hw.stu_id})" >评分</a>
+                 </td>
+             </tr>
+         </c:forEach>
          </tbody>
      </table>
 

@@ -33,7 +33,7 @@
 							   style="margin-top: -27px;margin-left: 20px"
 
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/vedio/vedioPrev.do">教学课件管理</a>
+							   data-url="${pageContext.request.contextPath}/rar/findRarWithPageByTeacher.do?num=1">教学课件管理</a>
 						</li>
 						<li class="nav_current">
 							<i class=" white tasks large icon" style="margin-top: 10px;margin-left: 10px"></i>

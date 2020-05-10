@@ -1,7 +1,9 @@
 package com.zhangyu.backoffice.web.controller;
 
 import com.zhangyu.backoffice.web.controller.base.BaseController;
+import me.zhangyu.model.Rar;
 import me.zhangyu.model.Vedio;
+import me.zhangyu.service.RarService;
 import me.zhangyu.service.VedioService;
 import me.zhangyu.untils.DownLoadUtils;
 import me.zhangyu.untils.PageModel;
@@ -29,12 +31,17 @@ public class VedioController extends BaseController<Vedio> {
     @Autowired
     private VedioService vedioService;
 
+    @Autowired
+    private RarService rarService;
+
     @RequestMapping(VEDIO)
     public String findPrevVedio(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //1_调用业务层功能，返回存储着Vedio对象的集合
         List<Vedio> list=vedioService.findPrevVedio();//查询5个最新视频,返回集合
+
         //2_将集合放入request域对象内
         request.setAttribute("list", list);
+
         //3_转发到vedioPrev.jsp
         return VEDIO_PAGE;
     }
@@ -187,7 +194,7 @@ public class VedioController extends BaseController<Vedio> {
         int i =0;
         int j =0;
 
-       //1_创建DiskFiletemFactory对象设置允许上传文件大小
+        //1_创建DiskFiletemFactory对象设置允许上传文件大小
         DiskFileItemFactory fac=new DiskFileItemFactory();
         fac.setSizeThreshold(1024*1024*200); //允许上传文件的最大为200MB
         //2_创建ServletFileUpload upload
@@ -197,7 +204,7 @@ public class VedioController extends BaseController<Vedio> {
         // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
         List<FileItem> list=upload.parseRequest(request);
 
-       // Collection<MultipartFile> files = fileMap.values();
+        // Collection<MultipartFile> files = fileMap.values();
         //4_遍历集合
         for (FileItem item : list) {
             //5_判断当前FileItem是普通项还是上传项？
@@ -208,41 +215,41 @@ public class VedioController extends BaseController<Vedio> {
                 //普通项
                 //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
                 String name=item.getFieldName();
-                 String value=item.getString("UTF-8");
+                String value=item.getString("UTF-8");
 
                 System.out.println("lllllllllllll"+name+value); //vedioName  vedioProSystem.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
                 map.put(item.getFieldName(), value);
             }else {
 
 
-                    //如果是上传项：在服务端指定目录/upload/ 创建一个文件，将上传项中文件的二进制数据输出到创建好的文件中
-                    //获取到文件名称
-                    String fName=item.getName();
-                    System.out.println("文件名称"+fName); //11.mp4
-                    //获取服务端upload真实路径
-                    int index = fName.lastIndexOf(".");
-                    String suffix =fName.substring(index);
-                    System.out.println("ggggggg"+suffix);
+                //如果是上传项：在服务端指定目录/upload/ 创建一个文件，将上传项中文件的二进制数据输出到创建好的文件中
+                //获取到文件名称
+                String fName=item.getName();
+                System.out.println("文件名称"+fName); //11.mp4
+                //获取服务端upload真实路径
+                int index = fName.lastIndexOf(".");
+                String suffix =fName.substring(index);
+                System.out.println("ggggggg"+suffix);
 //                    String realPath= request.getSession().getServletContext().getRealPath("/WEB-INF/Modules/upload/");
-                    //String realPath = "//src/main/webapp/WEB-INF/Modules/upload//";
+                //String realPath = "//src/main/webapp/WEB-INF/Modules/upload//";
 //                    String realPath="E:\\TeachingWebsite\\TeaProject\\common-parent\\tea-manage\\src\\main\\webapp\\WEB-INF\\Modules\\upload\\";
                 String realPath="E:\\TeachingWebsite\\TeaProject\\common-parent\\tea-manage\\src\\main\\webapp\\assets1\\upload\\";
 
                 String uuidName= UploadUtils.getUUIDName(fName);
 
-                    //XXXXXX.mp4
-                    //在服务端指定路径下创建文件
-                    File f=new File(realPath,uuidName);
-                    System.out.println("bbbbb"+f);
-                    if(!f.exists()) {
-                        f.createNewFile();
-                        //创建文件此时其中没有内容
-                    }
-                    item.write(f);//将上传到服务端的文件中的二进制数据输出到文件中
-                    attr[i]=fName;
-                    attr1[j]=uuidName;
-                    i = i+1;
-                    j = j+1;
+                //XXXXXX.mp4
+                //在服务端指定路径下创建文件
+                File f=new File(realPath,uuidName);
+                System.out.println("bbbbb"+f);
+                if(!f.exists()) {
+                    f.createNewFile();
+                    //创建文件此时其中没有内容
+                }
+                item.write(f);//将上传到服务端的文件中的二进制数据输出到文件中
+                attr[i]=fName;
+                attr1[j]=uuidName;
+                i = i+1;
+                j = j+1;
 
             }
 
@@ -272,67 +279,5 @@ public class VedioController extends BaseController<Vedio> {
         return null;
     }
 
-//    //addVedio
-//    @RequestMapping("addVedioImage")
-//    public String addVedioimage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        String id=request.getParameter("id");
-//
-//        Map<String,String> map=new HashMap<String,String>();//携带表单名称以及表单参数
-//        Vedio vedio=vedioService.findVedioByVid(id); //携带Vedio数据，向 service,dao进行传递
-//
-//        //1_创建DiskFiletemFactory对象设置允许上传文件大小
-//        DiskFileItemFactory fac=new DiskFileItemFactory();
-//        fac.setSizeThreshold(1024*1024*200); //允许上传文件的最大为200MB
-//        //2_创建ServletFileUpload upload
-//        ServletFileUpload upload=new ServletFileUpload(fac);
-//        upload.setHeaderEncoding("UTF-8");
-//        //3_通过upload解析request,得到集合<FileItem>
-//        // FileItem代表什么？工具就将请求体中每对分割线中间的内容封装为一个FileItem对象
-//        List<FileItem> list=upload.parseRequest(request);
-//        //4_遍历集合
-//        for (FileItem item : list) {
-//            //5_判断当前FileItem是普通项还是上传项？
-//            //什么是普通项：表单中的普通字段，非上传字段
-//            //什么是上传项：表单中包含file组件上传项，携带着上传到服务端文件
-//            //item.isFormField()  ;;判断当前的item是否是表单项目
-//            if(item.isFormField()) {
-//                //普通项
-//                //如果是普通项：获取到对应的表单名称和表单内容     Eg: vedioName<__>333333333
-//                String name=item.getFieldName();
-//                String value=item.getString("UTF-8");
-//
-//                System.out.println("lllllllllllll"+name+value); //vedioName  vedioProSystem.out.println("mmmmmmmmmmmmmmm"+value); //1111       22222
-//                map.put(item.getFieldName(), value);
-//            }else {
-//                //如果是上传项：在服务端指定目录/upload/ 创建一个文件，将上传项中文件的二进制数据输出到创建好的文件中
-//                //获取到文件名称
-//                String fName=item.getName();
-//                System.out.println("文件名称"+fName); //11.mp4
-//                //获取服务端upload真实路径
-//                String realPath= request.getSession().getServletContext().getRealPath("/WEB-INF/Modules/upload/");
-//                //String realPath = "//src/main/webapp/WEB-INF/Modules/upload//";
-//                String uuidName= UploadUtils.getUUIDName(fName);
-//                //XXXXXX.mp4
-//                //在服务端指定路径下创建文件
-//                File f=new File(realPath,uuidName);
-//                System.out.println("bbbbb"+f);
-//                if(!f.exists()) {
-//                    f.createNewFile();
-//                    //创建文件此时其中没有内容
-//                }
-//                item.write(f);//将上传到服务端的文件中的二进制数据输出到文件中
-////                map.put("vedioAttachment", uuidName);
-//                map.put("image", fName);
-//            }
-//            }
-//
-//        //将MAP中的数据封装在Vedio对象上
-//        BeanUtils.populate(vedio, map);
-//        System.out.println("ssssssssssssss"+vedio);
-//
-//        vedioService.addVedioImage(vedio,id);
-//        response.sendRedirect("findVediosWithPageByTeacher.do?num=1");
-//        return null;
-//    }
 
 }

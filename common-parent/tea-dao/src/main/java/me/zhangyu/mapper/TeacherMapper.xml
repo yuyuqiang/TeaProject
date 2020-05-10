@@ -39,8 +39,13 @@
     </select>
 
     <select id="findSubmitHomework" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="List">
-        SELECT * FROM t_submithw WHERE h_id=#{hid}
+        SELECT * FROM t_submithw WHERE h_id=#{hid} and grade=0.0
     </select>
+
+    <select id="findSubmitHomework1" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="List">
+        SELECT * FROM t_submithw WHERE h_id=#{hid} and grade>0
+    </select>
+
 
     <select id="findSubmitHomeworkByid" resultType="me.zhangyu.model.StudentSubmitHomework" parameterType="List">
         SELECT * FROM t_submithw WHERE id=#{id}

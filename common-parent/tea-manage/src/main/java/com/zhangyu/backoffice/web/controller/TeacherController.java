@@ -203,7 +203,6 @@ public class TeacherController extends BaseController<Teacher> {
         homework.setSubjectId(Long.valueOf(subjectId));
 
 
-
         studentHomework.setH_name(H_name);
         studentHomework.setH_startTime(startTime);
         studentHomework.setH_content(H_content);
@@ -239,10 +238,10 @@ public class TeacherController extends BaseController<Teacher> {
     @RequestMapping("checkHomework")
     public String checkHomework(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String hid= request.getParameter("id");
-        List<StudentSubmitHomework> list=teacherService.findSubmitHomework(hid);//查询5个最新视频,返回集合
-        System.out.println("list"+list);
+        List<StudentSubmitHomework> list=teacherService.findSubmitHomework(hid);
+        List<StudentSubmitHomework> list1=teacherService.findSubmitHomework1(hid);
         request.setAttribute("list", list);
-
+        request.setAttribute("list1", list1);
         return CHECKHOMEWORK_PAGE;
     }
 
@@ -322,7 +321,7 @@ public class TeacherController extends BaseController<Teacher> {
         Map<String, Object> queryMap = new HashMap<String, Object>();
         queryMap.put("offset", 0);
         queryMap.put("pageSize", 99999);
-        model.addObject("subjectList", subjectService.findList(queryMap));
+        model.addObject( "subjectList", subjectService.findList(queryMap));
         model.setViewName("teacher/studentList");
         return model;
     }
@@ -480,34 +479,6 @@ public class TeacherController extends BaseController<Teacher> {
         return true;
     }
 
-//    /**
-//     * 添加学科专业
-//     * @param subject
-//     * @return
-//     */
-//    @RequestMapping(value="add",method=RequestMethod.POST)
-//    @ResponseBody
-//    public Map<String, String> add(Subject subject){
-//        Map<String, String> ret = new HashMap<String, String>();
-//        if(subject == null){
-//            ret.put("type", "error");
-//            ret.put("msg", "请填写正确的学科信息!");
-//            return ret;
-//        }
-//        if(StringUtils.isEmpty(subject.getName())){
-//            ret.put("type", "error");
-//            ret.put("msg", "请填写学科名称!");
-//            return ret;
-//        }
-//        if(subjectService.add(subject) <= 0){
-//            ret.put("type", "error");
-//            ret.put("msg", "添加失败，请联系管理员!");
-//            return ret;
-//        }
-//        ret.put("type", "success");
-//        ret.put("msg", "添加成功!");
-//        return ret;
-//    }
 
     @RequestMapping(TEAMANAGE)
     public String teaManage(){

@@ -28,15 +28,7 @@
 <div class="easyui-layout" data-options="fit:true">
     <!-- Begin of toolbar -->
     <div id="wu-toolbar">
-<%--        <div>--%>
-<%--            <input type="button" value="添加" onclick="openAdd();"iconCls="icon-search" style="margin-left: 20px">--%>
-<%--        </div>--%>
-<%--        <div class="wu-toolbar-button">--%>
-<%--            <input type="button" value="编辑" onclick="openEdit();" iconCls="icon-search" style="margin-top: -22px!important;margin-left: 80px">--%>
-<%--        </div>--%>
-<%--        <div class="wu-toolbar-button">--%>
-<%--            <input type="button" value="删除" onclick="remove();"iconCls="icon-search" style="margin-top: -27px!important;margin-left: 150px">--%>
-<%--        </div>--%>
+
         <div class="wu-toolbar-search">
             <label>考生名称:</label><input id="search-name" class="wu-text" style="width:100px">
             <label>所属学科:</label>

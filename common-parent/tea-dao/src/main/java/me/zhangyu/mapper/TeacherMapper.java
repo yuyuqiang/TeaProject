@@ -38,4 +38,6 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
     String[] findStudentByclass();
 
     void publishNotice(@Param("notice") Notice notice);
+
+    List<StudentSubmitHomework> findSubmitHomework1(String hid);
 }

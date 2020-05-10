@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.zhangyu.mapper.RarMapper">
+
+
+    <select id="addRar" resultType="me.zhangyu.model.Rar" parameterType="me.zhangyu.model.Rar">
+        INSERT INTO t_rar (id,rarName,rarAttachment,rarRealname,uploadTime,downNum) values(null,#{rar.rarName},#{rar.rarAttachment},#{rar.rarRealname},#{rar.uploadTime},0)
+    </select>
+
+    <select id="findPrevRar" resultType="me.zhangyu.model.Rar" parameterType="List">
+        SELECT * FROM t_rar ORDER BY uploadTime DESC LIMIT 0,5
+    </select>
+
+    <select id="findTotalRecords" resultType="int" parameterType="int">
+        SELECT COUNT(*) FROM t_rar
+    </select>
+
+    <select id="findRarWithPageByTeacher" resultType="me.zhangyu.model.Rar" parameterType="int">
+        SELECT * FROM t_rar LIMIT #{startIndex},#{pageSize}
+    </select>
+
+    <select id="deleteRarByTeacher" resultType="me.zhangyu.model.Rar">
+        DELETE FROM t_rar WHERE id=#{rId}
+    </select>
+
+    <select id="findRarWithPage" resultType="me.zhangyu.model.Rar" parameterType="int">
+        SELECT * FROM t_rar LIMIT #{i},#{j}
+    </select>
+
+    <select id="findRarByRid" resultType="me.zhangyu.model.Rar" parameterType="String">
+        SELECT * FROM t_rar WHERE id = #{id}
+    </select>
+
+    <update id="updateRar" parameterType="me.zhangyu.model.Rar">
+		update t_rar set downNum = #{rar.downNum} where id = #{id}
+	</update>
+
+</mapper>

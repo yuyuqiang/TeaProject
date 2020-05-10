@@ -121,7 +121,7 @@
                     <div class="extra">
                         <div href="" class="ui right floated primary button" onclick="down(${v.vedioId})">下载 <i class="right download icon"></i> </div>
                         <div class="ui label">VEDIO</div>
-                        <div class="ui label"><i class="users icon"></i> ${v.downNum} 次查看</div>
+                        <div class="ui label"><i class="users icon"></i> ${v.downNum} 人查看</div>
                     </div>
                 </div>
             </div>
@@ -132,9 +132,6 @@
             </div>
         </div>
     </c:forEach>
-
-
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>

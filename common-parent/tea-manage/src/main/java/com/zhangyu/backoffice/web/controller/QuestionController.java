@@ -239,7 +239,7 @@ public class QuestionController extends BaseController<Question> {
         }
         if(subjectId == null){
             ret.put("type", "error");
-            ret.put("msg", "请选择所属科目!");
+            ret.put("msg", "请选择所属专业!");
             return ret;
         }
         if(excelFile.getSize() > 5000000){

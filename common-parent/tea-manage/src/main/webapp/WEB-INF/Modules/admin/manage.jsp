@@ -38,7 +38,7 @@
 						<dd>
 							<a href="#" class="subNavigation" id="A001012"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/admin/personInfo.do">学生信息</a>
+							   data-url="${pageContext.request.contextPath}/teacher/list.do">学生信息</a>
 						</dd>
 						<dd>
 							<a href="#" class="subNavigation" id="A001013"
@@ -68,12 +68,12 @@
 						<dd>
 							<a href="#" class="subNavigation" id="A001016"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/admin/personInfo.do">测试题库</a>
+							   data-url="${pageContext.request.contextPath}/question/questionList.do">测试题库</a>
 						</dd>
 						<dd>
 							<a href="#" class="subNavigation" id="A001017"
 							   data-name="common_iframe" onclick="Common.switchNavigation(this);"
-							   data-url="${pageContext.request.contextPath}/admin/info.do">测试成绩</a>
+							   data-url="${pageContext.request.contextPath}/exampaper/list.do">试题管理</a>
 						</dd>
 					</dl>
 				</li>

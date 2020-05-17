@@ -52,7 +52,7 @@
               <option value="1">多选</option>
               <option value="2">判断</option>
              </select>
-            <label>试题科目:</label>
+            <label>试题科:</label>
              <select id="search-subject" class="easyui-combobox" panelHeight="auto" style="width: 120px">
               <option value="-1">全部</option>
               <c:forEach items="${subjectList}" var="subject">
@@ -76,9 +76,9 @@
                 <td><input type="text" id="add-title" name="title" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写试题题目'" ></td>
             </tr>
             <tr>
-                <td align="right">所属科目:</td>
+                <td align="right">所属科:</td>
                 <td>
-                    <select name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试科目'">
+                    <select name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试专业'">
                         <c:forEach items="${subjectList}" var="subject">
                             <option value="${subject.id}">${subject.name}</option>
                         </c:forEach>
@@ -128,9 +128,9 @@
                 <td><input type="text" id="edit-title" name="title" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写试题题目'" ></td>
             </tr>
             <tr>
-                <td align="right">所属科目:</td>
+                <td align="right">所属专业:</td>
                 <td>
-                    <select id="edit-subjectId" name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试科目'">
+                    <select id="edit-subjectId" name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试专业'">
                         <c:forEach items="${subjectList}" var="subject">
                             <option value="${subject.id}">${subject.name}</option>
                         </c:forEach>
@@ -180,9 +180,9 @@
             <td><a onclick="uploadFile()" href="javascript:void(0)" id="select-file-btn" class="easyui-linkbutton" iconCls="icon-upload">选择文件</a></td>
         </tr>
         <tr>
-            <td align="right">所属科目:</td>
+            <td align="right">所属专业:</td>
             <td>
-                <select id="import-subjectId" name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试科目'">
+                <select id="import-subjectId" name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试专业'">
                     <c:forEach items="${subjectList}" var="subject">
                         <option value="${subject.id}">${subject.name}</option>
                     </c:forEach>

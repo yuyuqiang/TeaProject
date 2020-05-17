@@ -51,7 +51,7 @@
                 <h3 class="am-panel-title">在线列表 [<span id="onlinenum"></span>]</h3>
             </div>
             <ul class="am-list am-list-static am-list-striped" >
-                <li>图灵机器人 <button class="am-btn am-btn-xs am-btn-danger" id="tuling" data-am-button>未上线</button></li>
+                <li>助手 <button class="am-btn am-btn-xs am-btn-danger" id="tuling" data-am-button>未上线</button></li>
             </ul>
             <ul class="am-list am-list-static am-list-striped" id="list">
             </ul>

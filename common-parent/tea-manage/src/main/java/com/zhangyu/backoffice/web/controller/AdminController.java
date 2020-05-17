@@ -66,7 +66,7 @@ public class AdminController extends BaseController<User> {
             return null;
         }else {
             //如果返回的学生空，说明登录失败，向request域对象放入提示信息，转发到/site/index.jsp
-            request.setAttribute("msg", "密码有误");
+            request.setAttribute("msg", "用户名或密码密码错误");
             return ALOGIN_PAGE;
         }
 

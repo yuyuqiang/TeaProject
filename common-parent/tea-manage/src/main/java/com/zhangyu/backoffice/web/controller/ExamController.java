@@ -115,7 +115,7 @@ public class ExamController extends BaseController<Exam> {
         }
         if(exam.getSubjectId() == null){
             ret.put("type", "error");
-            ret.put("msg", "请选择所属科目!");
+            ret.put("msg", "请选择所属专业!");
             return ret;
         }
         if(exam.getStartTime() == null){
@@ -199,7 +199,7 @@ public class ExamController extends BaseController<Exam> {
         }
         if(exam.getSubjectId() == null){
             ret.put("type", "error");
-            ret.put("msg", "请选择所属科目!");
+            ret.put("msg", "请选择所属专业!");
             return ret;
         }
         if(exam.getStartTime() == null){

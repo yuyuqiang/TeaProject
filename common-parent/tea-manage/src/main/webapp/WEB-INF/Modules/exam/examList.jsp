@@ -38,7 +38,7 @@
         </div>
         <div class="wu-toolbar-search">
             <label>考试名称:</label><input id="search-name" class="wu-text" style="width:100px">
-            <label>所属科目:</label>
+            <label>所属专业:</label>
             <select id="search-subject" class="easyui-combobox" panelHeight="auto" style="width:120px">
                 <option value="-1">全部</option>
                 <c:forEach items="${subjectList}" var="subject">
@@ -62,9 +62,9 @@
                 <td><input type="text" id="add-name" name="name" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试名称'" ></td>
             </tr>
             <tr>
-                <td align="right">所属科目:</td>
+                <td align="right">所属专业:</td>
                 <td>
-                    <select name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试科目'">
+                    <select name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试专业'">
                         <c:forEach items="${subjectList}" var="subject">
                             <option value="${subject.id}">${subject.name}</option>
                         </c:forEach>
@@ -112,9 +112,9 @@
                 <td><input type="text" id="edit-name" name="name" class="wu-text easyui-validatebox" data-options="required:true, missingMessage:'请填写考试名称'" ></td>
             </tr>
             <tr>
-                <td align="right">所属科目:</td>
+                <td align="right">所属专业:</td>
                 <td>
-                    <select id="edit-subjectId" name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试科目'">
+                    <select id="edit-subjectId" name="subjectId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择考试专业'">
                         <c:forEach items="${subjectList}" var="subject">
                             <option value="${subject.id}">${subject.name}</option>
                         </c:forEach>

@@ -25,7 +25,6 @@
 <%--                    src="E:/TeachingWebsite/TeaProject/common-parent/tea-manage/target/edu-manage/WEB-INF/Modules/upload/${vedio.vedioAttachment}"--%>
                     src="${pageContext.request.contextPath}/assets1/upload/${vedio.vedioAttachment}"
             />
-
         </video>
     </div>
 </div>

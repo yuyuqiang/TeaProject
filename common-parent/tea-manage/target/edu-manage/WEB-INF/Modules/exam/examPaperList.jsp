@@ -72,7 +72,7 @@
             <tr>
                 <td align="right">所属考试:</td>
                 <td>
-                    <select id="edit-examId" name="examId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择试卷科目'">
+                    <select id="edit-examId" name="examId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择试卷专业'">
                         <c:forEach items="${examList}" var="exam">
                             <option value="${exam.id}">${exam.name}</option>
                         </c:forEach>
@@ -82,7 +82,7 @@
             <tr>
                 <td align="right">所属学生:</td>
                 <td>
-                    <select id="edit-studentId" name="studentId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择试卷科目'">
+                    <select id="edit-studentId" name="studentId" class="easyui-combobox easyui-validatebox" panelHeight="auto" style="width:268px" data-options="required:true, missingMessage:'请选择试卷专业'">
                         <c:forEach items="${studentList}" var="user">
                             <option value="${user.id}">${user.username}</option>
                         </c:forEach>

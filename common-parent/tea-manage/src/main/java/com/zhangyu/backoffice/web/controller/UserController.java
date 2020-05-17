@@ -85,7 +85,6 @@ public class UserController extends BaseController<User> {
         }
         else {
             attributes.addFlashAttribute("message","用户名或密码错误");
-
         }
         return ULOGIN_PAGE;
     }
@@ -130,20 +129,15 @@ public class UserController extends BaseController<User> {
         String h_name = homework.getH_name();
         String value =null;
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
         if (System.currentTimeMillis()<homework.getH_endTime().getTime()){
             Map<String,String> map=new HashMap<String,String>();//携带表单名称以及表单参数
             //携带studentSubmitHomework数据，向 service,dao进行传递
             studentSubmitHomework = new StudentSubmitHomework();
             StudentHomework studentHomework = new StudentHomework();
-
             DiskFileItemFactory fac=new DiskFileItemFactory();
             fac.setSizeThreshold(1024*1024*200); //允许上传文件的最大为200MB
             ServletFileUpload upload=new ServletFileUpload(fac);
-
             List<FileItem> list=upload.parseRequest(request);
-
-
             for (FileItem item : list) {
 
                 if(item.isFormField()) {

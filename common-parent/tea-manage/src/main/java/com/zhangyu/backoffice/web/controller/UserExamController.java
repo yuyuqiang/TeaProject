@@ -225,7 +225,7 @@ public class UserExamController extends BaseController<Exam> {
         }
         if(exam.getSubjectId().longValue() != UserController.user.getSubjectId()){
             model.setViewName("exam/error");
-            model.addObject("msg", "您所属科目与考试科目不符合，不能进行考试!");
+            model.addObject("msg", "您所属专业与考试专业不符合，不能进行考试!");
             return model;
         }
         Map<String, Object> queryMap = new HashMap<String, Object>();

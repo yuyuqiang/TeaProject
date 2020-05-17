@@ -63,7 +63,7 @@
 
        <div class="ui four cards">
            <c:forEach items="${list}"  var="hw">
-           <div class="ui card" style="margin-top: 20px;margin-left: 12px;width: 230px;">
+           <div class="ui card" style="margin-top: 20px;margin-left: 10px;width: 230px;">
                <div class="content">
                    <div class="header">
                                ${hw.h_name}
@@ -96,8 +96,7 @@
                    </div>
                </div>
                <div class="extra content">
-                   <a class="ui blue button" href="${pageContext.request.contextPath}/user/homeworkDetail.do?h_name=${hw.h_name}">详情
-                   </a>
+                   <a class="ui blue button" href="${pageContext.request.contextPath}/user/homeworkDetail.do?h_name=${hw.h_name}">详情</a>
                </div>
            </div>
            </c:forEach>
